@@ -1,0 +1,12 @@
+.iconContainer {
+	margin: 0.125rem;
+}
+
+.iconSvg {
+	border-radius: 30%;
+	background-color: #ffffff;
+}
+
+.iconColor {
+	fill: #008235;
+}

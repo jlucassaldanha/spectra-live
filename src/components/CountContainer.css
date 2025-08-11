@@ -1,0 +1,18 @@
+.counter {
+	cursor: default;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	gap: 0.25rem;
+	margin: 0.125rem;
+}
+
+.textRed {
+	color: #aa3e3e;
+	font-weight: 500;
+}
+
+.textWhite {
+	color: #ffffff;
+	font-weight: 500;
+}

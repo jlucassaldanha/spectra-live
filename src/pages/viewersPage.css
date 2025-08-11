@@ -1,0 +1,16 @@
+.base {
+	gap: 5px;
+	display: block;
+}
+
+.H1 {
+	font-size: 1.1rem;
+}
+
+.countHeader {
+	display: flex;
+	gap: 0.5rem;
+	margin: 2rem;
+	padding: 0.375rem;
+	background-color: #1F1F23;
+}
