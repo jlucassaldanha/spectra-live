@@ -1,0 +1,22 @@
+.userContainer {
+	margin: 0 2rem 0.5rem 0;
+	padding: 0.5rem 0 0 0.5rem;
+	border-top: 1px solid #1F1F23;
+}
+
+.userLink {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+}
+
+.userImg {
+	width: 26px;
+	border-radius: 50%;
+}
+
+.userText {
+	color: #BE93FE;
+}

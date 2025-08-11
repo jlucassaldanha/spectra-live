@@ -1,5 +1,8 @@
 .iconContainer {
-	margin: 0.125rem;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	margin: 0;
 }
 
 .redFill {
