@@ -1,10 +1,10 @@
 import "./viewersPage.css"
 
-import IconMod from "../components/MyIcons/ModIcon"
-import MyHeader from "../components/MyHeader/MyHeader"
 import IconUser from "../components/MyIcons/UserIcon"
+
+import Header from "../components/Header/Header"
 import CountContainer from "../components/CountContainer/CountContainer"
-import User from "../components/User/User"
+import UsersList from "../components/UsersList/UsersList"
 
 function ViewersPage(){
 	const users = [
@@ -29,12 +29,11 @@ function ViewersPage(){
 
 	return (
 		<div className="base">
-			<MyHeader>
+			<Header>
 				<h1 className="H1">
 					Espectadores
 				</h1>
-			</MyHeader>
-
+			</Header>
 			<section className="mainSection">
 				<CountContainer 
 					icon={<IconUser fillColor="red" />} 
@@ -42,49 +41,15 @@ function ViewersPage(){
 					textColor="red" 
 				/>
 			</section>
-		
 			<section className="mainSection">
-				<div className="useSection">
-					<div className="countHeader">
-						<CountContainer 
-							icon={<IconUser fillColor="white" />} 
-							text="Espectadores" 
-							textColor="white" 
-						/>
-					</div>
-					{
-						users.map((user, i) => {
-							return (
-								<User 
-									userName={user.name}
-									profileImgURL={user.img}
-									key={i}
-								/>
-							)
-						})
-					}
-				</div>
-				
-				<div className="useSection">
-					<div className="countHeader">
-						<CountContainer 
-							icon={<IconMod />} 
-							text="Moderadores" 
-							textColor="white" 
-						/>
-					</div>
-					{
-						users.map((user, i) => {
-							return (
-								<User 
-									userName={user.name}
-									profileImgURL={user.img}
-									key={i}
-								/>
-							)
-						})
-					}
-				</div>
+				<UsersList 
+					users={users}
+					type="user"
+				/>
+				<UsersList 
+					users={users}
+					type="mod"
+				/>
 			</section>
 		</div>
 	)

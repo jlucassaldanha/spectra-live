@@ -1,0 +1,10 @@
+.countHeader {
+	display: flex;
+	gap: 0.5rem;
+	padding: 0.2rem;
+	background-color: #1F1F23;
+}
+
+.userSection {
+	background-color: aliceblue;
+}

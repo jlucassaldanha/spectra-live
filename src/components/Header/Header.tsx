@@ -1,7 +1,7 @@
 import { type ReactNode } from "react"
-import "./MyHeader.css"
+import "./Header.css"
 
-function MyHeader({ children }: { children: ReactNode }) {
+function Header({ children }: { children: ReactNode }) {
 	return (
 		<header className="Header">
 			{children}
@@ -9,4 +9,4 @@ function MyHeader({ children }: { children: ReactNode }) {
 	)
 }
 
-export default MyHeader
+export default Header
