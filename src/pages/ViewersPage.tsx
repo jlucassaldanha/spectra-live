@@ -10,6 +10,8 @@ import { useEffect, useState } from "react"
 
 function ViewersPage(){
 	const [allUsersIds, setAllUsersIds] = useState<string[]>([""])
+	const [modsIds, setModsIds] = useState<string[]>([""])
+	const [viewersIds, setViewersIds] = useState<string[]>([""])
 	const [total, setTotal] = useState<number>(0)
 	
 	const moderator_id: string = ""
@@ -35,6 +37,12 @@ function ViewersPage(){
 		
 	]
 
+	type UserType = {
+		user_id: string
+		user_login: string
+		user_name: string						
+	}
+
 	useEffect(() => {
 		const interval: number = setInterval(() => {
 			let params: string = `?broadcaster_id=${broadcaster_id}`
@@ -42,13 +50,7 @@ function ViewersPage(){
 			
 			TwitchApi.get(`/chat/chatters${params}`)
 				.then((response) => {
-					type chattersType = {
-						user_id: string
-						user_login: string
-						user_name: string						
-					}
-
-					const responseData: chattersType[] = response.data.data
+					const responseData: UserType[] = response.data.data
 					const responseTotal: number = response.data.total
 
 					const users_ids: string[] = responseData.map((user) => {
@@ -68,8 +70,31 @@ function ViewersPage(){
 		return () => clearInterval(interval)
 	}, [])
 
-	
 
+	useEffect(() => {
+		if (allUsersIds.length > 0) {
+			let params: string = `?broadcaster_id=${broadcaster_id}`
+			params += allUsersIds.join("&user_id=")
+
+			TwitchApi.get(`/moderation/moderators${params}`)
+				.then((response) => {
+					const responseData: UserType[] = response.data.data
+
+					const mods_ids: string[] = responseData.map((user) => {
+							return user.user_id
+						})
+					const viewers_ids: string[] = allUsersIds.filter(id => !mods_ids.includes(id))
+					
+					setModsIds(mods_ids)
+					setViewersIds(viewers_ids)
+				})
+				.catch((error) => {
+					console.log("Erro: " + error)
+					window.alert(`Erro:
+						${error}`)
+				})
+		}
+	}, [allUsersIds])
 
 	return (
 		<div className="base">
