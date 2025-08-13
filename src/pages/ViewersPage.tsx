@@ -1,12 +1,20 @@
 import "./viewersPage.css"
+import TwitchApi from "../utils/TwitchApi"
 
 import IconUser from "../components/MyIcons/UserIcon"
 
 import Header from "../components/Header/Header"
 import CountContainer from "../components/CountContainer/CountContainer"
 import UsersList from "../components/UsersList/UsersList"
+import { useEffect, useState } from "react"
 
 function ViewersPage(){
+	const [allUsersIds, setAllUsersIds] = useState<string[]>([""])
+	const [total, setTotal] = useState<number>(0)
+	
+	const moderator_id: string = ""
+	const broadcaster_id: string = ""
+
 	const users = [
 		{
 			name: "teste1",
@@ -27,6 +35,42 @@ function ViewersPage(){
 		
 	]
 
+	useEffect(() => {
+		const interval: number = setInterval(() => {
+			let params: string = `?broadcaster_id=${broadcaster_id}`
+			params += `&moderator_id=${moderator_id}`
+			
+			TwitchApi.get(`/chat/chatters${params}`)
+				.then((response) => {
+					type chattersType = {
+						user_id: string
+						user_login: string
+						user_name: string						
+					}
+
+					const responseData: chattersType[] = response.data.data
+					const responseTotal: number = response.data.total
+
+					const users_ids: string[] = responseData.map((user) => {
+							return user.user_id
+						})
+
+					setAllUsersIds(users_ids)
+					setTotal(responseTotal)
+				})
+				.catch((error) => {
+					console.log("Erro: " + error)
+					window.alert(`Erro:
+						${error}`)
+				})
+		}, 1000)
+
+		return () => clearInterval(interval)
+	}, [])
+
+	
+
+
 	return (
 		<div className="base">
 			<Header>
@@ -37,7 +81,7 @@ function ViewersPage(){
 			<section className="mainSection">
 				<CountContainer 
 					icon={<IconUser fillColor="red" />} 
-					text="Espectadores totais" 
+					text={`${total} Espectadores totais`} 
 					textColor="red" 
 				/>
 			</section>
