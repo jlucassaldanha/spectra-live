@@ -68,7 +68,6 @@ function ViewersPage(){
 							return user.user_id
 						})
 					
-						console.log(users_ids)
 					setAllUsersIds(users_ids)
 					setTotal(responseTotal)
 				})
