@@ -10,14 +10,17 @@ import { useEffect, useState } from "react"
 
 function ViewersPage(){
 	const [allUsersIds, setAllUsersIds] = useState<string[]>([""])
+	const [allUsersInfos, setAllUsersInfos] = useState<UserType[]>([])
 	const [modsIds, setModsIds] = useState<string[]>([""])
 	const [viewersIds, setViewersIds] = useState<string[]>([""])
+	const [modsInfos, setModsInfos] = useState<UserType[]>([])
+	const [viewersInfos, setViewersInfos] = useState<UserType[]>([])
 	const [total, setTotal] = useState<number>(0)
 	
 	const moderator_id: string = ""
 	const broadcaster_id: string = ""
 
-	const users = [
+	{/*const users = [
 		{
 			name: "teste1",
 			img: "https://yt3.googleusercontent.com/ytc/AIdro_l-U0s4DusUoDq-0X9v_yvheRNXoy1jZfK7CogXkJcpz7Q=s120-c-k-c0x00ffffff-no-rj"
@@ -35,9 +38,9 @@ function ViewersPage(){
 			img: "https://yt3.googleusercontent.com/ytc/AIdro_mvK5CpITy5tDYSu3iH3dgUu1iMu47xCdTVby0NLU3rsg=s120-c-k-c0x00ffffff-no-rj"
 		},
 		
-	]
+	]*/}
 
-	type UserType = {
+	type ChatterType = {
 		user_id: string
 		user_login: string
 		user_name: string						
@@ -50,7 +53,7 @@ function ViewersPage(){
 			
 			TwitchApi.get(`/chat/chatters${params}`)
 				.then((response) => {
-					const responseData: UserType[] = response.data.data
+					const responseData: ChatterType[] = response.data.data
 					const responseTotal: number = response.data.total
 
 					const users_ids: string[] = responseData.map((user) => {
@@ -70,7 +73,6 @@ function ViewersPage(){
 		return () => clearInterval(interval)
 	}, [])
 
-
 	useEffect(() => {
 		if (allUsersIds.length > 0) {
 			let params: string = `?broadcaster_id=${broadcaster_id}`
@@ -78,7 +80,7 @@ function ViewersPage(){
 
 			TwitchApi.get(`/moderation/moderators${params}`)
 				.then((response) => {
-					const responseData: UserType[] = response.data.data
+					const responseData: ChatterType[] = response.data.data
 
 					const mods_ids: string[] = responseData.map((user) => {
 							return user.user_id
@@ -96,6 +98,50 @@ function ViewersPage(){
 		}
 	}, [allUsersIds])
 
+	type UserType = {
+		id: string
+		login: string
+		display_name: string
+		type: string
+		broadcaster_type: string
+		description: string
+		profile_image_url: string
+		offline_image_url: string
+		view_count: number
+		email: string
+		created_at: string
+	}
+
+	useEffect(() => {
+		if (allUsersIds.length > 0) {
+			let params: string = `?user_id=${allUsersIds[0]}`
+			params += allUsersIds.slice(1, allUsersIds.length - 1).join("&user_id=")
+
+			TwitchApi.get(`/users/${params}`)
+				.then((response) => {
+					const responseData: UserType[] = response.data.data
+					setAllUsersInfos(responseData)
+				})
+				.catch((error) => {
+					console.log("Erro: " + error)
+					window.alert(`Erro:
+						${error}`)
+				})
+		}
+	}, [allUsersIds])
+
+	useEffect(() => {
+		if (allUsersInfos.length > 0) {
+			allUsersInfos.map((userInfos) => {
+				if (modsIds.includes(userInfos.id)) {
+					setModsInfos(oldItems => [...oldItems, userInfos])
+				} else if (viewersIds.includes(userInfos.id)) {
+					setViewersInfos(oldItems => [...oldItems, userInfos])
+				}
+			})
+		}
+	}, [allUsersInfos, modsIds, viewersIds])
+
 	return (
 		<div className="base">
 			<Header>
@@ -112,11 +158,11 @@ function ViewersPage(){
 			</section>
 			<section className="mainSection">
 				<UsersList 
-					users={users}
+					users={modsInfos}
 					type="user"
 				/>
 				<UsersList 
-					users={users}
+					users={viewersInfos}
 					type="mod"
 				/>
 			</section>

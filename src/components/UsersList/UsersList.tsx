@@ -6,13 +6,22 @@ import User from "../User/User"
 import IconUser from "../MyIcons/UserIcon"
 import IconMod from "../MyIcons/ModIcon"
 
-type userType = {
-	name: string, 
-	img: string
-}
+type UserType = {
+		id: string
+		login: string
+		display_name: string
+		type: string
+		broadcaster_type: string
+		description: string
+		profile_image_url: string
+		offline_image_url: string
+		view_count: number
+		email: string
+		created_at: string
+	}
 
 type Props = {
-	users: userType[]
+	users: UserType[]
 	type: "user" | "mod"
 }
 
@@ -22,7 +31,10 @@ function UsersList({ users, type }: Props) {
 					<div className="countHeader">
 						<CountContainer 
 							icon={type === "user" ? <IconUser fillColor="white" /> : <IconMod />} 
-							text={type === "user" ? "Espectadores" : "Moderadores"} 
+							text={
+								users.length.toString() + 
+								(type === "user" ? " Espectadores" : " Moderadores")
+							} 
 							textColor="white" 
 						/>
 					</div>
@@ -30,8 +42,8 @@ function UsersList({ users, type }: Props) {
 						users.map((user, i) => {
 							return (
 								<User 
-									userName={user.name}
-									profileImgURL={user.img}
+									userName={user.display_name}
+									profileImgURL={user.profile_image_url}
 									key={i}
 								/>
 							)
