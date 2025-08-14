@@ -8,17 +8,45 @@ import CountContainer from "../components/CountContainer/CountContainer"
 import UsersList from "../components/UsersList/UsersList"
 import { useEffect, useState } from "react"
 
-function ViewersPage(){
+function ViewersPage(){	
+	const [moderatorId, setModeratorId] = useState<string>("")
+	const [broadcasterId, setBroadcasterId] = useState<string>("")
+
 	const [allUsersIds, setAllUsersIds] = useState<string[]>([""])
 	const [allUsersInfos, setAllUsersInfos] = useState<UserType[]>([])
+	
 	const [modsIds, setModsIds] = useState<string[]>([""])
 	const [viewersIds, setViewersIds] = useState<string[]>([""])
+	
 	const [modsInfos, setModsInfos] = useState<UserType[]>([])
 	const [viewersInfos, setViewersInfos] = useState<UserType[]>([])
-	const [total, setTotal] = useState<number>(0)
 	
-	const moderator_id: string = ""
-	const broadcaster_id: string = ""
+	const [total, setTotal] = useState<number>(0)
+
+	useEffect(() => {
+		const client_id: string | null = localStorage.getItem("client_id")
+		const broadcaster_login: string | null = localStorage.getItem("broadcaster_login")
+		
+		if (client_id !== null && broadcaster_login !== null) {
+			TwitchApi.defaults.headers.common = {
+				Authorization: "Bearer " + document.location.hash.slice(
+					document.location.hash.indexOf("#access_token=") + 14,
+					document.location.hash.indexOf("&scope=")
+				),
+				"Client-Id": client_id,
+			}
+		
+			TwitchApi.get(`/users?login=${broadcaster_login}`)
+				.then((response) => {
+					setBroadcasterId(response.data.data[0].id)
+					setModeratorId(response.data.data[0].id)
+				})
+				.catch((error) => {
+					console.log(error)
+				})
+		}
+		
+	}, [])
 
 	type ChatterType = {
 		user_id: string
@@ -28,8 +56,8 @@ function ViewersPage(){
 
 	useEffect(() => {
 		const interval: number = setInterval(() => {
-			let params: string = `?broadcaster_id=${broadcaster_id}`
-			params += `&moderator_id=${moderator_id}`
+			let params: string = `?broadcaster_id=${broadcasterId}`
+			params += `&moderator_id=${moderatorId}`
 			
 			TwitchApi.get(`/chat/chatters${params}`)
 				.then((response) => {
@@ -39,7 +67,8 @@ function ViewersPage(){
 					const users_ids: string[] = responseData.map((user) => {
 							return user.user_id
 						})
-
+					
+						console.log(users_ids)
 					setAllUsersIds(users_ids)
 					setTotal(responseTotal)
 				})
@@ -51,33 +80,35 @@ function ViewersPage(){
 		}, 1000)
 
 		return () => clearInterval(interval)
-	}, [])
+	}, [broadcasterId, moderatorId])
 
 	useEffect(() => {
 		if (allUsersIds.length > 0) {
-			let params: string = `?broadcaster_id=${broadcaster_id}`
-			params += allUsersIds.join("&user_id=")
+			let params: string = `?broadcaster_id=${broadcasterId}`
+			params += "&user_id=" + allUsersIds.join("&user_id=")
+			
+			if (params[params.length - 1] !== "=") {
+				TwitchApi.get(`/moderation/moderators${params}`)
+					.then((response) => {
+						const responseData: ChatterType[] = response.data.data
 
-			TwitchApi.get(`/moderation/moderators${params}`)
-				.then((response) => {
-					const responseData: ChatterType[] = response.data.data
-
-					const mods_ids: string[] = responseData.map((user) => {
-							return user.user_id
-						})
-					const viewers_ids: string[] = allUsersIds.filter(id => !mods_ids.includes(id))
-					
-					setModsIds(mods_ids)
-					setViewersIds(viewers_ids)
-				})
-				.catch((error) => {
-					console.log("Erro: " + error)
-					window.alert(`Erro:
-						${error}`)
-				})
+						const mods_ids: string[] = responseData.map((user) => {
+								return user.user_id
+							})
+						const viewers_ids: string[] = allUsersIds.filter(id => !mods_ids.includes(id))
+						
+						setModsIds(mods_ids)
+						setViewersIds(viewers_ids)
+					})
+					.catch((error) => {
+						console.log("Erro: " + error)
+						window.alert(`Erro:
+							${error}`)
+					})
+			}
 		}
-	}, [allUsersIds])
-
+	}, [allUsersIds, broadcasterId])
+	
 	type UserType = {
 		id: string
 		login: string
@@ -94,19 +125,21 @@ function ViewersPage(){
 
 	useEffect(() => {
 		if (allUsersIds.length > 0) {
-			let params: string = `?user_id=${allUsersIds[0]}`
-			params += allUsersIds.slice(1, allUsersIds.length - 1).join("&user_id=")
-
-			TwitchApi.get(`/users/${params}`)
-				.then((response) => {
-					const responseData: UserType[] = response.data.data
-					setAllUsersInfos(responseData)
-				})
-				.catch((error) => {
-					console.log("Erro: " + error)
-					window.alert(`Erro:
-						${error}`)
-				})
+			let params: string = `?id=${allUsersIds[0]}`
+			params += "&id=" + allUsersIds.slice(1).join("&id=")
+			
+			if (params[params.length - 1] !== "=") {
+				TwitchApi.get(`/users/${params}`)
+					.then((response) => {
+						const responseData: UserType[] = response.data.data
+						setAllUsersInfos(responseData)
+					})
+					.catch((error) => {
+						console.log("Erro: " + error)
+						window.alert(`Erro:
+							${error}`)
+					})
+			}
 		}
 	}, [allUsersIds])
 
@@ -114,13 +147,21 @@ function ViewersPage(){
 		if (allUsersInfos.length > 0) {
 			allUsersInfos.map((userInfos) => {
 				if (modsIds.includes(userInfos.id)) {
-					setModsInfos(oldItems => [...oldItems, userInfos])
+					setModsInfos((prevUsers) => 
+						prevUsers.some((user) => user.id === userInfos.id) 
+							? prevUsers
+							: [...prevUsers, userInfos]
+					)
 				} else if (viewersIds.includes(userInfos.id)) {
-					setViewersInfos(oldItems => [...oldItems, userInfos])
+					setViewersInfos((prevUsers) => 
+						prevUsers.some((user) => user.id === userInfos.id) 
+							? prevUsers
+							: [...prevUsers, userInfos]
+					)
 				}
 			})
 		}
-	}, [allUsersInfos, modsIds, viewersIds])
+	}, [allUsersInfos, modsInfos, viewersInfos, modsIds, viewersIds])
 
 	return (
 		<div className="base">
@@ -139,12 +180,13 @@ function ViewersPage(){
 			<section className="mainSection">
 				<UsersList 
 					users={modsInfos}
-					type="user"
+					type="mod"
 				/>
 				<UsersList 
 					users={viewersInfos}
-					type="mod"
+					type="user"
 				/>
+				
 			</section>
 		</div>
 	)
