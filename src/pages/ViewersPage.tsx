@@ -1,4 +1,4 @@
-import "./ViewersPage.css"
+import "./viewersPage.css"
 import TwitchApi from "../utils/TwitchApi"
 
 import IconUser from "../components/MyIcons/UserIcon"
