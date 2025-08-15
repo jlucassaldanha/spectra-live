@@ -20,8 +20,8 @@ function ViewersPage(){
 	
 	const [modsInfos, setModsInfos] = useState<UserType[]>([])
 	const [viewersInfos, setViewersInfos] = useState<UserType[]>([])
-	
-	const [total, setTotal] = useState<number>(0)
+
+	const [blockIds, setBlockIds] = useState<string[]>([""])
 
 	useEffect(() => {
 		const client_id: string | null = localStorage.getItem("client_id")
@@ -48,6 +48,31 @@ function ViewersPage(){
 		
 	}, [])
 
+	useEffect(() => {
+		const block_logins = localStorage.getItem("block_logins")
+		if (block_logins) {
+			const blockLogins: string[] = JSON.parse(block_logins)
+			
+			let params: string = `?login=${blockLogins[0]}`
+
+			if (blockLogins.length > 1) {
+				params += "&login=" + blockLogins.slice(1).join("&login=")
+			}
+
+			if (params[params.length - 1] !== "=") {
+				TwitchApi.get(`/users${params}`)
+					.then((response) => {
+						const responseData: UserType[] = response.data.data
+						const blockIds: string[] = responseData.map((user) => user.id)
+						setBlockIds(blockIds)
+					})
+					.catch((error) => {
+						console.log(error)
+					})
+			}
+		}
+	}, [])
+
 	type ChatterType = {
 		user_id: string
 		user_login: string
@@ -62,14 +87,11 @@ function ViewersPage(){
 			TwitchApi.get(`/chat/chatters${params}`)
 				.then((response) => {
 					const responseData: ChatterType[] = response.data.data
-					const responseTotal: number = response.data.total
 
-					const users_ids: string[] = responseData.map((user) => {
-							return user.user_id
-					})
-					
-					setAllUsersIds(users_ids)
-					setTotal(responseTotal)
+					const users_ids: string[] = responseData.map(user => user.user_id)
+					const all_users_ids: string[] = users_ids.filter(id => !blockIds.includes(id))
+
+					setAllUsersIds(all_users_ids)
 				})
 				.catch((error) => {
 					console.log("Erro: " + error)
@@ -79,7 +101,7 @@ function ViewersPage(){
 		}, 1000)
 
 		return () => clearInterval(interval)
-	}, [broadcasterId, moderatorId])
+	}, [broadcasterId, moderatorId, blockIds])
 
 	useEffect(() => {
 		if (allUsersIds.length > 0) {
@@ -180,7 +202,7 @@ function ViewersPage(){
 			<section className="mainSection">
 				<CountContainer 
 					icon={<IconUser fillColor="red" />} 
-					text={`${total} Espectadores totais`} 
+					text={`${allUsersIds.length} Espectadores totais`} 
 					textColor="red" 
 				/>
 			</section>

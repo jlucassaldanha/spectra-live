@@ -1,10 +1,16 @@
 import { useState } from "react"
 import "./ConnectPage.css"
 import { FaTwitch } from "react-icons/fa"
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
+
+type InputType = {
+	id: number 
+	value: string
+}
 
 function ConnectPage() {
 	const [broadcasterName, setBroadcasterName] = useState<string>("")
-
+	const [blockLogins, setBlockLogins] = useState<InputType[]>([])
 	const client_id: string = "xm0gkrs8l5ugzik9mudpib49rc2rwb"
 
 	const hancleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,6 +20,29 @@ function ConnectPage() {
 	const handleClick = () => {
 		localStorage.setItem("client_id", client_id)
 		localStorage.setItem("broadcaster_login", broadcasterName)
+		localStorage.setItem("block_logins", JSON.stringify(blockLogins.map((login) => login.value)))
+
+		window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=http://localhost:5173/viewers&scope=user%3Aread%3Aemail+user%3Aread%3Afollows+moderator%3Aread%3Achatters+channel%3Aread%3Avips+moderation%3Aread`
+	}
+
+	const addBlockLogin = () => {
+		setBlockLogins((prevLogins) => {
+			return [...prevLogins, {id: Date.now(), value: ""}]
+		})
+	}
+
+	const removeBlockLogin = (id: number) => {
+		setBlockLogins((prevLogins) => {
+			return prevLogins.filter((input) => input.id !== id)
+		})
+	}
+
+	const handleChange = (id: number, value: string) => {
+		setBlockLogins((prevLogins) => {
+			return prevLogins.map((input) => {
+				return input.id === id ? { ...input, value } : input
+			})
+		})
 	}
 
 	return (
@@ -33,14 +62,42 @@ function ConnectPage() {
 					onChange={hancleChange}
 				/>
 			</div>
-			<a 
-				className="connectButton"
-				href={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=http://localhost:5173/viewers&scope=user%3Aread%3Aemail+user%3Aread%3Afollows+moderator%3Aread%3Achatters+channel%3Aread%3Avips+moderation%3Aread`}
-				onClick={handleClick}
-			>
+			<div className="addRemLogin">
+				<div className="loginBlock">
+					Adicionar usuários fora de vista?
+					<button className="button" onClick={addBlockLogin}>
+						<IoIosAdd size={35} />
+					</button>
+				</div>
+				{
+					blockLogins.map((input) => {
+						return (
+							<div 
+								className="loginBlock"
+								key={input.id}
+							>
+								<input 
+									className="input"
+									type="text"
+									value={input.value}
+									onChange={(e) => handleChange(input.id, e.target.value)}
+								/>
+								<button 
+									className="button"
+									onClick={() => removeBlockLogin(input.id)}	
+								>
+									<IoIosRemove size={35} />
+								</button>
+							</div>
+						)
+					})
+				}
+			</div>
+			
+			<button className="button connectPadding" onClick={handleClick}>
 				Conectar com a twitch
 				<FaTwitch size={25}/>
-			</a>
+			</button>
 		</div>
 	)
 }

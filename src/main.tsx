@@ -6,7 +6,7 @@ import './index.css'
 
 import App from './App.tsx'
 import ViewersPage from './pages/ViewersPage.tsx'
-import ConnectPage from './pages/connectPage.tsx'
+import ConnectPage from './pages/ConnectPage.tsx'
 
 
 const router = createBrowserRouter([

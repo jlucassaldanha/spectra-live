@@ -1,41 +1,63 @@
 .main {
+	font-size: 1.1rem;
 	width: 100vw;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 50px;
+	gap: 30px;
 }
 
 .text {
 	text-align: center;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	gap: 8px;
 }
 
 .input {
-	margin: 8px 0 0 0;
-	padding: 15px;
-	border-radius: 24px;
+	width: 80%;
+	margin: 8px 0 8px 0;
+	padding: 13px;
+	border-radius: 22px;
 	border: #d7cfdf solid 2px;
 	background-color: #353538;
 }
 
-.connectButton {
+.loginBlock {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.button {
+	font-size: 1.2rem;
 	border: #ccb3e4 solid 2px;
-	text-decoration: none;
-	background-color: #8a2be2;	
-	padding: 18px;
-	border-radius: 24px;
+	background-color: #8a2be2;
+	border-radius: 26px;
+	padding: 4px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
-.connectButton:hover {
+.button:hover {
 	background-color: #9f53e6;	
+}
+
+.connectPadding {
+	padding: 15px 22px;
+}
+
+.addRemLogin {
+	background-color: #353538;
+	padding: 12px;
+	border-radius: 20px;
 }
