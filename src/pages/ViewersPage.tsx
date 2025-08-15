@@ -12,7 +12,7 @@ function ViewersPage(){
 	const [moderatorId, setModeratorId] = useState<string>("")
 	const [broadcasterId, setBroadcasterId] = useState<string>("")
 
-	const [allUsersIds, setAllUsersIds] = useState<string[]>([""])
+	const [allUsersIds, setAllUsersIds] = useState<string[]>([])
 	const [modsIds, setModsIds] = useState<string[]>([""])
 	const [viewersIds, setViewersIds] = useState<string[]>([""])
 	
@@ -36,7 +36,7 @@ function ViewersPage(){
 				"Client-Id": client_id,
 			}
 		
-			TwitchApi.get(`/users?login=${broadcaster_login}`)
+			TwitchApi.get(`/users`, { params: { login: broadcaster_login } })
 				.then((response) => {
 					setBroadcasterId(response.data.data[0].id)
 					setModeratorId(response.data.data[0].id)
@@ -50,26 +50,20 @@ function ViewersPage(){
 
 	useEffect(() => {
 		const block_logins = localStorage.getItem("block_logins")
-		if (block_logins) {
+		if (block_logins && JSON.parse(block_logins).length > 0) {
 			const blockLogins: string[] = JSON.parse(block_logins)
-			
-			let params: string = `?login=${blockLogins[0]}`
 
-			if (blockLogins.length > 1) {
-				params += "&login=" + blockLogins.slice(1).join("&login=")
-			}
-
-			if (params[params.length - 1] !== "=") {
-				TwitchApi.get(`/users${params}`)
-					.then((response) => {
-						const responseData: UserType[] = response.data.data
-						const blockIds: string[] = responseData.map((user) => user.id)
-						setBlockIds(blockIds)
-					})
-					.catch((error) => {
-						console.log(error)
-					})
-			}
+			TwitchApi.get(`/users`, { 
+				params: { login: blockLogins }, 
+				paramsSerializer: { indexes: null } 
+			})
+				.then((response) => {
+					const responseData: UserType[] = response.data.data
+					const blockIds: string[] = responseData.map((user) => user.id)
+					setBlockIds(blockIds)
+				}).catch((error) => {
+					console.log(error)
+				})
 		}
 	}, [])
 
@@ -81,10 +75,11 @@ function ViewersPage(){
 
 	useEffect(() => {
 		const interval: number = setInterval(() => {
-			let params: string = `?broadcaster_id=${broadcasterId}`
-			params += `&moderator_id=${moderatorId}`
-			
-			TwitchApi.get(`/chat/chatters${params}`)
+			TwitchApi.get(`/chat/chatters`, {
+				params: {
+					broadcaster_id: broadcasterId,
+					moderator_id: moderatorId
+				}})
 				.then((response) => {
 					const responseData: ChatterType[] = response.data.data
 
@@ -105,30 +100,33 @@ function ViewersPage(){
 
 	useEffect(() => {
 		if (allUsersIds.length > 0) {
-			let params: string = `?broadcaster_id=${broadcasterId}`
-			params += "&user_id=" + allUsersIds.join("&user_id=")
-			
-			if (params[params.length - 1] !== "=") {
-				TwitchApi.get(`/moderation/moderators${params}`)
-					.then((response) => {
-						const responseData: ChatterType[] = response.data.data
+			TwitchApi.get(`/moderation/moderators`, {
+				params: {
+					broadcaster_id: broadcasterId,
+					user_id: allUsersIds
+				},
+				paramsSerializer: {
+					indexes: null
+				}
+			})
+				.then((response) => {
+					const responseData: ChatterType[] = response.data.data
 
-						const mods_ids: string[] = responseData.map((user) => {
-								return user.user_id
-						})
-						const viewers_ids: string[] = allUsersIds.filter((id) => {
-							return !mods_ids.includes(id)
-						})
-						
-						setModsIds(mods_ids)
-						setViewersIds(viewers_ids)
+					const mods_ids: string[] = responseData.map((user) => {
+							return user.user_id
 					})
-					.catch((error) => {
-						console.log("Erro: " + error)
-						window.alert(`Erro:
-							${error}`)
+					const viewers_ids: string[] = allUsersIds.filter((id) => {
+						return !mods_ids.includes(id)
 					})
-			}
+					
+					setModsIds(mods_ids)
+					setViewersIds(viewers_ids)
+				})
+				.catch((error) => {
+					console.log("Erro: " + error)
+					window.alert(`Erro:
+						${error}`)
+				})
 		}
 	}, [allUsersIds, broadcasterId])
 	
@@ -148,21 +146,23 @@ function ViewersPage(){
 
 	useEffect(() => {
 		if (allUsersIds.length > 0) {
-			let params: string = `?id=${allUsersIds[0]}`
-			params += "&id=" + allUsersIds.slice(1).join("&id=")
-			
-			if (params[params.length - 1] !== "=") {
-				TwitchApi.get(`/users/${params}`)
-					.then((response) => {
-						const responseData: UserType[] = response.data.data
-						setAllUsersInfos(responseData)
-					})
-					.catch((error) => {
-						console.log("Erro: " + error)
-						window.alert(`Erro:
-							${error}`)
-					})
-			}
+			TwitchApi.get(`/users`, {
+				params: {
+					id: allUsersIds
+				},
+				paramsSerializer: {
+					indexes: null
+				}
+			})
+				.then((response) => {
+					const responseData: UserType[] = response.data.data
+					setAllUsersInfos(responseData)
+				})
+				.catch((error) => {
+					console.log("Erro: " + error)
+					window.alert(`Erro:
+						${error}`)
+				})
 		}
 	}, [allUsersIds])
 

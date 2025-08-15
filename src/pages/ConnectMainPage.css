@@ -9,12 +9,6 @@
 	gap: 30px;
 }
 
-.icon {
-	background-color: #8a2be2;
-	padding: 20px;
-	border-radius: 20px 0;
-}
-
 .text {
 	text-align: center;
 	display: flex;
@@ -23,15 +17,6 @@
 	align-items: center;
 	gap: 8px;
 	margin: 12px;
-}
-
-.input {
-	width: 80%;
-	margin: 8px 0 8px 0;
-	padding: 13px;
-	border-radius: 22px;
-	border: #d7cfdf solid 2px;
-	background-color: #353538;
 }
 
 .loginBlock {
