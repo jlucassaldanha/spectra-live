@@ -1,25 +1,11 @@
 .main {
-	width: 100vw;
-	height: 100vh;
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.viewButton {
-	border: #ccb3e4 solid 2px;
-	text-decoration: none;
-	background-color: #8a2be2;	
-	padding: 12px 20px;
-	border-radius: 24px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	font-weight: bold;
-}
-
-.viewButton:hover {
-	background-color: #9f53e6;	
+.icon {
+	background-color: #8a2be2;
+	padding: 20px;
+	border-radius: 20px 0;
 }

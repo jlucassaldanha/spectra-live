@@ -11,17 +11,17 @@ import ConnectPage from './pages/ConnectPage.tsx'
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element: <App />
-  },
-  {
-    path: "/login",
+    path: "/",
     element: <ConnectPage />
   },
   {
     path: "/viewers",
     element: <ViewersPage />
   },
+  {
+    path: "/icon",
+    element: <App />
+  }
 ])
 
 createRoot(document.getElementById('root')!).render(

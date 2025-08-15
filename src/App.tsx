@@ -1,28 +1,17 @@
 import './App.css'
-import { useEffect, useState } from 'react'
+import { FaTwitch } from "react-icons/fa"
+import { PiEyesFill } from "react-icons/pi";
 
 function App() {
-  const [token, setToken] = useState<string>("")
 
-  useEffect(() => {
-    console.log("useEffect")
-    console.log(token)
-  }, [token])
   return (
     <div className='main'>
-      <h1>Tudo pronto para começar!</h1>
-      <a
-        className='viewButton'
-        onClick={() => {
-          const hashToken: string = document.location.hash
-          console.log(hashToken)
-          setToken(hashToken) 
-        }} 
-        href="http://localhost:5173/viewers"
-      >
-        <strong>clique aqui</strong>
-      </a>
+      <div className="icon" >
+        <FaTwitch size={70} />
+        <PiEyesFill size={75} /> 
+      </div>
     </div>
+    
   )
 }
 

@@ -1,7 +1,10 @@
-import { useState } from "react"
 import "./ConnectPage.css"
+
+import { useState } from "react"
+
 import { FaTwitch } from "react-icons/fa"
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
+import { PiEyesFill } from "react-icons/pi";
 
 type InputType = {
 	id: number 
@@ -47,7 +50,13 @@ function ConnectPage() {
 
 	return (
 		<div className="main">
-			<h1>Saiba quem está te assistindo em tempo real!</h1>
+			<div className="icon">
+				<FaTwitch size={70} />
+				<PiEyesFill size={75} /> 
+			</div>
+			<h1>
+				Saiba quem está te assistindo em tempo real!
+			</h1>
 			<div className="text">
 				<p>Com o <strong>Viewers show</strong> é possivel ver quem está te assistindo em tempo real.</p>
 				<p>Conecte-se e tenha um feedback mais imersivo com o seu público!</p>
