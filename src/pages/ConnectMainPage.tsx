@@ -7,6 +7,7 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 import MainIcon from "../components/MyIcons/MainIcon";
 import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
 
 type InputType = {
 	id: number 
@@ -72,9 +73,10 @@ function ConnectMainPage() {
 			<div className="addRemLogin">
 				<div className="loginBlock">
 					Adicionar usuários fora de vista?
-					<button className="button" onClick={addBlockLogin}>
-						<IoIosAdd size={35} />
-					</button>
+					<Button 
+						icon={<IoIosAdd size={35} />} 
+						onClick={addBlockLogin} 
+					/>
 				</div>
 				{
 					blockLogins.map((input) => {
@@ -87,19 +89,19 @@ function ConnectMainPage() {
 									value={input.value}
 									onChange={(e) => handleChange(input.id, e.target.value)}
 								/>
-								<button 
-									className="button"
-									onClick={() => removeBlockLogin(input.id)}	
-								>
-									<IoIosRemove size={35} />
-								</button>
+								<Button 
+									icon={<IoIosRemove size={35} />} 
+									onClick={() => removeBlockLogin(input.id)}
+								/>
 							</div>
 						)
 					})
 				}
 			</div>
-			
-			<button className="button connectPadding" onClick={handleClick}>
+			<button 
+				className="button connectPadding" 
+				onClick={handleClick}
+			>
 				Conectar com a twitch
 				<FaTwitch size={25}/>
 			</button>
