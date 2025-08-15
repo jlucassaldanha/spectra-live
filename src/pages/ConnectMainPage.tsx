@@ -25,7 +25,7 @@ function ConnectMainPage() {
 		localStorage.setItem("broadcaster_login", broadcasterName)
 		localStorage.setItem("block_logins", JSON.stringify(blockLogins.map((login) => login.value)))
 
-		window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=https://view-viewers.vercel.app/viewers&scope=user%3Aread%3Aemail+user%3Aread%3Afollows+moderator%3Aread%3Achatters+channel%3Aread%3Avips+moderation%3Aread`
+		window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=https://view-viewers.vercel.app/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
 	}
 
 	const addBlockLogin = () => {
