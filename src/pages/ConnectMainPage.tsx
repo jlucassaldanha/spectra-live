@@ -17,16 +17,16 @@ type InputType = {
 function ConnectMainPage() {
 	const [broadcasterName, setBroadcasterName] = useState<string>("")
 	const [blockLogins, setBlockLogins] = useState<InputType[]>([])
-	//const client_id: string = "gfiv47o2hp43s1cip3bxbjx1hc84n9"
-	const client_id: string = "xm0gkrs8l5ugzik9mudpib49rc2rwb"
+	const client_id: string = "gfiv47o2hp43s1cip3bxbjx1hc84n9"
+	//const client_id: string = "xm0gkrs8l5ugzik9mudpib49rc2rwb"
 
 	const handleClick = () => {
 		localStorage.setItem("client_id", client_id)
 		localStorage.setItem("broadcaster_login", broadcasterName)
 		localStorage.setItem("block_logins", JSON.stringify(blockLogins.map((login) => login.value)))
 
-		//window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=https://view-viewers.vercel.app/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
-		window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=http://localhost:5173/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
+		window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=https://view-viewers.vercel.app/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
+		//window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=http://localhost:5173/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
 		
 	}
 
@@ -99,7 +99,7 @@ function ConnectMainPage() {
 				}
 			</div>
 			<button 
-				className="button connectPadding" 
+				className="buttonConnect" 
 				onClick={handleClick}
 			>
 				Conectar com a twitch
