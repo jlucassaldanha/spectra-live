@@ -13,10 +13,10 @@ function ViewersPage(){
 	const [broadcasterId, setBroadcasterId] = useState<string>("")
 
 	const [allUsersIds, setAllUsersIds] = useState<string[]>([""])
-	const [allUsersInfos, setAllUsersInfos] = useState<UserType[]>([])
-	
 	const [modsIds, setModsIds] = useState<string[]>([""])
 	const [viewersIds, setViewersIds] = useState<string[]>([""])
+	
+	const [allUsersInfos, setAllUsersInfos] = useState<UserType[]>([])
 	
 	const [modsInfos, setModsInfos] = useState<UserType[]>([])
 	const [viewersInfos, setViewersInfos] = useState<UserType[]>([])
@@ -51,7 +51,7 @@ function ViewersPage(){
 	type ChatterType = {
 		user_id: string
 		user_login: string
-		user_name: string						
+		user_name: string
 	}
 
 	useEffect(() => {
@@ -66,7 +66,7 @@ function ViewersPage(){
 
 					const users_ids: string[] = responseData.map((user) => {
 							return user.user_id
-						})
+					})
 					
 					setAllUsersIds(users_ids)
 					setTotal(responseTotal)
@@ -93,8 +93,10 @@ function ViewersPage(){
 
 						const mods_ids: string[] = responseData.map((user) => {
 								return user.user_id
-							})
-						const viewers_ids: string[] = allUsersIds.filter(id => !mods_ids.includes(id))
+						})
+						const viewers_ids: string[] = allUsersIds.filter((id) => {
+							return !mods_ids.includes(id)
+						})
 						
 						setModsIds(mods_ids)
 						setViewersIds(viewers_ids)
@@ -144,23 +146,29 @@ function ViewersPage(){
 
 	useEffect(() => {
 		if (allUsersInfos.length > 0) {
-			allUsersInfos.map((userInfos) => {
-				if (modsIds.includes(userInfos.id)) {
-					setModsInfos((prevUsers) => 
-						prevUsers.some((user) => user.id === userInfos.id) 
-							? prevUsers
-							: [...prevUsers, userInfos]
-					)
-				} else if (viewersIds.includes(userInfos.id)) {
-					setViewersInfos((prevUsers) => 
-						prevUsers.some((user) => user.id === userInfos.id) 
-							? prevUsers
-							: [...prevUsers, userInfos]
-					)
-				}
+			setModsInfos((prevMods) => {
+				const newMods = allUsersInfos.filter((user) => {
+					return (modsIds.includes(user.id)) && (!prevMods.some((mod) => mod.id === user.id))
+				})
+				const oldMods = prevMods.filter((mod) => {
+					return modsIds.includes(mod.id)
+				})
+
+				return [...oldMods, ...newMods]
+			})
+
+			setViewersInfos((prevViewers) => {
+				const newViewers = allUsersInfos.filter((user) => {
+					return (viewersIds.includes(user.id)) && (!prevViewers.some((viewer) => viewer.id === user.id))
+				})
+				const oldViewers = prevViewers.filter((viewer) => {
+					return viewersIds.includes(viewer.id)
+				})
+
+				return [...oldViewers, ...newViewers]
 			})
 		}
-	}, [allUsersInfos, modsInfos, viewersInfos, modsIds, viewersIds])
+	}, [allUsersInfos, modsIds, viewersIds])
 
 	return (
 		<div className="base">
