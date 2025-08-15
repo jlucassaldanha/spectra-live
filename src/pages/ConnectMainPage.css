@@ -26,12 +26,12 @@
 	gap: 10px;
 }
 
-.button {
+.buttonConnect {
 	font-size: 1.2rem;
 	border: #ccb3e4 solid 2px;
 	background-color: #8a2be2;
 	border-radius: 26px;
-	padding: 4px;
+	padding: 15px 22px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -40,12 +40,8 @@
 	cursor: pointer;
 }
 
-.button:hover {
+.buttonConnect:hover {
 	background-color: #9f53e6;	
-}
-
-.connectPadding {
-	padding: 15px 22px;
 }
 
 .addRemLogin {
