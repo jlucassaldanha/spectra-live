@@ -6,13 +6,13 @@ import './index.css'
 
 import App from './App.tsx'
 import ViewersPage from './pages/ViewersPage.tsx'
-import ConnectPage from './pages/ConnectPage.tsx'
+import ConnectMainPage from './pages/ConnectMainPage.tsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ConnectPage />
+    element: <ConnectMainPage />
   },
   {
     path: "/viewers",

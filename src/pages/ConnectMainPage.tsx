@@ -1,4 +1,4 @@
-import "./ConnectPage.css"
+import "./ConnectMainPage.css"
 
 import { useState } from "react"
 
@@ -11,7 +11,7 @@ type InputType = {
 	value: string
 }
 
-function ConnectPage() {
+function ConnectMainPage() {
 	const [broadcasterName, setBroadcasterName] = useState<string>("")
 	const [blockLogins, setBlockLogins] = useState<InputType[]>([])
 	const client_id: string = "xm0gkrs8l5ugzik9mudpib49rc2rwb"
@@ -111,4 +111,4 @@ function ConnectPage() {
 	)
 }
 
-export default ConnectPage
+export default ConnectMainPage
