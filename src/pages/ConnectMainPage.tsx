@@ -18,7 +18,6 @@ function ConnectMainPage() {
 	const [broadcasterName, setBroadcasterName] = useState<string>("")
 	const [blockLogins, setBlockLogins] = useState<InputType[]>([])
 	const client_id: string = "gfiv47o2hp43s1cip3bxbjx1hc84n9"
-	//const client_id: string = "xm0gkrs8l5ugzik9mudpib49rc2rwb"
 
 	const handleClick = () => {
 		localStorage.setItem("client_id", client_id)
