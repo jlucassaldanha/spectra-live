@@ -99,7 +99,7 @@ function ConnectMainPage() {
 				}
 			</div>
 			<button 
-				className="button connectPadding" 
+				className="buttonConnect" 
 				onClick={handleClick}
 			>
 				Conectar com a twitch
