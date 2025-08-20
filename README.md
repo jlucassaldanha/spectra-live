@@ -3,7 +3,6 @@
 [![Deploy on Vercel](https://img.shields.io/badge/Deploy-Vercel-000?logo=vercel)](https://view-viewers.vercel.app)
 [![Made with React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38bdf8?logo=tailwind-css)](https://tailwindcss.com/)
 [![Axios](https://img.shields.io/badge/Axios-API-blue?logo=axios)](https://axios-http.com/)
 
 ## 📌 Sobre o projeto
@@ -11,9 +10,9 @@ O **View Viewers** é uma aplicação web que consome a **API da Twitch** para e
 O projeto foi desenvolvido como forma de **praticar consumo de APIs, roteamento no front-end, uso de React + TypeScript e deploy de projetos funcionais**.
 
 🔹 Este projeto passou por **3 versões de evolução**:
-1. **JavaScript Vanilla** – contato com consumo da API e estilização da interface. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/viewers-view)  
-2. **React (JavaScript)** – reestruturação para componentização e melhor escalabilidade. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/react-viewers-view)
-3. **React + TypeScript (deploy na Vercel)** – versão atual, com tipagem, organização de pastas, melhorias de performance e funcionalidades reformuladas. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/viewers-view-react-ts) 
+1. **JavaScript Vanilla** – contato com consumo da API e estilização da interface. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/js-view-viewers)  
+2. **React (JavaScript)** – reestruturação para componentização e melhor escalabilidade. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/react-view-viewers)
+3. **React + TypeScript (deploy na Vercel)** – versão atual, com tipagem, organização de pastas, melhorias de performance e funcionalidades reformuladas. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/view-viewers) 
 
 ## 🛠 Tecnologias Utilizadas
 - **Front-end:** React, TypeScript, Vite 
