@@ -6,7 +6,7 @@
 [![Axios](https://img.shields.io/badge/Axios-API-blue?logo=axios)](https://axios-http.com/)
 
 ## 📌 Sobre o projeto
-O **View Viewers** é uma aplicação web que consome a **API da Twitch** para exibir informações visualizações em live.  
+O **View Viewers** é uma aplicação web que consome a **API da Twitch** para exibir visualizações de streamers.  
 O projeto foi desenvolvido como forma de **praticar consumo de APIs, roteamento no front-end, uso de React + TypeScript e deploy de projetos funcionais**.
 
 🔹 Este projeto passou por **3 versões de evolução**:
