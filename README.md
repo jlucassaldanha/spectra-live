@@ -15,19 +15,16 @@ O projeto foi desenvolvido como forma de **praticar consumo de APIs, roteamento 
 2. **React (JavaScript)** – reestruturação para componentização e melhor escalabilidade. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/react-viewers-view)
 3. **React + TypeScript (deploy na Vercel)** – versão atual, com tipagem, organização de pastas, melhorias de performance e funcionalidades reformuladas. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/viewers-view-react-ts) 
 
-## 🚀 Tecnologias Utilizadas
-- **React + Vite**
-- **TypeScript**
-- **Axios**
-- **React Router DOM**
-- **TailwindCSS**
-- Deploy na **Vercel**
+## 🛠 Tecnologias Utilizadas
+- **Front-end:** React, TypeScript, Vite 
+- **Roteamento:** react-router-dom
+- **Consumo de API:** Axios
+- **Deploy:** Vercel
 
 ## 🎯 Funcionalidades
-- Exibir dados de visualização do canal em live
+- Exibção de visualizações de canal da Twitch em tempo real
 - Exclusão de usuários especificos da visualização
-- Navegação entre páginas com React Router
-- Interface responsiva
+- Interface responsiva e estrutura modular e escalável
 
 ## 🖼️ Preview
 ![Screenshot da tela de conexão](./preview-1.png)
@@ -46,6 +43,8 @@ npm install
 
 # Rodar projeto
 npm run dev
+
+# Abra http://localhost:5173 no seu navegador
 ```
 
 ### Rodar localmente com aplicativo próprio da twitch
@@ -75,5 +74,14 @@ function ConnectMainPage() {
 }
 ```
 
+## 🔧 Próximos passos / melhorias planejadas
+
+- Adição de autenticação Twitch OAuth
+- Banco de dados para armazenamento de configurações
+
 ## 🌍 Deploy
 [👉 Acesse o projeto online](https://view-viewers.vercel.app)
+
+## 📫 Contato
+- [GitHub: jlucassaldanha](https://github.com/jlucassaldanha)
+- [LinkedIn: João Lucas Saldanha](https://www.linkedin.com/in/joao-lucas-saldanha/)
