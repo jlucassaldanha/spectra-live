@@ -21,7 +21,7 @@ O projeto foi desenvolvido como forma de **praticar consumo de APIs, roteamento 
 - **Deploy:** Vercel
 
 ## 🎯 Funcionalidades
-- Exibção de visualizações de canal da Twitch em tempo real
+- Exibição de visualizações de canal da Twitch em tempo real
 - Exclusão de usuários especificos da visualização
 - Interface responsiva e estrutura modular e escalável
 
