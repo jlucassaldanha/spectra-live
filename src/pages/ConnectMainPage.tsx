@@ -49,8 +49,8 @@ function ConnectMainPage() {
 	const [formData, setFormData] = useState<FormType>()
 
 	const client_id: string = "gfiv47o2hp43s1cip3bxbjx1hc84n9"
-	//const redirect_uri: string = "https://view-viewers.vercel.app"
-	const redirect_uri: string = "http://localhost:5173"
+	const redirect_uri: string = "https://view-viewers.vercel.app"
+	//const redirect_uri: string = "http://localhost:5173"
 
 	const {
 		register,
@@ -80,7 +80,6 @@ function ConnectMainPage() {
 				JSON.stringify(formData.blockLogins ? formData.blockLogins.map((login) => login.value) : [])
 			)
 
-			console.log("sair")
 			window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=${redirect_uri}/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
 			//window.location.href = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=http://localhost:5173/viewers&scope=user%3Aread%3Aemail+moderation%3Aread+moderator%3Aread%3Achatters`
 		}
