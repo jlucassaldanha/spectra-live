@@ -9,6 +9,14 @@
 	gap: 30px;
 }
 
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
 .icon {
 	background-color: #8a2be2;
 	padding: 20px;
