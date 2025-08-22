@@ -2,7 +2,7 @@ import "./ConnectMainPage.css"
 
 import { useEffect, useState } from "react"
 
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -23,14 +23,15 @@ const schema = yup
 		broadcasterName: yup.string()
 			.required("Campo obrigatório")
 			.matches(/^\S+$/, "Sem espaços"),
-		blockLogins: yup.array(
-			yup.object({
-      value: yup
-        .string()
-        .required("O usuário não pode estar vazio")
-				.matches(/^\S+$/, "Sem espaços")
-    })
-		)
+		blockLogins: yup.array()
+			.of(
+				yup.object({
+				value: yup
+					.string()
+					.required("O usuário não pode estar vazio")
+					.matches(/^\S+$/, "Sem espaços")
+			})
+			)
 		.when([], {
 			is: (arr: InputType[]) => arr && arr.length > 0,
 			then: (s) => s.required("Campo obrigatório"),
@@ -45,7 +46,6 @@ type FormType = {
 }
 
 function ConnectMainPage() {
-	const [blockLogins, setBlockLogins] = useState<InputType[]>([])
 	const [formData, setFormData] = useState<FormType>()
 
 	const client_id: string = "gfiv47o2hp43s1cip3bxbjx1hc84n9"
@@ -54,25 +54,22 @@ function ConnectMainPage() {
 
 	const {
 		register,
+		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
-		mode: "onSubmit"
+		mode: "onSubmit",
+		defaultValues: {
+			broadcasterName: "",
+			blockLogins: []
+		}
 	})
 
-	const addBlockLogin = () => {
-		setBlockLogins((prevLogins) => {
-			return [...prevLogins, {id: Date.now(), value: ""}]
-		})
-	}
-
-	const removeBlockLogin = (id: number) => {
-		setBlockLogins((prevLogins) => {
-			return prevLogins.filter((input) => input.id !== id)
-		})
-	}
-
+	const { fields, append, remove } = useFieldArray({
+		control,
+		name: "blockLogins"
+	})
 
 	useEffect(() => {
 		if (formData) {
@@ -105,37 +102,32 @@ function ConnectMainPage() {
 				<div className="text">
 					<p>Insira o nome do seu canal e conecte-se pela Twitch</p>
 					<Input {...register("broadcasterName")}/>
-					{errors.broadcasterName && (
-            <p className="errorBlock">{errors.broadcasterName.message}*</p>
-          )}
+					{errors.broadcasterName && 
+            <p className="errorBlock">{errors.broadcasterName.message}*</p>}
 				</div>
 				<div className="addRemLogin">
 					<div className="loginBlock">
 						Adicionar usuários fora de vista?
 						<Button 
 							icon={<IoIosAdd size={35}/>} 
-							onClick={addBlockLogin} 
+							onClick={() => append({value: ""})}
 							type="button"
 						/>
 					</div>
-					{
-						blockLogins.map((input, index) => {
-							return (
+					{fields.map((input, index) => (
 								<div className="errorBlock" key={input.id}>
 										<div className="loginBlock">	
 											<Input {...register(`blockLogins.${index}.value`)}/>
 											<Button 
 												icon={<IoIosRemove size={35} />} 
-												onClick={() => removeBlockLogin(input.id)}
+												onClick={() => remove(index)}
 												type="button"
 											/>
 										</div>
 										{errors.blockLogins?.[index]?.value && 
 											<p className="errorBlock">{errors.blockLogins[index].value.message}*</p>}
 								</div>
-							)
-						})
-					}
+					))}
 				</div>
 				<button className="buttonConnect" type="submit">
 					Conectar com a twitch
