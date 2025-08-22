@@ -1,12 +1,11 @@
 import "./Input.css"
 
-function Input( { value, onChange }: {value?: string, onChange: React.ChangeEventHandler<HTMLInputElement>} ) {
+function Input( { ...props }: React.InputHTMLAttributes<HTMLInputElement> ) {
 	return (
 		<input 
 			className="input"
-			type="text" 
-			value={value}
-			onChange={onChange}
+			type="text"	
+			{...props}
 		/>
 	)
 }
