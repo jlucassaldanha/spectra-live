@@ -49,6 +49,11 @@
 	gap: 10px;
 }
 
+.errorBlock {
+	text-align: center;
+	color: red;
+}
+
 .buttonConnect {
 	font-size: 1.2rem;
 	border: #ccb3e4 solid 2px;
