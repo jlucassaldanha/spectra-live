@@ -89,7 +89,7 @@ function ConnectMainPage() {
 	return (
 		<div className="main">
 			<MainIcon />
-			<h1>Saiba quem está te assistindo em tempo real!</h1>
+			<h1 className="title">Saiba quem está te assistindo em tempo real!</h1>
 			<div className="text">
 				<p>Com o <strong>Viewers show</strong> é possivel ver quem está te assistindo em tempo real.</p>
 				<p>Conecte-se e tenha um feedback mais imersivo com o seu público!</p>
