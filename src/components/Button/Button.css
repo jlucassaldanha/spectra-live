@@ -15,3 +15,7 @@
 .button:hover {
 	background-color: #9f53e6;	
 }
+
+.buttonConnect {
+	padding: 15px 22px;
+}

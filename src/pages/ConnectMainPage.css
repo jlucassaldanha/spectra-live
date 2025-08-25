@@ -17,12 +17,6 @@
 	gap: 30px;
 }
 
-.icon {
-	background-color: #8a2be2;
-	padding: 20px;
-	border-radius: 20px 0;
-}
-
 .title {
 	margin: 0 20px;
 }
@@ -56,24 +50,6 @@
 .errorBlock {
 	text-align: center;
 	color: red;
-}
-
-.buttonConnect {
-	font-size: 1.2rem;
-	border: #ccb3e4 solid 2px;
-	background-color: #8a2be2;
-	border-radius: 26px;
-	padding: 15px 22px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.buttonConnect:hover {
-	background-color: #9f53e6;	
 }
 
 .addRemLogin {

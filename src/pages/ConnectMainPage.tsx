@@ -9,9 +9,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FaTwitch } from "react-icons/fa"
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
-import MainIcon from "../components/MyIcons/MainIcon";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
+import IconSection from "../components/ConnectMainPageComponents/IconSection";
 
 type InputType = {
 	id: number 
@@ -88,12 +88,7 @@ function ConnectMainPage() {
 
 	return (
 		<div className="main">
-			<MainIcon />
-			<h1 className="title">Saiba quem está te assistindo em tempo real!</h1>
-			<div className="text">
-				<p>Com o <strong>Viewers show</strong> é possivel ver quem está te assistindo em tempo real.</p>
-				<p>Conecte-se e tenha um feedback mais imersivo com o seu público!</p>
-			</div>
+			<IconSection />
 			<form 
 				className="form" 
 				onSubmit={ handleSubmit((data: FormType) => setFormData(data)) }
@@ -104,6 +99,7 @@ function ConnectMainPage() {
 					{errors.broadcasterName && 
             <p className="errorBlock">{errors.broadcasterName.message}*</p>}
 				</div>
+
 				<div className="addRemLogin">
 					<div className="loginBlock">
 						Adicionar usuários fora de vista?
@@ -128,10 +124,10 @@ function ConnectMainPage() {
 								</div>
 					))}
 				</div>
-				<button className="buttonConnect" type="submit">
+				<Button classname="buttonConnect" type="submit">
 					Conectar com a twitch
 					<FaTwitch size={25}/>
-				</button>
+				</Button>
 			</form>
 		</div>
 	)
