@@ -34,8 +34,8 @@ const schema = yup
 			)
 		.when([], {
 			is: (arr: InputType[]) => arr && arr.length > 0,
-			then: (s) => s.required("Campo obrigatório"),
-			otherwise: (s) => s 
+			then: (schema) => schema.required("Campo obrigatório"),
+			otherwise: (schema) => schema 
 		})
 			
 	}).required()

@@ -14,6 +14,7 @@ O **View Viewers** é uma aplicação  desenvolvida em **React + TypeScript**  q
 
 ## 🛠 Tecnologias Utilizadas
 - **Front-end** → React, TypeScript, Vite 
+- **Validações de formulário** → react-hook-form, yup
 - **Gerenciamento de rotas** → react-router-dom
 - **Consumo de API** → Axios
 - **Deploy e CI/CD simplificados** → Vercel
@@ -24,7 +25,7 @@ O **View Viewers** é uma aplicação  desenvolvida em **React + TypeScript**  q
   - Total de espectadores
   - Quantidade de moderadores
   - Quantidade de espectadores comuns  
-- Exibição de **nome + foto de perfil** de cada espectador (link clicável para o perfil da Twitch)  
+  - **Nome + foto de perfil** de cada espectador (link clicável para o perfil da Twitch)  
 - Possibilidade de **ocultar usuários específicos** da listagem  
 
 ## 🖼️ Preview
