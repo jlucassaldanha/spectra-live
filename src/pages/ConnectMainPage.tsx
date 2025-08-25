@@ -12,6 +12,8 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import IconSection from "../components/ConnectMainPageComponents/IconSection";
+import FormSection from "../components/ConnectMainPageComponents/FormSection";
+
 
 type InputType = {
 	id: number 
@@ -89,17 +91,13 @@ function ConnectMainPage() {
 	return (
 		<div className="main">
 			<IconSection />
-			<form 
-				className="form" 
-				onSubmit={ handleSubmit((data: FormType) => setFormData(data)) }
-			>
+			<FormSection onSubmit={handleSubmit((data: FormType) => setFormData(data))}>
 				<div className="text">
-					<p>Insira o nome do seu canal e conecte-se pela Twitch</p>
+					Insira o nome do seu canal e conecte-se pela Twitch
 					<Input {...register("broadcasterName")}/>
 					{errors.broadcasterName && 
-            <p className="errorBlock">{errors.broadcasterName.message}*</p>}
+            			<p className="errorBlock">{errors.broadcasterName.message}*</p>}
 				</div>
-
 				<div className="addRemLogin">
 					<div className="loginBlock">
 						Adicionar usuários fora de vista?
@@ -110,25 +108,25 @@ function ConnectMainPage() {
 						/>
 					</div>
 					{fields.map((input, index) => (
-								<div className="errorBlock" key={input.id}>
-										<div className="loginBlock">	
-											<Input {...register(`blockLogins.${index}.value`)}/>
-											<Button 
-												icon={<IoIosRemove size={35} />} 
-												onClick={() => remove(index)}
-												type="button"
-											/>
-										</div>
-										{errors.blockLogins?.[index]?.value && 
-											<p className="errorBlock">{errors.blockLogins[index].value.message}*</p>}
-								</div>
+						<div className="errorBlock" key={input.id}>
+							<div className="loginBlock">	
+								<Input {...register(`blockLogins.${index}.value`)}/>
+								<Button 
+									icon={<IoIosRemove size={35} />} 
+									onClick={() => remove(index)}
+									type="button"
+								/>
+							</div>
+							{errors.blockLogins?.[index]?.value && 
+								<p className="errorBlock">{errors.blockLogins[index].value.message}*</p>}
+						</div>
 					))}
 				</div>
 				<Button classname="buttonConnect" type="submit">
 					Conectar com a twitch
 					<FaTwitch size={25}/>
 				</Button>
-			</form>
+			</FormSection>
 		</div>
 	)
 }
