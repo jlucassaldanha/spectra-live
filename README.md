@@ -5,12 +5,12 @@
 [![Axios](https://img.shields.io/badge/Axios-API-blue?logo=axios)](https://axios-http.com/)
 
 ## 📌 Sobre o projeto
-O **View Viewers** é uma aplicação  desenvolvida em **React + TypeScript**  que consome a **API da Twitch** que permite visualizar em tempo real quem está assistindo sua live na Twitch.
+O **View Viewers** é uma aplicação  desenvolvida em **React + TypeScript** que consome a **API da Twitch**. A aplicação mostra em tempo real quem está assistindo sua live na Twitch.
 
 🔹 Este projeto passou por **3 versões de evolução**:
-1. **JavaScript Vanilla** – contato com consumo da API e estilização da interface. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/js-view-viewers)  
-2. **React (JavaScript)** – reestruturação para componentização e melhor escalabilidade. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/react-view-viewers)
-3. **React + TypeScript (deploy na Vercel)** – versão atual, com tipagem, organização de pastas, melhorias de performance e funcionalidades reformuladas. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/view-viewers) 
+1. **JavaScript Vanilla** – contato com consumo da API e adição dinamica de componentes. Variáveis e configurações da API direcionadas a um usuário. Rodava por meio de servidor interno. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/js-view-viewers)  
+2. **React (JavaScript)** – reestruturação para componentização e melhor escalabilidade. Ainda com servidor interno e direcionado a um usuário. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/react-view-viewers)
+3. **React + TypeScript (deploy na Vercel)** – versão atual, com adição de tipagem, melhorias nos componentes e performance, funcionalidades reformuladas permitindo que qualquer pessoa possa utilizar e deploy na Vercel. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/view-viewers) 
 
 ## 🛠 Tecnologias Utilizadas
 - **Front-end** → React, TypeScript, Vite 
@@ -76,9 +76,7 @@ function ConnectMainPage() {
 ```
 
 ## 🔧 Próximos passos
-- Implementar testes automatizados (unitários e integração)
-- OAuth para usuários autenticados com a Twitch
-- Banco de dados para armazenamento de configurações
+- Banco de dados para armazenamento de configurações de cada usuário
 
 ## 🌍 Deploy
 [👉 Acesse o projeto online](https://view-viewers.vercel.app)
