@@ -8,7 +8,7 @@ function IconSection() {
       <h1 className="title">Saiba quem está te assistindo em tempo real!</h1>
       <div className="text">
         <p>
-          Com o <strong>Viewers show</strong> é possivel ver quem está te
+          Com o <strong>Spectra Live</strong> é possivel ver quem está te
           assistindo em tempo real.
         </p>
         <p>Conecte-se e tenha um feedback mais imersivo com o seu público!</p>

@@ -52,7 +52,7 @@ function ConnectMainPage() {
   const [formData, setFormData] = useState<FormType>();
 
   const client_id: string = "gfiv47o2hp43s1cip3bxbjx1hc84n9";
-  const redirect_uri: string = "https://view-viewers.vercel.app";
+  const redirect_uri: string = "https://spectralive.vercel.app";
   //const redirect_uri: string = "http://localhost:5173"
 
   const {

@@ -1,11 +1,11 @@
-# 🎥 View Viewers
+# 🎥 Spectra Live
 [![Deploy on Vercel](https://img.shields.io/badge/Deploy-Vercel-000?logo=vercel)](https://view-viewers.vercel.app)
 [![Made with React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 [![Axios](https://img.shields.io/badge/Axios-API-blue?logo=axios)](https://axios-http.com/)
 
 ## 📌 Sobre o projeto
-O **View Viewers** é uma aplicação  desenvolvida em **React + TypeScript** que consome a **API da Twitch**. A aplicação mostra em tempo real quem está assistindo sua live na Twitch.
+O **Spectra Live** é uma aplicação  desenvolvida em **React + TypeScript** que consome a **API da Twitch**. A aplicação mostra em tempo real quem está assistindo sua live na Twitch.
 
 🔹 Este projeto passou por **3 versões de evolução**:
 1. **JavaScript Vanilla** – contato com consumo da API e adição dinamica de componentes. Variáveis e configurações da API direcionadas a um usuário. Rodava por meio de servidor interno. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/js-view-viewers)  
