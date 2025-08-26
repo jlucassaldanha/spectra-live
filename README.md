@@ -1,5 +1,5 @@
 # 🎥 Spectra Live
-[![Deploy on Vercel](https://img.shields.io/badge/Deploy-Vercel-000?logo=vercel)](https://view-viewers.vercel.app)
+[![Deploy on Vercel](https://img.shields.io/badge/Deploy-Vercel-000?logo=vercel)](https://spectralive.vercel.app)
 [![Made with React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 [![Axios](https://img.shields.io/badge/Axios-API-blue?logo=axios)](https://axios-http.com/)
@@ -10,7 +10,7 @@ O **Spectra Live** é uma aplicação  desenvolvida em **React + TypeScript** qu
 🔹 Este projeto passou por **3 versões de evolução**:
 1. **JavaScript Vanilla** – contato com consumo da API e adição dinamica de componentes. Variáveis e configurações da API direcionadas a um usuário. Rodava por meio de servidor interno. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/js-view-viewers)  
 2. **React (JavaScript)** – reestruturação para componentização e melhor escalabilidade. Ainda com servidor interno e direcionado a um usuário. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/react-view-viewers)
-3. **React + TypeScript (deploy na Vercel)** – versão atual, com adição de tipagem, melhorias nos componentes e performance, funcionalidades reformuladas permitindo que qualquer pessoa possa utilizar e deploy na Vercel. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/view-viewers) 
+3. **React + TypeScript (deploy na Vercel)** – versão atual, com adição de tipagem, melhorias nos componentes e performance, funcionalidades reformuladas permitindo que qualquer pessoa possa utilizar e deploy na Vercel. [Acesse o repositório clicando aqui](https://github.com/jlucassaldanha/spectra-live) 
 
 ## 🛠 Tecnologias Utilizadas
 - **Front-end** → React, TypeScript, Vite 
@@ -35,10 +35,10 @@ O **Spectra Live** é uma aplicação  desenvolvida em **React + TypeScript** qu
 ## 🔧 Como rodar localmente
 ```bash
 # Clonar o repositório
-git clone https://github.com/jlucassaldanha/view-viewers.git
+git clone https://github.com/jlucassaldanha/spectra-live.git
 
 # Acessar pasta
-cd view-viewers
+cd spectra-live
 
 # Instalar dependências
 npm install
@@ -79,7 +79,7 @@ function ConnectMainPage() {
 - Banco de dados para armazenamento de configurações de cada usuário
 
 ## 🌍 Deploy
-[👉 Acesse o projeto online](https://view-viewers.vercel.app)
+[👉 Acesse o projeto online](https://spectralive.vercel.app)
 
 ## 📫 Contato
 - [GitHub: jlucassaldanha](https://github.com/jlucassaldanha)
