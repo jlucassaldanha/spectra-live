@@ -1,13 +1,11 @@
 import "./MainIcon.css"
 
-import { FaTwitch } from "react-icons/fa";
-import { PiEyesFill } from "react-icons/pi";
+import logo from "/logo.svg"
 
 function MainIcon() {
 	return (
 		<div className="icon">
-			<FaTwitch size={70} />
-			<PiEyesFill size={75} /> 
+			<img className="logo" src={logo} alt="Spectra Live Logo" />
 		</div>
 	)
 }
