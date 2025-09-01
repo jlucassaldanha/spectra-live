@@ -7,12 +7,17 @@ import './index.css'
 import App from './App.tsx'
 import ViewersPage from './pages/ViewersPage.tsx'
 import ConnectMainPage from './pages/ConnectMainPage.tsx'
+import HomePage from './pages/HomePage.tsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ConnectMainPage />
+    element: <ConnectMainPage /> // Substituir por uma página de apresentação
+  },
+  {
+    path: "/home",
+    element: <HomePage />
   },
   {
     path: "/viewers",
