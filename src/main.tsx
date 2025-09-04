@@ -4,10 +4,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import './index.css'
 
-import App from './App.tsx'
 import ViewersPage from './pages/ViewersPage.tsx'
 import ConnectMainPage from './pages/ConnectMainPage.tsx'
-import HomePage from './pages/HomePage.tsx'
+import ConnectPage from './pages/ConnectPage.tsx'
+import ProfilePage from './pages/ProfilePage.tsx'
 
 
 const router = createBrowserRouter([
@@ -17,15 +17,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage />
+    element: <ConnectPage />
   },
   {
     path: "/viewers",
     element: <ViewersPage />
   },
   {
-    path: "/icon",
-    element: <App />
+    path: "/profile",
+    element: <ProfilePage />
   }
 ])
 
