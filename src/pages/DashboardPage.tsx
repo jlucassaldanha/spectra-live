@@ -2,8 +2,9 @@ import './DashboardPage.css'
 
 import { MdLogout } from 'react-icons/md'
 
+import IconMod from '../components/MyIcons/ModIcon'
+
 import { useEffect, useRef, useState } from "react"
-import Button from "../components/Button/Button"
 import ServerApi  from "../utils/ServerApi"
 import User from "../components/User/User"
 
@@ -80,23 +81,26 @@ function DashboardPage(){
                     Sair
                     <MdLogout fill='red' size={23}/>
                 </button>
-
             </div>
             
-            <div>
-                <strong>Moderadores</strong>
-                {moderatorsData != undefined && (
-                    moderatorsData.map((mod, i) => {
-                        return  (
-                            <div key={i}>
-                                <User 
-                                    userName={mod.display_name} 
-                                    profileImgURL={mod.profile_image_url} 
-                                    />
-                            </div>
-                )}))}
+            <div className='modDiv'>
+                <div className='secTitle'>
+                    <strong>Moderadores</strong>
+                    <IconMod />
+                </div>
+                <div className='usersDiv'>
+                    {moderatorsData != undefined && (
+                        moderatorsData.map((mod, i) => {
+                            return (
+                                <div key={i}>
+                                    <User 
+                                        userName={mod.display_name} 
+                                        profileImgURL={mod.profile_image_url} 
+                                        />
+                                </div>
+                    )}))}
+                </div>
             </div>
-            
             
         </div>
     )
