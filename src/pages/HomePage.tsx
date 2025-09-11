@@ -1,4 +1,4 @@
-import "./ConnectPage.css"
+import "./HomePage.css"
 
 import Button from "../components/Button/Button"
 import HomeSection from "../components/HomeSection/HomeSection"
@@ -6,7 +6,7 @@ import { FaTwitch } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 
 // Página para login
-function ConnectPage(){
+function HomePage(){
     const navigate = useNavigate()
     const handleClick = () => {
         navigate("/profile")
@@ -23,4 +23,4 @@ function ConnectPage(){
     )
 }
 
-export default ConnectPage
+export default HomePage

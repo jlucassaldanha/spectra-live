@@ -1,4 +1,4 @@
-function ProfilePage(){
+function DashboardPage(){
     return (
         <div>
             aaaaa
@@ -6,4 +6,4 @@ function ProfilePage(){
     )
 }
 
-export default ProfilePage
+export default DashboardPage

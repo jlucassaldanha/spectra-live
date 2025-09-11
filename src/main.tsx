@@ -6,8 +6,8 @@ import './index.css'
 
 import ViewersPage from './pages/ViewersPage.tsx'
 import ConnectMainPage from './pages/ConnectMainPage.tsx'
-import ConnectPage from './pages/ConnectPage.tsx'
-import ProfilePage from './pages/ProfilePage.tsx'
+import HomePage from './pages/HomePage.tsx'
+import DashboardPage from './pages/DashboardPage.tsx'
 
 
 const router = createBrowserRouter([
@@ -17,16 +17,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <ConnectPage />
+    element: <HomePage />
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardPage />
   },
   {
     path: "/viewers",
     element: <ViewersPage />
   },
-  {
-    path: "/profile",
-    element: <ProfilePage />
-  }
 ])
 
 createRoot(document.getElementById('root')!).render(
