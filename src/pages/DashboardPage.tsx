@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import Button from "../components/Button/Button"
 import ServerApi  from "../utils/ServerApi"
+import User from "../components/User/User"
 
 type UserDataType = {
     display_name: string,
@@ -65,16 +66,23 @@ function DashboardPage(){
         <div>
             {userData != undefined && (
                 <div>
-                    {userData.display_name} <br />
-                    {/*<img src={userData.profile_image_url} alt="Foto de perfil" />*/}
+                    <User 
+                        userName={userData.display_name} 
+                        profileImgURL={userData.profile_image_url} 
+                    />
                 </div>
             )}
+            <div>
+                titulo sla
+            </div>
             {moderatorsData != undefined && (
                 moderatorsData.map((mod, i) => {
                     return  (
                         <div key={i}>
-                            {mod.display_name} <br />
-                            {/*<img src={userData.profile_image_url} alt="Foto de perfil" />*/}
+                            <User 
+                                userName={mod.display_name} 
+                                profileImgURL={mod.profile_image_url} 
+                                />
                         </div>
                     )
                 })
