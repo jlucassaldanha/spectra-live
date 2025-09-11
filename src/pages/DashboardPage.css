@@ -30,14 +30,14 @@
 }
 
 .modDiv {
-	padding: 10px 0px 0px;
+	padding: 10px 0px 20px 0px;
 	margin: 30px 20px;
 	border-radius: 15px;
 	border: #353538 solid 2px;
 }
 
 .usersDiv {
-	padding: 15px;
+	padding: 10px 15px;
 	border-radius: 0px 0px 10px 10px;
 	margin: 0px;
 }
@@ -50,4 +50,46 @@
 	box-shadow: 0 1px black;
 	margin: 0 10px;
 	gap: 10px;
+}
+
+.infoBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	padding: 10px;
+}
+
+.userDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.addButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 35%;
+}
+
+.loginBlock {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.errorBlock {
+	text-align: center;
+	color: red;
+}
+
+.inputLogin {
+	padding: 0 15%;
+}
+	
+.save {
+	padding: 0px 20%;
 }

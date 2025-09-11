@@ -7,6 +7,11 @@ import IconMod from '../components/MyIcons/ModIcon'
 import { useEffect, useRef, useState } from "react"
 import ServerApi  from "../utils/ServerApi"
 import User from "../components/User/User"
+import IconUser from '../components/MyIcons/UserIcon'
+import Input from '../components/Input/Input'
+import Button from '../components/Button/Button'
+import { IoIosAdd, IoIosRemove } from 'react-icons/io'
+import { useFieldArray, useForm } from 'react-hook-form'
 
 type UserDataType = {
     display_name: string,
@@ -26,6 +31,24 @@ function DashboardPage(){
     const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>()
     
     const calledRef = useRef(false)
+
+    type FormValues = {
+        items: { name: string; quantity: number }[];
+    };
+    const {
+        register,
+        control,
+        handleSubmit,
+      } = useForm<FormValues>({
+        defaultValues: {
+          items: [{name: "", quantity: 1}]
+        },
+      });
+
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: "items",
+      })
 
     const handleClick = () => {
         ServerApi.post("/auth/logout")
@@ -75,30 +98,73 @@ function DashboardPage(){
                         <strong>{userData.display_name}</strong>
                     </div>
                 )}
-                <strong>DashBoard</strong>
                 <button className='logOutBt' onClick={handleClick}>
                     Sair
                     <MdLogout fill='red' size={23}/>
                 </button>
             </div>
-            
             <div className='modDiv'>
                 <div className='secTitle'>
                     <strong>Moderadores</strong>
                     <IconMod />
                 </div>
+                <div className='infoBox'>
+                    Selecione os moderadores que deseja retirar da listagem de espectadores.
+                </div>
                 <div className='usersDiv'>
                     {moderatorsData != undefined && (
                         moderatorsData.map((mod, i) => {
                             return (
-                                <div key={i}>
+                                <div className="userDiv" key={i}>
+                                    <input className='check' type="checkbox" name="sla" id="sla" />
                                     <User 
                                         userName={mod.display_name} 
                                         profileImgURL={mod.profile_image_url} 
                                         />
                                 </div>
-                    )}))}
+                            )})
+                    )}
                 </div>
+            </div>
+            <div className='modDiv'>
+                <div className='secTitle'>
+                    <strong>Espectadores</strong>
+                    <IconUser />
+                </div>
+                <div className='infoBox'>
+                    Adicione usuários que deseja retirar da listagem de espectadores.
+                </div>
+                <div className="addButton">
+                    <Button
+                        icon={<IoIosAdd size={35} />}
+                        onClick={() => append({ value: "" })}
+                        type="button"
+                        > 
+                        Adicionar
+                    </Button>
+                </div>
+                
+                <div className='inputLogin'>
+                    {fields.map((input, index) => (
+                        <div className="errorBlock" key={input.id}>
+                            <div className="loginBlock">
+                                <Input />
+                                <div>
+                                    <Button
+                                        icon={<IoIosRemove size={35} />}
+                                        onClick={() => remove(index)}
+                                        type="button"
+                                        />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className='save'>
+                <Button>
+                    Salvar
+                </Button>
             </div>
             
         </div>

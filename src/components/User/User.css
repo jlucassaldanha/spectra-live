@@ -1,7 +1,9 @@
 .userContainer {
-	margin: 0 0 0.5rem 0;
-	padding: 0.5rem 0 0 0.5rem;
+	width: 100%;
+	margin: 0 0 0.6rem 0;
+	padding: 0.6rem 0 0 0.5rem;
 	border-top: 1px solid #36363b;
+	display: flex;
 }
 
 .userLink {
@@ -17,6 +19,6 @@
 	border-radius: 50%;
 }
 
-.userText {
+.userTextTwicth {
 	color: #BE93FE;
 }
