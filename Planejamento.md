@@ -2,12 +2,13 @@
 Criar a possibilidade de usuários se registrarem e configurar suas preferências.
 
 ## Página de criação de conta e login
-Criar uma página de criação de conta e de login. 
-A pessoa deve conectar com a twitch, então será criado as credenciais para o meu site que ai vai corresponder a conta dele.
+Conexão vai chamar a rota /login da api
 
+Deve haver uma rota /dashboard para o usuario ser redirecionado após o login
+Dashboard deve chamar a rota /me da api
 
-## Página de configurações de perfil
-Criar uma página que possibilite o usuário setar as suas preferências. Nesse caso, quais usuários não serão mostrados na live.
+Deve haver uma rota /home para onde o usuario é redirecionado após deslogar
+A rota /home provavelmente será a rota de login
 
 ## Página de visualização de espectadores, mas porém agora com menu né
 A página agora vai ter menu
