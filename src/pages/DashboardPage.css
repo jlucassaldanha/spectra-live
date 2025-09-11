@@ -1,0 +1,30 @@
+.currentUserImg {
+	width: 36px;
+	border-radius: 50%;
+}
+
+.currentUserDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+
+.headerDiv {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 2px black;
+}
+
+.logOutBt {
+	border: none;
+	background-color: transparent;
+	color: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}

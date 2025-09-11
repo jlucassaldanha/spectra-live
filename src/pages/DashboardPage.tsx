@@ -1,3 +1,7 @@
+import './DashboardPage.css'
+
+import { MdLogout } from 'react-icons/md'
+
 import { useEffect, useRef, useState } from "react"
 import Button from "../components/Button/Button"
 import ServerApi  from "../utils/ServerApi"
@@ -64,33 +68,36 @@ function DashboardPage(){
 
     return (
         <div>
-            {userData != undefined && (
-                <div>
-                    <User 
-                        userName={userData.display_name} 
-                        profileImgURL={userData.profile_image_url} 
-                    />
-                </div>
-            )}
-            <div>
-                titulo sla
+            <div className="headerDiv">
+                {userData != undefined && (
+                    <div className="currentUserDiv">
+                        <img className="currentUserImg" src={userData.profile_image_url} alt="" />
+                        <strong>{userData.display_name}</strong>
+                    </div>
+                )}
+                <strong>DashBoard</strong>
+                <button className='logOutBt' onClick={handleClick}>
+                    Sair
+                    <MdLogout fill='red' size={23}/>
+                </button>
+
             </div>
-            {moderatorsData != undefined && (
-                moderatorsData.map((mod, i) => {
-                    return  (
-                        <div key={i}>
-                            <User 
-                                userName={mod.display_name} 
-                                profileImgURL={mod.profile_image_url} 
-                                />
-                        </div>
-                    )
-                })
-                
-            )}
-            <Button onClick={handleClick}>
-                Sair
-            </Button>
+            
+            <div>
+                <strong>Moderadores</strong>
+                {moderatorsData != undefined && (
+                    moderatorsData.map((mod, i) => {
+                        return  (
+                            <div key={i}>
+                                <User 
+                                    userName={mod.display_name} 
+                                    profileImgURL={mod.profile_image_url} 
+                                    />
+                            </div>
+                )}))}
+            </div>
+            
+            
         </div>
     )
 }
