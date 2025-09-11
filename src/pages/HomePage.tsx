@@ -3,13 +3,11 @@ import "./HomePage.css"
 import Button from "../components/Button/Button"
 import HomeSection from "../components/HomeSection/HomeSection"
 import { FaTwitch } from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
 
 // Página para login
 function HomePage(){
-    const navigate = useNavigate()
     const handleClick = () => {
-        navigate("/profile")
+        window.location.href = "http://localhost:8000/auth/login"
     }
 
     return (
