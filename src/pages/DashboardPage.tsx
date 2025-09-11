@@ -31,20 +31,19 @@ function DashboardPage(){
         ServerApi.post("/auth/logout")
             .then((response) => {
                console.log(response)
-               setUserData(response.data)
+
+               window.location.href = "http://localhost:5173/home"
             })
             .catch((error) => {
                 console.log(error)
             })
-
-        window.location.href = "http://localhost:5173/home"
     }
 
     useEffect(() => {
         if (calledRef.current) return
         calledRef.current = true
 
-        ServerApi.get("/auth/me", {withCredentials: true})
+        ServerApi.get("/auth/me")
             .then((response) => {
                console.log(response.data)
                setUserData(response.data)
@@ -56,7 +55,7 @@ function DashboardPage(){
 
     useEffect(() => {
         if (userData != undefined) {
-            ServerApi.get("/information/mods", {withCredentials: true})
+            ServerApi.get("/information/mods")
             .then((response) => {
                console.log(response.data)
                setModeratorsData(response.data)
