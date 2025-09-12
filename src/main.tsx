@@ -8,12 +8,13 @@ import ViewersPage from './pages/ViewersPage.tsx'
 import ConnectMainPage from './pages/ConnectMainPage.tsx'
 import HomePage from './pages/HomePage.tsx'
 import DashboardPage from './pages/DashboardPage.tsx'
+import Visualizer from './test/Visualizer.tsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ConnectMainPage /> // Substituir por uma página de apresentação
+    element: <Visualizer /> // Substituir por uma página de apresentação
   },
   {
     path: "/home",
