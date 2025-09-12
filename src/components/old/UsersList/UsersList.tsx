@@ -1,10 +1,10 @@
 import "./UsersList.css"
 
 import CountContainer from "../CountContainer/CountContainer"
-import User from "../User/User"
+import User from "../../new/User/User"
 
-import IconUser from "../MyIcons/UserIcon"
-import IconMod from "../MyIcons/ModIcon"
+import IconUser from "../../new/IconUser/IconUser"
+import IconMod from "../../new/IconMod/IconMod"
 
 type UserType = {
 		id: string

@@ -4,10 +4,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./index.css";
 
-import ViewersPage from "./pages/ViewersPage.tsx";
+import ViewersPage from "./pages/ViewersPage/ViewersPage.tsx";
 import ConnectMainPage from "./pages/ConnectMainPage/ConnectMainPage.tsx";
-import HomePage from "./pages/HomePage.tsx";
-import DashboardPage from "./pages/DashboardPage.tsx";
+import HomePage from "./pages/HomePage/HomePage.tsx";
+import DashboardPage from "./pages/DashboardPage/DashboardPage.tsx";
 import Visualizer from "./test/Visualizer.tsx";
 
 const router = createBrowserRouter([
@@ -23,10 +23,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardPage />,
   },
-  {
+  /*{
     path: "/viewers",
     element: <ViewersPage />,
-  },
+  },*/
 ]);
 
 createRoot(document.getElementById("root")!).render(

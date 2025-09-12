@@ -1,8 +1,8 @@
 import "./HomePage.css";
 
-import Button from "../components/new/Button/Button";
-import HomeSection from "../components/old/HomeSection/HomeSection";
+import Button from "../../components/new/Button/Button";
 import { FaTwitch } from "react-icons/fa";
+import HorizontalLogo from "../../components/new/HorizontalLogo/HorizontalLogo";
 
 // Página para login
 function HomePage() {
@@ -12,13 +12,14 @@ function HomePage() {
 
   return (
     <div className="mainDiv">
-      <HomeSection />
-      <div>
-        <Button classname="buttonConnect" onClick={handleClick}>
-          Conectar com a twitch
-          <FaTwitch size={25} />
-        </Button>
+      <div className="logoTitle">
+        <HorizontalLogo />
+        <p>Conecte-se para começar a spectar!</p>
       </div>
+      <Button classname="buttonConnect" onClick={handleClick}>
+        Conectar com a twitch
+        <FaTwitch size={25} />
+      </Button>
     </div>
   );
 }

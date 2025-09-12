@@ -2,14 +2,14 @@ import "./DashboardPage.css";
 
 import { MdLogout } from "react-icons/md";
 
-import IconMod from "../components/old/MyIcons/ModIcon";
+import IconMod from "../../components/old/MyIcons/ModIcon";
 
 import { useEffect, useRef, useState } from "react";
-import ServerApi from "../utils/ServerApi";
-import User from "../components/old/User/User";
-import IconUser from "../components/old/MyIcons/UserIcon";
-import Input from "../components/old/Input/Input";
-import Button from "../components/new/Button/Button";
+import ServerApi from "../../utils/ServerApi";
+import User from "../../components/old/User/User";
+import IconUser from "../../components/old/MyIcons/UserIcon";
+import Input from "../../components/old/Input/Input";
+import Button from "../../components/new/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { useFieldArray, useForm } from "react-hook-form";
 
@@ -142,11 +142,11 @@ function DashboardPage() {
         </div>
         <div className="addButton">
           <Button
-            icon={<IoIosAdd size={35} />}
             onClick={() => append({ value: "" })}
             type="button"
           >
             Adicionar
+            <IoIosAdd size={35} />
           </Button>
         </div>
 
@@ -157,10 +157,11 @@ function DashboardPage() {
                 <Input />
                 <div>
                   <Button
-                    icon={<IoIosRemove size={35} />}
                     onClick={() => remove(index)}
                     type="button"
-                  />
+                  >
+                    <IoIosRemove size={35} />
+                  </Button>
                 </div>
               </div>
             </div>
