@@ -14,10 +14,13 @@ function HomePage(){
     return (
         <div className="mainDiv">   
             <HomeSection />
-            <Button classname="buttonConnect" onClick={handleClick}>
-                Conectar com a twitch
-                <FaTwitch size={25} />
-            </Button>
+            <div>
+                <Button classname="buttonConnect" onClick={handleClick}>
+                    Conectar com a twitch
+                    <FaTwitch size={25} />
+                </Button>
+            </div>
+            
         </div>  
     )
 }
