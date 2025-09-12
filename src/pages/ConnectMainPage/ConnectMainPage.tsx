@@ -9,10 +9,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FaTwitch } from "react-icons/fa";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
-import Input from "../components/Input/Input";
-import Button from "../components/Button/Button";
-import IconSection from "../components/IconSection/IconSection";
-import FormSection from "../components/FromSection/FormSection";
+import Input from "../../components/old/Input/Input";
+import Button from "../../components/new/Button/Button";
+import IconSection from "../../components/old/IconSection/IconSection";
+import FormSection from "../../components/old/FromSection/FormSection";
 
 type InputType = {
   id: number;

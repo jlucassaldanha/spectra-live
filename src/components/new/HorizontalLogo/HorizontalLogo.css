@@ -9,6 +9,7 @@
 }
 
 .HLogoDiv {
+	height: max-content;
 	width: max-content;
 	display: flex;
 	justify-content: center;

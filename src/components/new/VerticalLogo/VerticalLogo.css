@@ -11,6 +11,7 @@
 }
 
 .VLogoDiv {
+	height: max-content;
 	width: max-content;
 	display: flex;
 	flex-direction: column;
