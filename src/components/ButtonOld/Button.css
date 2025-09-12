@@ -1,14 +1,15 @@
 .button {
-	width: max-content;
+	width: 100%;
 	font-size: 1.2rem;
-	border: #acbed3 solid 1px;
+	border: #acbed3 solid 2px;
 	background-color: #00418b;
-	border-radius: 15px;
-	padding: 5px 10px;
+	border-radius: 26px;
+	padding: 4px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
+	font-weight: bold;
 	cursor: pointer;
 }
 
@@ -17,7 +18,7 @@
 }
 
 .buttonConnect {
-	border: #ccb3e4 solid 1px;
+	border: #ccb3e4 solid 2px;
 	background-color: #8a2be2;
 	padding: 15px 22px;
 }

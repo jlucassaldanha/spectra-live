@@ -2,12 +2,13 @@ import "./Button.css"
 
 type ButtonType = { 
 	children?: React.ReactNode 
+	icon?: React.ReactNode 
 	onClick?: React.MouseEventHandler<HTMLButtonElement>
 	type?: "reset" | "submit" | "button" | undefined 
 	classname?: "buttonConnect"
 }
 
-function Button({ children, onClick, type, classname }: ButtonType) {
+function Button({ children, icon, onClick, type, classname }: ButtonType) {
 	return (
 		<button 
 			className={"button " + classname} 
@@ -15,6 +16,7 @@ function Button({ children, onClick, type, classname }: ButtonType) {
 			type={type}
 		>
 			{children}
+			{icon}
 		</button>
 	)
 }
