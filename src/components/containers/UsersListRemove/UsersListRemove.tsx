@@ -19,7 +19,7 @@ function UsersListRemove({ users, onRemove }: UserListRemoveProps) {
     <div className="userList">
       {users && users.map((user, i) => {
         return (
-          <div className="user">
+          <div className="user" key={user.twitch_id}>
             <User
               userName={user.display_name}
               profileImgURL={user.profile_image_url}
@@ -27,7 +27,7 @@ function UsersListRemove({ users, onRemove }: UserListRemoveProps) {
               target="_blank"
               key={i}
             />
-            <button className="removeBt" onClick={() => onRemove(user.twitch_id)}>
+            <button className="removeBt" onClick={() => onRemove(user.twitch_id)} >
               <CiCircleRemove size={27} fill="red"/>
             </button>
           </div>
