@@ -21,6 +21,12 @@
 	margin: 15px;
 }
 
+.spectraBt {
+	margin: 30px;
+	display: flex;
+	justify-content: center;
+}
+
 .addUserDiv {
 	margin: 15px;
 	display: flex;

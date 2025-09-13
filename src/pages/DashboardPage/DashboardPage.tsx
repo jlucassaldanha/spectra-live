@@ -11,6 +11,7 @@ import UsersListSelect from "../../components/containers/UsersListSelect/UsersLi
 import UsersListRemove from "../../components/containers/UsersListRemove/UsersListRemove";
 import TextInput from "../../components/ui/TextInput/TextInput";
 import IconUser from "../../components/primitives/IconUser/IconUser";
+import NoTextLogo from "../../components/primitives/NoTextLogo/NoTextLogo";
 
 type UserType = {
   display_name: string;
@@ -35,6 +36,9 @@ function DashboardPage() {
   const [userData, setUserData] = useState<UserType>(); // Usuario
   const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>();
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}) // ids dos mods
+  const [userList, setUsersList] = useState<TwitchUserType[]>([])
+  const [inputValue, setInputValue] = useState<string>("")
+  const [loading, setLoading] = useState(true)
 
   // Inicializações
   const calledRef = useRef(false); 
@@ -103,12 +107,11 @@ function DashboardPage() {
             console.log(error)
           })
         }
+        setLoading(false)
       }
-      
       getUnview()
     }
   }, [moderatorsData])
-
   // Acaba inicializações
 
   // Mods
@@ -118,37 +121,7 @@ function DashboardPage() {
     })
   }
 
-  const handleSave = () => {
-    const addUnviews = Object.entries(checkedIds)
-      .filter(([key, value]) => value === true)
-      .map(([key, value]) => key)
-    
-    const removeUnviews = Object.entries(checkedIds)
-      .filter(([key, value]) => value === false)
-      .map(([key, value]) => key)
-
-
-    if (addUnviews.length > 0){
-      ServerApi.post("/preferences/add/unview", {
-        twitch_ids: addUnviews
-      })
-        .then((response) => console.log("add", response.data))
-        .catch((error) => console.log(error))
-    }
-
-    if (removeUnviews.length > 0){
-      ServerApi.delete("/preferences/remove/unview", {
-        data: {twitch_ids: removeUnviews}
-      })
-        .then((response) => console.log("remove", response.data))
-        .catch((error) => console.log(error))
-    }
-  }
-
   // Users
-  const [userList, setUsersList] = useState<TwitchUserType[]>([])
-  const [inputValue, setInputValue] = useState<string>("")
-
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value)
   }
@@ -183,10 +156,48 @@ function DashboardPage() {
     })
   }
 
+  const handleSave = () => {
+    const addUnviews = Object.entries(checkedIds)
+      .filter(([key, value]) => value === true)
+      .map(([key, value]) => key)
+    
+    const removeUnviews = Object.entries(checkedIds)
+      .filter(([key, value]) => value === false)
+      .map(([key, value]) => key)
+
+
+    if (addUnviews.length > 0){
+      ServerApi.post("/preferences/add/unview", {
+        twitch_ids: addUnviews
+      })
+        .then((response) => console.log("add", response.data))
+        .catch((error) => console.log(error))
+    }
+
+    if (removeUnviews.length > 0){
+      ServerApi.delete("/preferences/remove/unview", {
+        data: {twitch_ids: removeUnviews}
+      })
+        .then((response) => console.log("remove", response.data))
+        .catch((error) => console.log(error))
+    }
+  }
+
+  const spectar = () => {
+    window.location.href = "http://localhost:5173/viewers"
+  }
+
+  if (loading) return <p>Carregando...</p> // criar tela de carregamento
+
   return (
     <div>
       <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
-      
+      <div className="spectraBt">
+        <Button classname="buttonConnect" onClick={spectar}>
+          <strong>Começar a Spectar!</strong>
+          <NoTextLogo />
+        </Button>
+      </div>
       <div className="modDiv">
         <HeaderUsersList
           icon={<IconMod />}
@@ -212,7 +223,7 @@ function DashboardPage() {
       <div className="modDiv">
         <HeaderUsersList
           icon={<IconUser />}
-          text="Espectadore"
+          text="Espectadores"
           textColor="white"
         />
         <div className="infoBox">

@@ -10,6 +10,7 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import IconUser from "../components/primitives/IconUser/IconUser";
 import TextInput from "../components/ui/TextInput/TextInput";
 import UsersListRemove from "../components/containers/UsersListRemove/UsersListRemove";
+import NoTextLogo from "../components/primitives/NoTextLogo/NoTextLogo";
 
 type UserType = {
   twitch_id: string;
@@ -76,30 +77,12 @@ function Visualizer() {
 
   return (
     <div>
-      <div className="modDiv">
-        <HeaderUsersList
-          icon={<IconUser />}
-          text="Espectadore"
-          textColor="white"
-        />
-        <div className="infoBox">
-          Adicione usuários que deseja retirar da listagem de espectadores.
-        </div>
-        <div className="addUserDiv">
-          <TextInput value={inputValue} onChange={handleChangeInput} />
-          <Button onClick={handleAddUser}>
-            Adicionar
-          </Button>
-        </div>
-        <UsersListRemove
-          users={userList}
-          onRemove={handleRemoveUser}
-        />
-        <div className="btDiv" >
-          <Button onClick={() => console.log(userList)}>
-            Salvar
-          </Button>
-        </div>
+      <NoTextLogo />
+      <div className="spectraBt">
+        <Button classname="buttonConnect">
+          <strong>Começar a Spectar!</strong>
+          <NoTextLogo />
+        </Button>
       </div>
     </div>
   );
