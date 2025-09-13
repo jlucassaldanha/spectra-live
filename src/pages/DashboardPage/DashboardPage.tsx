@@ -1,12 +1,9 @@
 import "./DashboardPage.css";
 
-import { MdLogout } from "react-icons/md";
-
 import IconMod from "../../components/old/MyIcons/ModIcon";
 
 import { useEffect, useRef, useState } from "react";
 import ServerApi from "../../utils/ServerApi";
-import User from "../../components/old/User/User";
 import IconUser from "../../components/old/MyIcons/UserIcon";
 import Input from "../../components/old/Input/Input";
 import Button from "../../components/ui/Button/Button";
