@@ -1,14 +1,7 @@
-import Button from "../components/ui/Button/Button";
-import HorizontalLogo from "../components/primitives/HorizontalLogo/HorizontalLogo";
-import VerticalLogo from "../components/primitives/VerticalLogo/VerticalLogo";
-import TextInput from "../components/ui/TextInput/TextInput";
 import IconMod from "../components/primitives/IconMod/IconMod";
-import IconUser from "../components/primitives/IconUser/IconUser";
-import User from "../components/primitives/User/User";
 import HeaderUsersList from "../components/composite/HeaderUsersList/HeaderUsersList";
 import UsersList from "../components/composite/UsersList/UsersList";
 import ProfileHeader from "../components/containers/ProfileHeader/ProfileHeader";
-import ServerApi from "../utils/ServerApi";
 
 type UserType = {
   id: string;
@@ -38,15 +31,18 @@ function Visualizer() {
   ];
 
   const userData = {
-		display_name: "ojoojao",
-		profile_image_url: "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no"
-	}
+    display_name: "ojoojao",
+    profile_image_url:
+      "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
+  };
 
   return (
     <div>
-		
-		<ProfileHeader display_name={userData.display_name} profile_image_url={userData.profile_image_url}/>
-		<br></br>
+      <ProfileHeader
+        display_name={userData.display_name}
+        profile_image_url={userData.profile_image_url}
+      />
+      <br></br>
       <HeaderUsersList
         icon={<IconMod />}
         text="Moderadores"
