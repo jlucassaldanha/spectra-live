@@ -20,7 +20,7 @@ type UserType = {
 };
 
 type TwitchUserType = {
-  twitch_id: number;
+  twitch_id: number | string;
   display_name: string;
   id: number;
   login: string;
@@ -32,21 +32,6 @@ function DashboardPage() {
   const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>();
 
   const calledRef = useRef(false);
-
-  type FormValues = {
-    items: { name: string; quantity: number }[];
-  };
-  const { register, control, handleSubmit } = useForm<FormValues>({
-    defaultValues: {
-      items: [{ name: "", quantity: 1 }],
-    },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "items",
-  });
-
 
   useEffect(() => {
     if (calledRef.current) return;
@@ -78,6 +63,19 @@ function DashboardPage() {
     }
   }, [userData]);
 
+  
+  const [checkedIds, setCheckedIds] = useState<(string | number)[]>([])
+
+  const toggleUserState = (key: number | string, value: boolean) => {
+    setCheckedIds(prev => {
+      const idsNow = value ? [...prev, key] : prev.filter(k => k != key)
+      console.log(idsNow)
+
+      return idsNow
+    })
+  }
+
+
   return (
     <div>
       <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
@@ -91,7 +89,11 @@ function DashboardPage() {
           Selecione os moderadores que deseja retirar da listagem de
           espectadores.
         </div>
-        <UsersListSelect users={moderatorsData} />
+        <UsersListSelect 
+          users={moderatorsData} 
+          selectedsIds={checkedIds}
+          onChange={toggleUserState}
+        />
       </div>
 
       {/*<div className="modDiv">
