@@ -24,7 +24,12 @@ const handleClick = () => {
 function ProfileHeader({display_name, profile_image_url}: UserDataType) {
 	return (
 		<div className="userHeaderDiv">
-			<User userName={display_name? display_name : ""} profileImgURL={profile_image_url? profile_image_url : "./default_avatar.png"} size="mid"/>
+			<User 
+        userName={display_name? display_name : ""} 
+        profileImgURL={profile_image_url? profile_image_url : "./default_avatar.png"} 
+        profileURL={"http://localhost:5173/dashboard"}
+        size="mid"
+      />
 			<button className="logOutBt" onClick={handleClick}>
 				Sair
 				<MdLogout fill="red" size={23} />

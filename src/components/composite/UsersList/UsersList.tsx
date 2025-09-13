@@ -16,6 +16,8 @@ function UsersList({ users }: {users: UserType[] | undefined}) {
             <User
               userName={user.display_name}
               profileImgURL={user.profile_image_url}
+              profileURL={`https://twitch.tv/${user.display_name}`}
+              target="_blank"
               key={i}
             />
           </div>

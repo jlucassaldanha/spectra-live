@@ -4,14 +4,9 @@ import IconMod from "../../components/old/MyIcons/ModIcon";
 
 import { useEffect, useRef, useState } from "react";
 import ServerApi from "../../utils/ServerApi";
-import IconUser from "../../components/old/MyIcons/UserIcon";
-import Input from "../../components/old/Input/Input";
 import Button from "../../components/ui/Button/Button";
-import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { useFieldArray, useForm } from "react-hook-form";
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
-import UsersList from "../../components/composite/UsersList/UsersList";
 import UsersListSelect from "../../components/containers/UsersListSelect/UsersListSelect";
 
 type UserType = {
