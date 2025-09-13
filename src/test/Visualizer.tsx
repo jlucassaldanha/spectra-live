@@ -4,11 +4,12 @@ import UsersList from "../components/composite/UsersList/UsersList";
 import ProfileHeader from "../components/containers/ProfileHeader/ProfileHeader";
 import UsersListSelect from "../components/containers/UsersListSelect/UsersListSelect";
 import ToggleSwitch from "../components/ui/ToggleSwitch/ToggleSwitch";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import Button from "../components/ui/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import IconUser from "../components/primitives/IconUser/IconUser";
 import TextInput from "../components/ui/TextInput/TextInput";
+import UsersListRemove from "../components/containers/UsersListRemove/UsersListRemove";
 
 type UserType = {
   twitch_id: string;
@@ -52,6 +53,27 @@ function Visualizer() {
     })
   }
 
+  const [userList, setUsersList] = useState<UserType[]>([])
+  const [inputValue, setInputValue] = useState<string>("")
+
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value)
+  }
+
+  const handleAddUser = () => {
+    if (inputValue.trim()) {
+      const user = userlist.find(u => u.display_name === inputValue.trim()) // "api"
+      if (user) {
+        setUsersList(prev => [...prev, user])
+      }
+      setInputValue("")
+    }
+  }
+
+  const handleRemoveUser = (twitch_id: number | string) => {
+    setUsersList(prev => prev.filter(u => u.twitch_id !== twitch_id))
+  }
+
   return (
     <div>
       <div className="modDiv">
@@ -63,22 +85,20 @@ function Visualizer() {
         <div className="infoBox">
           Adicione usuários que deseja retirar da listagem de espectadores.
         </div>
-        <div className="addButton">
-          <Button >
+        <div className="addUserDiv">
+          <TextInput value={inputValue} onChange={handleChangeInput} />
+          <Button onClick={handleAddUser}>
             Adicionar
-            <IoIosAdd size={35} />
           </Button>
         </div>
-        <div className="inputLogin">
-           <TextInput />
-                <div>
-                  <Button >
-                    <IoIosRemove size={35} />
-                  </Button>
-                </div>
-        </div>
-        <div className="save">
-          <Button>Salvar</Button>
+        <UsersListRemove
+          users={userList}
+          onRemove={handleRemoveUser}
+        />
+        <div className="btDiv" >
+          <Button onClick={() => console.log(userList)}>
+            Salvar
+          </Button>
         </div>
       </div>
     </div>

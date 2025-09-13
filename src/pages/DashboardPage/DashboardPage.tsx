@@ -142,40 +142,6 @@ function DashboardPage() {
         </div>
       </div>
 
-      {/*<div className="modDiv">
-        <HeaderUsersList
-          icon={<IconUser />}
-          text="Espectadore"
-          textColor="white"
-        />
-        <div className="infoBox">
-          Adicione usuários que deseja retirar da listagem de espectadores.
-        </div>
-        <div className="addButton">
-          <Button onClick={() => append({ value: "" })} type="button">
-            Adicionar
-            <IoIosAdd size={35} />
-          </Button>
-        </div>
-
-        <div className="inputLogin">
-          {fields.map((input, index) => (
-            <div className="errorBlock" key={input.id}>
-              <div className="loginBlock">
-                <Input />
-                <div>
-                  <Button onClick={() => remove(index)} type="button">
-                    <IoIosRemove size={35} />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="save">
-        <Button>Salvar</Button>
-      </div>*/}
     </div>
   );
 }
