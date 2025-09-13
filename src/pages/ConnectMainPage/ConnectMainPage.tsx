@@ -10,7 +10,7 @@ import { FaTwitch } from "react-icons/fa";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 import Input from "../../components/old/Input/Input";
-import Button from "../../components/new/Button/Button";
+import Button from "../../components/ui/Button/Button";
 import IconSection from "../../components/old/IconSection/IconSection";
 import FormSection from "../../components/old/FromSection/FormSection";
 

@@ -1,8 +1,6 @@
 import "./UsersList.css";
 
-import User from "../../new/User/User";
-
-
+import User from "../../primitives/User/User";
 
 type UserType = {
   id: string;
@@ -17,16 +15,16 @@ type Props = {
 
 function UsersList({ users }: Props) {
   return (
-    <div className="userList" >
+    <div className="userList">
       {users.map((user, i) => {
         return (
-			<div className="user">
-				<User
-					userName={user.display_name}
-					profileImgURL={user.profile_image_url}
-					key={i}
-				/>
-			</div>
+          <div className="user">
+            <User
+              userName={user.display_name}
+              profileImgURL={user.profile_image_url}
+              key={i}
+            />
+          </div>
         );
       })}
     </div>

@@ -9,9 +9,10 @@ import ServerApi from "../../utils/ServerApi";
 import User from "../../components/old/User/User";
 import IconUser from "../../components/old/MyIcons/UserIcon";
 import Input from "../../components/old/Input/Input";
-import Button from "../../components/new/Button/Button";
+import Button from "../../components/ui/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { useFieldArray, useForm } from "react-hook-form";
+import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 
 type UserDataType = {
   display_name: string;
@@ -46,17 +47,6 @@ function DashboardPage() {
     name: "items",
   });
 
-  const handleClick = () => {
-    ServerApi.post("/auth/logout")
-      .then((response) => {
-        console.log(response);
-
-        window.location.href = "http://localhost:5173/home";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   useEffect(() => {
     if (calledRef.current) return;
@@ -87,22 +77,7 @@ function DashboardPage() {
 
   return (
     <div>
-      <div className="headerDiv">
-        {userData != undefined && (
-          <div className="currentUserDiv">
-            <img
-              className="currentUserImg"
-              src={userData.profile_image_url}
-              alt=""
-            />
-            <strong>{userData.display_name}</strong>
-          </div>
-        )}
-        <button className="logOutBt" onClick={handleClick}>
-          Sair
-          <MdLogout fill="red" size={23} />
-        </button>
-      </div>
+      <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
       <div className="modDiv">
         <div className="secTitle">
           <strong>Moderadores</strong>
@@ -141,10 +116,7 @@ function DashboardPage() {
           Adicione usuários que deseja retirar da listagem de espectadores.
         </div>
         <div className="addButton">
-          <Button
-            onClick={() => append({ value: "" })}
-            type="button"
-          >
+          <Button onClick={() => append({ value: "" })} type="button">
             Adicionar
             <IoIosAdd size={35} />
           </Button>
@@ -156,10 +128,7 @@ function DashboardPage() {
               <div className="loginBlock">
                 <Input />
                 <div>
-                  <Button
-                    onClick={() => remove(index)}
-                    type="button"
-                  >
+                  <Button onClick={() => remove(index)} type="button">
                     <IoIosRemove size={35} />
                   </Button>
                 </div>

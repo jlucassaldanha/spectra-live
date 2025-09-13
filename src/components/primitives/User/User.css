@@ -28,6 +28,11 @@
 	border-radius: 50%;
 }
 
+.userImgMd {
+	width: 35px;
+	border-radius: 50%;
+}
+
 .userImgLg {
 	width: 60px;
 	border-radius: 50%;
@@ -40,5 +45,10 @@
 
 .userNameTextSm {
 	font-size: 1rem;
+	font-weight: bold;
+}
+
+.userNameTextMd {
+	font-size: 1.1rem;
 	font-weight: bold;
 }

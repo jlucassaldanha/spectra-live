@@ -1,8 +1,8 @@
 import "./HomePage.css";
 
-import Button from "../../components/new/Button/Button";
+import Button from "../../components/ui/Button/Button";
 import { FaTwitch } from "react-icons/fa";
-import HorizontalLogo from "../../components/new/HorizontalLogo/HorizontalLogo";
+import HorizontalLogo from "../../components/primitives/HorizontalLogo/HorizontalLogo";
 
 // Página para login
 function HomePage() {
