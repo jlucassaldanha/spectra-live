@@ -1,55 +1,8 @@
-.currentUserImg {
-	width: 36px;
-	border-radius: 50%;
-}
-
-.currentUserDiv {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 15px;
-}
-
-.headerDiv {
-	padding: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	box-shadow: 0 2px black;
-}
-
-.logOutBt {
-	border: none;
-	background-color: transparent;
-	color: red;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 5px;
-	cursor: pointer;
-}
-
 .modDiv {
-	padding: 10px 0px 20px 0px;
 	margin: 30px 20px;
 	border-radius: 15px;
 	border: #353538 solid 2px;
-}
-
-.usersDiv {
-	padding: 10px 15px;
-	border-radius: 0px 0px 10px 10px;
-	margin: 0px;
-}
-
-.secTitle {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-	box-shadow: 0 1px black;
-	margin: 0 10px;
-	gap: 10px;
+	overflow: hidden;
 }
 
 .infoBox {
@@ -58,13 +11,6 @@
 	align-items: center;
 	margin: 10px;
 	padding: 10px;
-}
-
-.userDiv {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 10px;
 }
 
 .addButton {

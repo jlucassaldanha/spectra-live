@@ -3,20 +3,14 @@ import "./UsersList.css";
 import User from "../../primitives/User/User";
 
 type UserType = {
-  id: string;
   display_name: string;
   profile_image_url: string;
 };
 
-type Props = {
-  users: UserType[];
-  type: "user" | "mod";
-};
-
-function UsersList({ users }: Props) {
+function UsersList({ users }: {users: UserType[] | undefined}) {
   return (
     <div className="userList">
-      {users.map((user, i) => {
+      {users && users.map((user, i) => {
         return (
           <div className="user">
             <User

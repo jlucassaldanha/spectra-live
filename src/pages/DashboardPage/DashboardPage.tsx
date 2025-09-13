@@ -13,8 +13,10 @@ import Button from "../../components/ui/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { useFieldArray, useForm } from "react-hook-form";
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
+import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
+import UsersList from "../../components/composite/UsersList/UsersList";
 
-type UserDataType = {
+type UserType = {
   display_name: string;
   profile_image_url: string;
 };
@@ -28,7 +30,7 @@ type TwitchUserType = {
 };
 
 function DashboardPage() {
-  const [userData, setUserData] = useState<UserDataType>();
+  const [userData, setUserData] = useState<UserType>();
   const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>();
 
   const calledRef = useRef(false);
@@ -79,39 +81,24 @@ function DashboardPage() {
     <div>
       <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
       <div className="modDiv">
-        <div className="secTitle">
-          <strong>Moderadores</strong>
-          <IconMod />
-        </div>
+        <HeaderUsersList
+          icon={<IconMod />}
+          text="Moderadores"
+          textColor="white"
+        />
         <div className="infoBox">
           Selecione os moderadores que deseja retirar da listagem de
           espectadores.
         </div>
-        <div className="usersDiv">
-          {moderatorsData != undefined &&
-            moderatorsData.map((mod, i) => {
-              return (
-                <div className="userDiv" key={i}>
-                  <input
-                    className="check"
-                    type="checkbox"
-                    name="sla"
-                    id="sla"
-                  />
-                  <User
-                    userName={mod.display_name}
-                    profileImgURL={mod.profile_image_url}
-                  />
-                </div>
-              );
-            })}
-        </div>
+        <UsersList users={moderatorsData} />
       </div>
+
       <div className="modDiv">
-        <div className="secTitle">
-          <strong>Espectadores</strong>
-          <IconUser />
-        </div>
+        <HeaderUsersList
+          icon={<IconUser />}
+          text="Espectadore"
+          textColor="white"
+        />
         <div className="infoBox">
           Adicione usuários que deseja retirar da listagem de espectadores.
         </div>

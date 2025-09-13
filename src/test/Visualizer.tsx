@@ -48,7 +48,7 @@ function Visualizer() {
         text="Moderadores"
         textColor="white"
       />
-      <UsersList type="mod" users={userlist} />
+      <UsersList users={userlist} />
     </div>
   );
 }
