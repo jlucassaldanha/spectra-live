@@ -2,6 +2,9 @@ import IconMod from "../components/primitives/IconMod/IconMod";
 import HeaderUsersList from "../components/composite/HeaderUsersList/HeaderUsersList";
 import UsersList from "../components/composite/UsersList/UsersList";
 import ProfileHeader from "../components/containers/ProfileHeader/ProfileHeader";
+import UsersListSelect from "../components/containers/UsersListSelect/UsersListSelect";
+import ToggleSwitch from "../components/ui/ToggleSwitch/ToggleSwitch";
+import { useState } from "react";
 
 type UserType = {
   id: string;
@@ -36,8 +39,12 @@ function Visualizer() {
       "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
   };
 
+  const [checked, setChecked] = useState(false)
+
   return (
     <div>
+      <ToggleSwitch checked={checked} onChange={setChecked} />
+      <p>Ativado? {checked ? "Sim" : "Não"}</p>
       <ProfileHeader
         display_name={userData.display_name}
         profile_image_url={userData.profile_image_url}
@@ -48,7 +55,7 @@ function Visualizer() {
         text="Moderadores"
         textColor="white"
       />
-      <UsersList users={userlist} />
+      <UsersListSelect users={userlist} />
     </div>
   );
 }

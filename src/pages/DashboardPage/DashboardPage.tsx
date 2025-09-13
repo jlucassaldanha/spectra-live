@@ -12,6 +12,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
 import UsersList from "../../components/composite/UsersList/UsersList";
+import UsersListSelect from "../../components/containers/UsersListSelect/UsersListSelect";
 
 type UserType = {
   display_name: string;
@@ -90,10 +91,10 @@ function DashboardPage() {
           Selecione os moderadores que deseja retirar da listagem de
           espectadores.
         </div>
-        <UsersList users={moderatorsData} />
+        <UsersListSelect users={moderatorsData} />
       </div>
 
-      <div className="modDiv">
+      {/*<div className="modDiv">
         <HeaderUsersList
           icon={<IconUser />}
           text="Espectadore"
@@ -126,7 +127,7 @@ function DashboardPage() {
       </div>
       <div className="save">
         <Button>Salvar</Button>
-      </div>
+      </div>*/}
     </div>
   );
 }

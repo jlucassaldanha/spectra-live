@@ -1,0 +1,7 @@
+.user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 17px;
+	border-top: #1F1F23 solid 2px;
+}
