@@ -60,7 +60,10 @@ function DashboardPage() {
         setUserData(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.status);
+        if (error.status === 401) {
+          window.location.href = "http://localhost:5173/home";
+        }
       });
   }, []);
 
