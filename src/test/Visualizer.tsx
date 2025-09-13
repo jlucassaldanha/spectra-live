@@ -6,6 +6,9 @@ import UsersListSelect from "../components/containers/UsersListSelect/UsersListS
 import ToggleSwitch from "../components/ui/ToggleSwitch/ToggleSwitch";
 import { useState } from "react";
 import Button from "../components/ui/Button/Button";
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
+import IconUser from "../components/primitives/IconUser/IconUser";
+import TextInput from "../components/ui/TextInput/TextInput";
 
 type UserType = {
   twitch_id: string;
@@ -39,13 +42,12 @@ function Visualizer() {
     profile_image_url:
       "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
   };
-  const [checkedIds, setCheckedIds] = useState<(string | number)[]>([])
+  const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({})
 
   const toggleUserState = (key: number | string, value: boolean) => {
     setCheckedIds(prev => {
-      const idsNow = value ? [...prev, key] : prev.filter(k => k != key)
+      const idsNow = {...prev, [key]: value}
       //console.log(idsNow)
-
       return idsNow
     })
   }
@@ -54,25 +56,30 @@ function Visualizer() {
     <div>
       <div className="modDiv">
         <HeaderUsersList
-          icon={<IconMod />}
-          text="Moderadores"
+          icon={<IconUser />}
+          text="Espectadore"
           textColor="white"
         />
         <div className="infoBox">
-          Selecione os moderadores que deseja retirar da listagem de
-          espectadores.
+          Adicione usuários que deseja retirar da listagem de espectadores.
         </div>
-        <UsersListSelect 
-          users={userlist} 
-          selectedsIds={checkedIds}
-          onChange={toggleUserState}
-        />
-        <div className="btDiv">
-          <Button onClick={() => console.log(checkedIds)}>
-            Salvar
+        <div className="addButton">
+          <Button >
+            Adicionar
+            <IoIosAdd size={35} />
           </Button>
         </div>
-        
+        <div className="inputLogin">
+           <TextInput />
+                <div>
+                  <Button >
+                    <IoIosRemove size={35} />
+                  </Button>
+                </div>
+        </div>
+        <div className="save">
+          <Button>Salvar</Button>
+        </div>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ type UserType = {
 
 type UserListSelectProps = {
   users: UserType[] | undefined
-  selectedsIds: (string | number)[]
+  selectedsIds: Record<string | number, boolean>
   onChange: (key: string | number, value: boolean) => void
 }
 
@@ -29,7 +29,7 @@ function UsersListSelect({ users, selectedsIds, onChange }: UserListSelectProps)
               key={i}
             />
             <ToggleSwitch 
-              checked={selectedsIds.includes(user.twitch_id)} 
+              checked={!!selectedsIds[user.twitch_id]} 
               onChange={(value) => onChange(user.twitch_id, value)} 
             />
           </div>
