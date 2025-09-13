@@ -20,22 +20,9 @@
 	margin: 10px 35%;
 }
 
-.loginBlock {
+.btDiv {
 	display: flex;
-	justify-content: center;
+	justify-content: end;
 	align-items: center;
-	gap: 10px;
-}
-
-.errorBlock {
-	text-align: center;
-	color: red;
-}
-
-.inputLogin {
-	padding: 0 15%;
-}
-	
-.save {
-	padding: 0px 20%;
+	margin: 15px;
 }

@@ -39,7 +39,7 @@ function DashboardPage() {
 
     ServerApi.get("/auth/me")
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setUserData(response.data);
       })
       .catch((error) => {
@@ -54,7 +54,7 @@ function DashboardPage() {
     if (userData != undefined) {
       ServerApi.get("/information/mods")
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
           setModeratorsData(response.data);
         })
         .catch((error) => {
@@ -69,16 +69,16 @@ function DashboardPage() {
   const toggleUserState = (key: number | string, value: boolean) => {
     setCheckedIds(prev => {
       const idsNow = value ? [...prev, key] : prev.filter(k => k != key)
-      console.log(idsNow)
+      //console.log(idsNow)
 
       return idsNow
     })
   }
 
-
   return (
     <div>
       <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
+      
       <div className="modDiv">
         <HeaderUsersList
           icon={<IconMod />}
@@ -94,6 +94,11 @@ function DashboardPage() {
           selectedsIds={checkedIds}
           onChange={toggleUserState}
         />
+        <div className="btDiv" >
+          <Button onClick={() => console.log(checkedIds)}>
+            Salvar
+          </Button>
+        </div>
       </div>
 
       {/*<div className="modDiv">

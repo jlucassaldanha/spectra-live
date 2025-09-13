@@ -5,28 +5,29 @@ import ProfileHeader from "../components/containers/ProfileHeader/ProfileHeader"
 import UsersListSelect from "../components/containers/UsersListSelect/UsersListSelect";
 import ToggleSwitch from "../components/ui/ToggleSwitch/ToggleSwitch";
 import { useState } from "react";
+import Button from "../components/ui/Button/Button";
 
 type UserType = {
-  id: string;
+  twitch_id: string;
   display_name: string;
   profile_image_url: string;
 };
 function Visualizer() {
   const userlist: UserType[] = [
     {
-      id: "1",
+      twitch_id: "1",
       display_name: "jorge",
       profile_image_url:
         "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
     },
     {
-      id: "2",
+      twitch_id: "2",
       display_name: "Kenan",
       profile_image_url:
         "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
     },
     {
-      id: "3",
+      twitch_id: "3",
       display_name: "Carlos",
       profile_image_url:
         "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
@@ -38,24 +39,41 @@ function Visualizer() {
     profile_image_url:
       "https://lh3.googleusercontent.com/a/ACg8ocKi-1Tya3vdtQAn9rzASWR-6TrzJuSCfiuDa5T1SrL2WW03DXZU=s288-c-no",
   };
+  const [checkedIds, setCheckedIds] = useState<(string | number)[]>([])
 
-  const [checked, setChecked] = useState(false)
+  const toggleUserState = (key: number | string, value: boolean) => {
+    setCheckedIds(prev => {
+      const idsNow = value ? [...prev, key] : prev.filter(k => k != key)
+      //console.log(idsNow)
+
+      return idsNow
+    })
+  }
 
   return (
     <div>
-      <ToggleSwitch checked={checked} onChange={setChecked} />
-      <p>Ativado? {checked ? "Sim" : "Não"}</p>
-      <ProfileHeader
-        display_name={userData.display_name}
-        profile_image_url={userData.profile_image_url}
-      />
-      <br></br>
-      <HeaderUsersList
-        icon={<IconMod />}
-        text="Moderadores"
-        textColor="white"
-      />
-      <UsersListSelect users={userlist} />
+      <div className="modDiv">
+        <HeaderUsersList
+          icon={<IconMod />}
+          text="Moderadores"
+          textColor="white"
+        />
+        <div className="infoBox">
+          Selecione os moderadores que deseja retirar da listagem de
+          espectadores.
+        </div>
+        <UsersListSelect 
+          users={userlist} 
+          selectedsIds={checkedIds}
+          onChange={toggleUserState}
+        />
+        <div className="btDiv">
+          <Button onClick={() => console.log(checkedIds)}>
+            Salvar
+          </Button>
+        </div>
+        
+      </div>
     </div>
   );
 }

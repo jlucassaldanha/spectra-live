@@ -1,7 +1,7 @@
 import "./User.css"
 
 type PropsUser = {
-	userName: string 
+	userName: string
 	profileImgURL: string
 	size?: "small" | "large" | "mid"
 	orientation?: "vert" | "horz"

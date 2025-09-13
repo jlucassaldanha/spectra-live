@@ -3,6 +3,7 @@ import "./ProfileHeader.css"
 import User from "../../primitives/User/User";
 import ServerApi from "../../../utils/ServerApi";
 
+
 type UserDataType = {
   display_name: string | undefined;
   profile_image_url: string | undefined;
@@ -23,7 +24,7 @@ const handleClick = () => {
 function ProfileHeader({display_name, profile_image_url}: UserDataType) {
 	return (
 		<div className="userHeaderDiv">
-			<User userName={display_name? display_name : ""} profileImgURL={profile_image_url? profile_image_url : ""} size="mid"/>
+			<User userName={display_name? display_name : ""} profileImgURL={profile_image_url? profile_image_url : "./default_avatar.png"} size="mid"/>
 			<button className="logOutBt" onClick={handleClick}>
 				Sair
 				<MdLogout fill="red" size={23} />
