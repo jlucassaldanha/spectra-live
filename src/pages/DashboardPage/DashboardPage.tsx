@@ -164,12 +164,12 @@ function DashboardPage() {
 
   const handleSave = () => {
     const addUnviews = Object.entries(checkedIds)
-      .filter(([key, value]) => value === true)
-      .map(([key, value]) => key)
+      .filter(([_key, value]) => value === true)
+      .map(([key, _value]) => key)
     
     const removeUnviews = Object.entries(checkedIds)
-      .filter(([key, value]) => value === false)
-      .map(([key, value]) => key)
+      .filter(([_key, value]) => value === false)
+      .map(([key, _value]) => key)
 
 
     if (addUnviews.length > 0){
