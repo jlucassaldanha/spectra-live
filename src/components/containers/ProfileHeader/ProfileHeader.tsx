@@ -4,6 +4,7 @@ import User from "../../primitives/User/User";
 import ServerApi from "../../../utils/ServerApi";
 import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
 
+const ROOT_URL = "https://spectralive.vercel.app"
 
 type UserDataType = {
   display_name: string | undefined;
@@ -14,8 +15,7 @@ const handleClick = () => {
     ServerApi.post("/auth/logout")
       .then((response) => {
         console.log(response);
-
-        window.location.href = "http://localhost:5173/home";
+        window.location.href = ROOT_URL+"/home";
       })
       .catch((error) => {
         console.log(error);
@@ -27,8 +27,8 @@ function ProfileHeader({display_name, profile_image_url}: UserDataType) {
 		<div className="userHeaderDiv">
 			<User 
         userName={display_name? display_name : ""} 
-        profileImgURL={profile_image_url? profile_image_url : "./default_avatar.png"} 
-        profileURL={"http://localhost:5173/dashboard"}
+        profileImgURL={profile_image_url? profile_image_url : "./default_avatar.jpg"} 
+        profileURL={ROOT_URL+"/dashboard"}
         size="mid"
       />
       <div className="logoDiv">

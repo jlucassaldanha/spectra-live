@@ -32,6 +32,8 @@ function ViewersPage() {
   const [moderators, setModerators] = useState<ChatterModeratorType>()
   const [loadingHeader, setLoadingHeader] = useState(true)
 
+  const ROOT_URL = "https://spectralive.vercel.app"
+
   const calledRef = useRef(false); 
 
   useEffect(() => {
@@ -46,7 +48,6 @@ function ViewersPage() {
       .catch((error) => {
         console.log(error.status);
         if (error.status === 401) {
-          const ROOT_URL = "https://spectralive.vercel.app"
           window.location.href = ROOT_URL + "/home";
         }
       });
