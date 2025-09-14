@@ -1,0 +1,31 @@
+.userHeaderDiv {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	border-bottom: #2d2d33 solid 2px;
+}
+
+.logOutBt {
+	border: none;
+	background-color: transparent;
+	color: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}
+
+.logoDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.logoDiv > .HLogoDiv {
+	position: absolute;  
+  	left: 50%;           
+  	transform: translateX(-50%); 
+}

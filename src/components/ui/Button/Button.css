@@ -1,0 +1,29 @@
+.button {
+	height: max-content;
+	width: max-content;
+	font-size: 1.2rem;
+	border: #acbed3 solid 1px;
+	background-color: #00418b;
+	border-radius: 15px;
+	padding: 10px 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #4e8ed6;	
+}
+
+.buttonConnect {
+	border: #ccb3e4 solid 1px;
+	background-color: #8a2be2;
+	padding: 15px 22px;
+}
+
+.buttonConnect:hover {
+	background-color: #9f53e6;	
+}
+

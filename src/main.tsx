@@ -1,31 +1,35 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import './index.css'
+import "./index.css";
 
-import App from './App.tsx'
-import ViewersPage from './pages/ViewersPage.tsx'
-import ConnectMainPage from './pages/ConnectMainPage.tsx'
-
+import ViewersPage from "./pages/ViewersPage/ViewersPage.tsx";
+import HomePage from "./pages/HomePage/HomePage.tsx";
+import DashboardPage from "./pages/DashboardPage/DashboardPage.tsx";
+import Visualizer from "./test/Visualizer.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ConnectMainPage />
+    element: <Visualizer />, // Substituir por uma página de apresentação
+  },
+  {
+    path: "/home",
+    element: <HomePage />,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardPage />,
   },
   {
     path: "/viewers",
-    element: <ViewersPage />
+    element: <ViewersPage />,
   },
-  {
-    path: "/icon",
-    element: <App />
-  }
-])
+]);
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+  </StrictMode>
+);

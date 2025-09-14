@@ -1,0 +1,54 @@
+.userContainer {
+	width: max-content;
+	height: max-content;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.userLinkH {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+}
+
+.userLinkV {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+}
+
+.userImgSm {
+	width: 28px;
+	border-radius: 50%;
+}
+
+.userImgMd {
+	width: 35px;
+	border-radius: 50%;
+}
+
+.userImgLg {
+	width: 60px;
+	border-radius: 50%;
+}
+
+.userNameTextLg {
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.userNameTextSm {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.userNameTextMd {
+	font-size: 1.1rem;
+	font-weight: bold;
+}

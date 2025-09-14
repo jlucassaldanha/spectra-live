@@ -1,0 +1,12 @@
+.logo {
+	margin: 0;
+	width: 30px;
+}
+
+.LogoDiv {
+	height: max-content;
+	width: max-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

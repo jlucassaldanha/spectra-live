@@ -1,0 +1,14 @@
+.iconContainer {
+	height: max-content;
+	width: max-content;
+	margin: 0;
+}
+
+.iconSvg {
+	border-radius: 30%;
+	background-color: #ffffff;
+}
+
+.iconColor {
+	fill: #008235;
+}

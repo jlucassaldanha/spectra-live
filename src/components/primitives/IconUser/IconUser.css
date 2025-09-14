@@ -1,0 +1,16 @@
+.iconContainer {
+	height: max-content;
+	width: max-content;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	margin: 0;
+}
+
+.redFill {
+	fill: #aa3e3e;
+}
+
+.whiteFill {
+	fill: #ffffff;
+}

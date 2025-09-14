@@ -1,0 +1,54 @@
+
+@media (min-width: 800px) {
+	.mainSection {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.modDiv {
+		min-width: 500px;
+	}
+}
+
+.modDiv {
+	max-width: 700px;
+	margin: 30px 20px;
+	border-radius: 15px;
+	border: #353538 solid 2px;
+	overflow: hidden;
+}
+
+.infoBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	padding: 10px;
+}
+
+.btDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 15px;
+}
+
+.btDiv > .button {
+	width: 100%;
+}
+
+.spectraBt {
+	margin: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+.addUserDiv {
+	margin: 15px;
+	display: flex;
+	justify-content: space-between;
+	justify-items: center;
+	gap: 20px;
+}
+

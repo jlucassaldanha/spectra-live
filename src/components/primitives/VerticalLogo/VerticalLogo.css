@@ -1,0 +1,21 @@
+.logo {
+	display: block;
+	margin: 0;
+	width: 30px;
+}
+
+.logoText {
+	display: block;
+	margin: 0;
+	width: 80px;
+}
+
+.VLogoDiv {
+	height: max-content;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}

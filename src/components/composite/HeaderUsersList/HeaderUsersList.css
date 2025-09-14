@@ -1,0 +1,20 @@
+.counter {
+	cursor: default;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	padding: 0.6rem;
+	background-color: #1F1F23;
+}
+
+
+.textRed {
+	color: #aa3e3e;
+	font-weight: bold;
+}
+
+.textWhite {
+	color: #ffffff;
+	font-weight: bold;
+}
