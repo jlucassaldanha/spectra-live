@@ -1,0 +1,15 @@
+.base {
+	gap: 5px;
+	display: block;
+}
+
+.H1 {
+	font-size: 1.1rem;
+}
+
+.mainSection {
+	margin: 1.8rem 1.8rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.3rem;
+}

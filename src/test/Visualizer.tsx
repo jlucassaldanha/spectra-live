@@ -11,6 +11,8 @@ import IconUser from "../components/primitives/IconUser/IconUser";
 import TextInput from "../components/ui/TextInput/TextInput";
 import UsersListRemove from "../components/containers/UsersListRemove/UsersListRemove";
 import NoTextLogo from "../components/primitives/NoTextLogo/NoTextLogo";
+import Header from "../components/old/Header/Header";
+import CountContainer from "../components/old/CountContainer/CountContainer";
 
 type UserType = {
   twitch_id: string;
@@ -77,12 +79,29 @@ function Visualizer() {
 
   return (
     <div>
-      <NoTextLogo />
-      <div className="spectraBt">
-        <Button classname="buttonConnect">
-          <strong>Começar a Spectar!</strong>
-          <NoTextLogo />
-        </Button>
+      <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
+      <div className="mainSection">
+        <div className="modDiv">
+          <HeaderUsersList
+            icon={<IconMod />}
+            text="Moderadores"
+            textColor="white"
+          />
+          <UsersList 
+            users={userlist} 
+          />
+        </div>
+
+        <div className="modDiv">
+          <HeaderUsersList
+            icon={<IconUser />}
+            text="Espectadores"
+            textColor="white"
+          />
+          <UsersList 
+            users={userlist} 
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,225 +1,102 @@
 import "./ViewersPage.css";
-import TwitchApi from "../utils/TwitchApi";
 
-import IconUser from "../components/old/MyIcons/UserIcon";
+import IconUser from "../../components/primitives/IconUser/IconUser";
+import UsersList from "../../components/composite/UsersList/UsersList";
+import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
+import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
+import IconMod from "../../components/primitives/IconMod/IconMod";
+import ServerApi from "../../utils/ServerApi";
+import { useEffect, useRef, useState } from "react";
 
-import Header from "../components/old/Header/Header";
-import CountContainer from "../components/old/CountContainer/CountContainer";
-import UsersList from "../components/old/UsersList/UsersList";
-import { useEffect, useState } from "react";
+type UserType = {
+  twitch_id: string | number
+  display_name: string;
+  profile_image_url: string;
+};
+
+type ChatterModeratorType = {
+  data: UserType[]
+  total: number
+}
+
+type ViewersResponseType = {
+  chatters: ChatterModeratorType, 
+  moderators: ChatterModeratorType
+}
 
 function ViewersPage() {
-  const [moderatorId, setModeratorId] = useState<string>("");
-  const [broadcasterId, setBroadcasterId] = useState<string>("");
+  const [userData, setUserData] = useState<UserType>(); // Usuario
+  const [chatters, setChatters] = useState<ChatterModeratorType>()
+  const [moderators, setModerators] = useState<ChatterModeratorType>()
 
-  const [allUsersIds, setAllUsersIds] = useState<string[]>([]);
-  const [modsIds, setModsIds] = useState<string[]>([""]);
-  const [viewersIds, setViewersIds] = useState<string[]>([""]);
-
-  const [allUsersInfos, setAllUsersInfos] = useState<UserType[]>([]);
-
-  const [modsInfos, setModsInfos] = useState<UserType[]>([]);
-  const [viewersInfos, setViewersInfos] = useState<UserType[]>([]);
-
-  const [blockIds, setBlockIds] = useState<string[]>([""]);
+  const calledRef = useRef(false); 
 
   useEffect(() => {
-    const client_id: string | null = localStorage.getItem("client_id");
-    const broadcaster_login: string | null =
-      localStorage.getItem("broadcaster_login");
+    if (calledRef.current) return;
+    calledRef.current = true;
 
-    if (client_id !== null && broadcaster_login !== null) {
-      TwitchApi.defaults.headers.common = {
-        Authorization:
-          "Bearer " +
-          document.location.hash.slice(
-            document.location.hash.indexOf("#access_token=") + 14,
-            document.location.hash.indexOf("&scope=")
-          ),
-        "Client-Id": client_id,
-      };
-
-      TwitchApi.get(`/users`, { params: { login: broadcaster_login } })
-        .then((response) => {
-          setBroadcasterId(response.data.data[0].id);
-          setModeratorId(response.data.data[0].id);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    const block_logins = localStorage.getItem("block_logins");
-    if (block_logins && JSON.parse(block_logins).length > 0) {
-      const blockLogins: string[] = JSON.parse(block_logins);
-
-      TwitchApi.get(`/users`, {
-        params: { login: blockLogins },
-        paramsSerializer: { indexes: null },
+    ServerApi.get("/auth/me")
+      .then((response) => {
+        setUserData(response.data);
       })
-        .then((response) => {
-          const responseData: UserType[] = response.data.data;
-          const blockIds: string[] = responseData.map((user) => user.id);
-          setBlockIds(blockIds);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+      .catch((error) => {
+        console.log(error.status);
+        if (error.status === 401) {
+          window.location.href = "http://localhost:5173/home";
+        }
+      });
   }, []);
-
-  type ChatterType = {
-    user_id: string;
-    user_login: string;
-    user_name: string;
-  };
 
   useEffect(() => {
     const interval: number = setInterval(() => {
-      TwitchApi.get(`/chat/chatters`, {
-        params: {
-          broadcaster_id: broadcasterId,
-          moderator_id: moderatorId,
-        },
-      })
+      ServerApi.get("/information/viewers")
         .then((response) => {
-          const responseData: ChatterType[] = response.data.data;
+          const response_data: ViewersResponseType = response.data
+          console.log(response_data)
 
-          const users_ids: string[] = responseData.map((user) => user.user_id);
-          const all_users_ids: string[] = users_ids.filter(
-            (id) => !blockIds.includes(id)
-          );
+          const orderedChatters = response_data.chatters.data.sort((a, b) => {
+            return String(a.twitch_id).localeCompare(String(b.twitch_id))         
+          })
+          const orderedModerators = response_data.moderators.data.sort((a, b) => {
+            return String(a.twitch_id).localeCompare(String(b.twitch_id))
+          })
 
-          setAllUsersIds(all_users_ids);
+          setChatters({
+            data: orderedChatters,
+            total: response_data.chatters.total
+          })
+          setModerators({
+            data: orderedModerators,
+            total: response_data.moderators.total
+          })
         })
-        .catch((error) => {
-          console.log("Erro: " + error);
-          window.alert(`Erro:
-						${error}`);
-        });
-    }, 1000);
+        .catch((error) => console.log(error))
+    }, 1000)
 
-    return () => clearInterval(interval);
-  }, [broadcasterId, moderatorId, blockIds]);
-
-  useEffect(() => {
-    if (allUsersIds.length > 0) {
-      TwitchApi.get(`/moderation/moderators`, {
-        params: {
-          broadcaster_id: broadcasterId,
-          user_id: allUsersIds,
-        },
-        paramsSerializer: {
-          indexes: null,
-        },
-      })
-        .then((response) => {
-          const responseData: ChatterType[] = response.data.data;
-
-          const mods_ids: string[] = responseData.map((user) => {
-            return user.user_id;
-          });
-          const viewers_ids: string[] = allUsersIds.filter((id) => {
-            return !mods_ids.includes(id);
-          });
-
-          setModsIds(mods_ids);
-          setViewersIds(viewers_ids);
-        })
-        .catch((error) => {
-          console.log("Erro: " + error);
-          window.alert(`Erro:
-						${error}`);
-        });
-    }
-  }, [allUsersIds, broadcasterId]);
-
-  type UserType = {
-    id: string;
-    login: string;
-    display_name: string;
-    type: string;
-    broadcaster_type: string;
-    description: string;
-    profile_image_url: string;
-    offline_image_url: string;
-    view_count: number;
-    email: string;
-    created_at: string;
-  };
-
-  useEffect(() => {
-    if (allUsersIds.length > 0) {
-      TwitchApi.get(`/users`, {
-        params: {
-          id: allUsersIds,
-        },
-        paramsSerializer: {
-          indexes: null,
-        },
-      })
-        .then((response) => {
-          const responseData: UserType[] = response.data.data;
-          setAllUsersInfos(responseData);
-        })
-        .catch((error) => {
-          console.log("Erro: " + error);
-          window.alert(`Erro:
-						${error}`);
-        });
-    }
-  }, [allUsersIds]);
-
-  useEffect(() => {
-    if (allUsersInfos.length > 0) {
-      setModsInfos((prevMods) => {
-        const newMods = allUsersInfos.filter((user) => {
-          return (
-            modsIds.includes(user.id) &&
-            !prevMods.some((mod) => mod.id === user.id)
-          );
-        });
-        const oldMods = prevMods.filter((mod) => {
-          return modsIds.includes(mod.id);
-        });
-
-        return [...oldMods, ...newMods];
-      });
-
-      setViewersInfos((prevViewers) => {
-        const newViewers = allUsersInfos.filter((user) => {
-          return (
-            viewersIds.includes(user.id) &&
-            !prevViewers.some((viewer) => viewer.id === user.id)
-          );
-        });
-        const oldViewers = prevViewers.filter((viewer) => {
-          return viewersIds.includes(viewer.id);
-        });
-
-        return [...oldViewers, ...newViewers];
-      });
-    }
-  }, [allUsersInfos, modsIds, viewersIds]);
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <div className="base">
-      <Header>
-        <h1 className="H1">Espectadores</h1>
-      </Header>
-      <section className="mainSection">
-        <CountContainer
-          icon={<IconUser fillColor="red" />}
-          text={`${allUsersIds.length} Espectadores totais`}
-          textColor="red"
-        />
-      </section>
-      <section className="mainSection">
-        <UsersList users={modsInfos} type="mod" />
-        <UsersList users={viewersInfos} type="user" />
-      </section>
+    <div>
+      <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
+      <div className="mainSection">
+        <div className="modDiv">
+          <HeaderUsersList
+            icon={<IconMod />}
+            text={`${moderators?.total || 0} Moderadores`}
+            textColor="white"
+          />
+          <UsersList users={moderators?.data}/>
+        </div>
+        <div className="modDiv">
+          <HeaderUsersList
+            icon={<IconUser />}
+            text={`${chatters?.total || 0} Espectadores`}
+            textColor="white"
+          />
+          <UsersList users={chatters?.data}/>
+        </div>
+      </div>
     </div>
   );
 }
