@@ -7,7 +7,8 @@ import HorizontalLogo from "../../components/primitives/HorizontalLogo/Horizonta
 // Página para login
 function HomePage() {
   const handleClick = () => {
-    window.location.href = "http://localhost:8000/auth/login";
+    const API_URL = "https://spectra-api.onrender.com"
+    window.location.href = API_URL+"/auth/login";
   };
 
   return (
