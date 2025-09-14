@@ -198,53 +198,56 @@ function DashboardPage() {
           <NoTextLogo />
         </Button>
       </div>
-      <div className="modDiv">
-        <HeaderUsersList
-          icon={<IconMod />}
-          text="Moderadores"
-          textColor="white"
-        />
-        <div className="infoBox">
-          Selecione os moderadores que deseja retirar da listagem de
-          espectadores.
+      <div className="mainSection">
+        <div className="modDiv">
+          <HeaderUsersList
+            icon={<IconMod />}
+            text="Moderadores"
+            textColor="white"
+          />
+          <div className="infoBox">
+            Selecione os moderadores que deseja retirar da listagem de
+            espectadores.
+          </div>
+          <UsersListSelect 
+            users={moderatorsData} 
+            selectedsIds={checkedIds}
+            onChange={toggleUserState}
+          />
+          <div className="btDiv" >
+            <Button onClick={handleSave}>
+              Salvar
+            </Button>
+          </div>
         </div>
-        <UsersListSelect 
-          users={moderatorsData} 
-          selectedsIds={checkedIds}
-          onChange={toggleUserState}
-        />
-        <div className="btDiv" >
-          <Button onClick={handleSave}>
-            Salvar
-          </Button>
-        </div>
-      </div>
 
-      <div className="modDiv">
-        <HeaderUsersList
-          icon={<IconUser />}
-          text="Espectadores"
-          textColor="white"
-        />
-        <div className="infoBox">
-          Adicione usuários que deseja retirar da listagem de espectadores.
-        </div>
-        <div className="addUserDiv">
-          <TextInput value={inputValue} onChange={handleChangeInput} />
-          <Button onClick={handleAddUser}>
-            Adicionar
-          </Button>
-        </div>
-        <UsersListRemove
-          users={userList}
-          onRemove={handleRemoveUser}
-        />
-        <div className="btDiv" >
-          <Button onClick={handleSave}>
-            Salvar
-          </Button>
+        <div className="modDiv">
+          <HeaderUsersList
+            icon={<IconUser />}
+            text="Espectadores"
+            textColor="white"
+          />
+          <div className="infoBox">
+            Adicione usuários que deseja retirar da listagem de espectadores.
+          </div>
+          <div className="addUserDiv">
+            <TextInput value={inputValue} onChange={handleChangeInput} />
+            <Button onClick={handleAddUser}>
+              Adicionar
+            </Button>
+          </div>
+          <UsersListRemove
+            users={userList}
+            onRemove={handleRemoveUser}
+          />
+          <div className="btDiv" >
+            <Button onClick={handleSave}>
+              Salvar
+            </Button>
+          </div>
         </div>
       </div>
+      
     </div>
   );
 }

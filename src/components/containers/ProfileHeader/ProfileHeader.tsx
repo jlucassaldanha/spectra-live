@@ -2,6 +2,7 @@ import { MdLogout } from "react-icons/md";
 import "./ProfileHeader.css"
 import User from "../../primitives/User/User";
 import ServerApi from "../../../utils/ServerApi";
+import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
 
 
 type UserDataType = {
@@ -30,6 +31,7 @@ function ProfileHeader({display_name, profile_image_url}: UserDataType) {
         profileURL={"http://localhost:5173/dashboard"}
         size="mid"
       />
+      <HorizontalLogo />
 			<button className="logOutBt" onClick={handleClick}>
 				Sair
 				<MdLogout fill="red" size={23} />
