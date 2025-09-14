@@ -11,15 +11,18 @@ function HomePage() {
   };
 
   return (
-    <div className="mainDiv">
-      <div className="logoTitle">
-        <HorizontalLogo />
-        <p>Conecte-se para começar a spectar!</p>
+    <div className="homeDiv">
+      <img className="img" src="./setup1.jpg" alt="Ilustrativa" /> 
+      <div className="mainDiv">
+        <div className="logoTitle">
+          <HorizontalLogo />
+          <p>Conecte-se para começar a spectar!</p>
+        </div>
+        <Button classname="buttonConnect" onClick={handleClick}>
+          Conectar com a twitch
+          <FaTwitch size={25} />
+        </Button>
       </div>
-      <Button classname="buttonConnect" onClick={handleClick}>
-        Conectar com a twitch
-        <FaTwitch size={25} />
-      </Button>
     </div>
   );
 }

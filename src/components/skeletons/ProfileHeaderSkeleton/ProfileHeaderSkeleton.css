@@ -3,6 +3,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 	border-bottom: #2d2d33 solid 2px;
 }
 
@@ -41,8 +42,20 @@
 }
 
 .userNameTextMdSK {
-    width: 120px;
+    width: 150px;
     height: 22px;
     border-radius: 9px;
     background-color: #2d2d33;
+}
+
+.logoDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.logoDiv > .HLogoDiv {
+	position: absolute;  
+  	left: 50%;           
+  	transform: translateX(-50%); 
 }

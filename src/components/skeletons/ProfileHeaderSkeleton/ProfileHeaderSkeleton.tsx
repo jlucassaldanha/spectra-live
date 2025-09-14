@@ -27,7 +27,9 @@ function ProfileHeaderSkeleton() {
 					<div className="userNameTextMdSK"></div>
 				</div>
 		  </div>
-      <HorizontalLogo />
+      <div className="logoDiv">
+        <HorizontalLogo />
+      </div>
       <button className="logOutBtSK" onClick={handleClick}>
           Sair
           <MdLogout fill="red" size={23} />

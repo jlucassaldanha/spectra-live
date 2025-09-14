@@ -31,7 +31,9 @@ function ProfileHeader({display_name, profile_image_url}: UserDataType) {
         profileURL={"http://localhost:5173/dashboard"}
         size="mid"
       />
-      <HorizontalLogo />
+      <div className="logoDiv">
+        <HorizontalLogo />
+      </div>
 			<button className="logOutBt" onClick={handleClick}>
 				Sair
 				<MdLogout fill="red" size={23} />

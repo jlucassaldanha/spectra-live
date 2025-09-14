@@ -31,7 +31,6 @@ function ViewersPage() {
   const [chatters, setChatters] = useState<ChatterModeratorType>()
   const [moderators, setModerators] = useState<ChatterModeratorType>()
   const [loadingHeader, setLoadingHeader] = useState(true)
-  const [loadingMain, setLoadingMain] = useState(true)
 
   const calledRef = useRef(false); 
 
