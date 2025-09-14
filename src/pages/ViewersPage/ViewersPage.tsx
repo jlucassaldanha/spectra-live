@@ -7,6 +7,8 @@ import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUs
 import IconMod from "../../components/primitives/IconMod/IconMod";
 import ServerApi from "../../utils/ServerApi";
 import { useEffect, useRef, useState } from "react";
+import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
+import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
 type UserType = {
   twitch_id: string | number
@@ -28,6 +30,8 @@ function ViewersPage() {
   const [userData, setUserData] = useState<UserType>(); // Usuario
   const [chatters, setChatters] = useState<ChatterModeratorType>()
   const [moderators, setModerators] = useState<ChatterModeratorType>()
+  const [loadingHeader, setLoadingHeader] = useState(true)
+  const [loadingMain, setLoadingMain] = useState(true)
 
   const calledRef = useRef(false); 
 
@@ -38,6 +42,7 @@ function ViewersPage() {
     ServerApi.get("/auth/me")
       .then((response) => {
         setUserData(response.data);
+        setLoadingHeader(false)
       })
       .catch((error) => {
         console.log(error.status);
@@ -72,31 +77,39 @@ function ViewersPage() {
         })
         .catch((error) => console.log(error))
     }, 1000)
-
     return () => clearInterval(interval)
   }, [])
 
   return (
     <div>
-      <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
-      <div className="mainSection">
-        <div className="modDiv">
-          <HeaderUsersList
-            icon={<IconMod />}
-            text={`${moderators?.total || 0} Moderadores`}
-            textColor="white"
-          />
-          <UsersList users={moderators?.data}/>
-        </div>
-        <div className="modDiv">
-          <HeaderUsersList
-            icon={<IconUser />}
-            text={`${chatters?.total || 0} Espectadores`}
-            textColor="white"
-          />
-          <UsersList users={chatters?.data}/>
-        </div>
-      </div>
+      {loadingHeader ? 
+        <ProfileHeaderSkeleton /> : 
+        <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>}
+        {!chatters ? (
+          <div className="mainSection">
+            <UserListSectionSkeleton turns={5}/>
+            <UserListSectionSkeleton turns={5}/>
+          </div>
+        ) : (
+          <div className="mainSection">
+            <div className="modDiv">
+              <HeaderUsersList
+                icon={<IconMod />}
+                text={`${moderators?.total || 0} Moderadores`}
+                textColor="white"
+              />
+              <UsersList users={moderators?.data}/>
+            </div>
+            <div className="modDiv">
+              <HeaderUsersList
+                icon={<IconUser />}
+                text={`${chatters?.total || 0} Espectadores`}
+                textColor="white"
+              />
+              <UsersList users={chatters?.data}/>
+            </div>
+          </div>
+        )}
     </div>
   );
 }

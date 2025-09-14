@@ -29,9 +29,13 @@
 
 .btDiv {
 	display: flex;
-	justify-content: end;
+	justify-content: center;
 	align-items: center;
 	margin: 15px;
+}
+
+.btDiv > .button {
+	width: 100%;
 }
 
 .spectraBt {

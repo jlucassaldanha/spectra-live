@@ -12,6 +12,8 @@ import UsersListRemove from "../../components/containers/UsersListRemove/UsersLi
 import TextInput from "../../components/ui/TextInput/TextInput";
 import IconUser from "../../components/primitives/IconUser/IconUser";
 import NoTextLogo from "../../components/primitives/NoTextLogo/NoTextLogo";
+import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
+import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
 type UserType = {
   display_name: string;
@@ -38,7 +40,9 @@ function DashboardPage() {
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}) // ids dos mods
   const [userList, setUsersList] = useState<TwitchUserType[]>([])
   const [inputValue, setInputValue] = useState<string>("")
-  const [loading, setLoading] = useState(true)
+  const [loadingHeader, setLoadingHeader] = useState(true)
+  const [loadingMod, setLoadingMod] = useState(true)
+  const [loadingSpec, setLoadingSpec] = useState(true)
 
   // Inicializações
   const calledRef = useRef(false); 
@@ -50,6 +54,7 @@ function DashboardPage() {
     ServerApi.get("/auth/me")
       .then((response) => {
         setUserData(response.data);
+        setLoadingHeader(false)
       })
       .catch((error) => {
         console.log(error.status);
@@ -64,6 +69,7 @@ function DashboardPage() {
       ServerApi.get("/information/mods")
         .then((response) => {
           setModeratorsData(response.data);
+          setLoadingMod(false)
         })
         .catch((error) => {
           console.log(error);
@@ -107,7 +113,7 @@ function DashboardPage() {
             console.log(error)
           })
         }
-        setLoading(false)
+        setLoadingSpec(false)
       }
       getUnview()
     }
@@ -187,11 +193,12 @@ function DashboardPage() {
     window.location.href = "http://localhost:5173/viewers"
   }
 
-  if (loading) return <p>Carregando...</p> // criar tela de carregamento
-
   return (
     <div>
-      <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
+      {loadingHeader ? 
+        <ProfileHeaderSkeleton /> : 
+        <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>}
+      
       <div className="spectraBt">
         <Button classname="buttonConnect" onClick={spectar}>
           <strong>Começar a Spectar!</strong>
@@ -199,55 +206,57 @@ function DashboardPage() {
         </Button>
       </div>
       <div className="mainSection">
-        <div className="modDiv">
-          <HeaderUsersList
-            icon={<IconMod />}
-            text="Moderadores"
-            textColor="white"
-          />
-          <div className="infoBox">
-            Selecione os moderadores que deseja retirar da listagem de
-            espectadores.
+        {loadingMod ? <UserListSectionSkeleton turns={5} /> : (
+          <div className="modDiv">
+            <HeaderUsersList
+              icon={<IconMod />}
+              text="Moderadores"
+              textColor="white"
+            />
+            <div className="infoBox">
+              Selecione os moderadores que deseja retirar da listagem de
+              espectadores.
+            </div>
+            <UsersListSelect 
+              users={moderatorsData} 
+              selectedsIds={checkedIds}
+              onChange={toggleUserState}
+            />
+            <div className="btDiv" >
+              <Button onClick={handleSave}>
+                Salvar
+              </Button>
+            </div>
           </div>
-          <UsersListSelect 
-            users={moderatorsData} 
-            selectedsIds={checkedIds}
-            onChange={toggleUserState}
-          />
-          <div className="btDiv" >
-            <Button onClick={handleSave}>
-              Salvar
-            </Button>
+        )}
+        {loadingSpec ? <UserListSectionSkeleton turns={2} type="input"/> : (
+          <div className="modDiv">
+            <HeaderUsersList
+              icon={<IconUser />}
+              text="Espectadores"
+              textColor="white"
+            />
+            <div className="infoBox">
+              Adicione usuários que deseja retirar da listagem de espectadores.
+            </div>
+            <div className="addUserDiv">
+              <TextInput value={inputValue} onChange={handleChangeInput} />
+              <Button onClick={handleAddUser}>
+                Adicionar
+              </Button>
+            </div>
+            <UsersListRemove
+              users={userList}
+              onRemove={handleRemoveUser}
+            />
+            <div className="btDiv" >
+              <Button onClick={handleSave}>
+                Salvar
+              </Button>
+            </div>
           </div>
-        </div>
-
-        <div className="modDiv">
-          <HeaderUsersList
-            icon={<IconUser />}
-            text="Espectadores"
-            textColor="white"
-          />
-          <div className="infoBox">
-            Adicione usuários que deseja retirar da listagem de espectadores.
-          </div>
-          <div className="addUserDiv">
-            <TextInput value={inputValue} onChange={handleChangeInput} />
-            <Button onClick={handleAddUser}>
-              Adicionar
-            </Button>
-          </div>
-          <UsersListRemove
-            users={userList}
-            onRemove={handleRemoveUser}
-          />
-          <div className="btDiv" >
-            <Button onClick={handleSave}>
-              Salvar
-            </Button>
-          </div>
-        </div>
+        )}
       </div>
-      
     </div>
   );
 }
