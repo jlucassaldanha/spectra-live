@@ -5,6 +5,10 @@
 		justify-content: center;
 		align-items: center;
 	}
+
+	.modDiv {
+		min-width: 500px;
+	}
 }
 
 .modDiv {

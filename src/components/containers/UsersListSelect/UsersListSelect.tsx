@@ -17,7 +17,7 @@ type UserListSelectProps = {
 
 function UsersListSelect({ users, selectedsIds, onChange }: UserListSelectProps) {
   return (
-    <div className="userList">
+    <div>
       {users?.map((user, i) => {
         return (
           <div className="user" key={user.twitch_id}>

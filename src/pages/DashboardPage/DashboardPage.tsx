@@ -1,6 +1,6 @@
 import "./DashboardPage.css";
 
-import IconMod from "../../components/old/MyIcons/ModIcon";
+import IconMod from "../../components/primitives/IconMod/IconMod";
 
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import ServerApi from "../../utils/ServerApi";

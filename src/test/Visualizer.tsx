@@ -13,6 +13,8 @@ import UsersListRemove from "../components/containers/UsersListRemove/UsersListR
 import NoTextLogo from "../components/primitives/NoTextLogo/NoTextLogo";
 import Header from "../components/old/Header/Header";
 import CountContainer from "../components/old/CountContainer/CountContainer";
+import ProfileHeaderSkeleton from "../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
+import UserListSectionSkeleton from "../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
 type UserType = {
   twitch_id: string;
@@ -79,29 +81,10 @@ function Visualizer() {
 
   return (
     <div>
-      <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>
+      <ProfileHeaderSkeleton />
       <div className="mainSection">
-        <div className="modDiv">
-          <HeaderUsersList
-            icon={<IconMod />}
-            text="Moderadores"
-            textColor="white"
-          />
-          <UsersList 
-            users={userlist} 
-          />
-        </div>
-
-        <div className="modDiv">
-          <HeaderUsersList
-            icon={<IconUser />}
-            text="Espectadores"
-            textColor="white"
-          />
-          <UsersList 
-            users={userlist} 
-          />
-        </div>
+        <UserListSectionSkeleton turns={5} />
+        <UserListSectionSkeleton turns={2} type="input"/>
       </div>
     </div>
   );

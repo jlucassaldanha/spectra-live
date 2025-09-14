@@ -1,0 +1,48 @@
+.userHeaderDivSK {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: #2d2d33 solid 2px;
+}
+
+.logOutBtSK {
+	border: none;
+	background-color: transparent;
+	color: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}
+
+.userContainerSK {
+	width: max-content;
+	height: max-content;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.userLinkHSK {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+}
+
+.userImgMdSK {
+	width: 35px;
+    height: 35px;
+    background-color: #2d2d33;
+	border-radius: 50%;
+}
+
+.userNameTextMdSK {
+    width: 120px;
+    height: 22px;
+    border-radius: 9px;
+    background-color: #2d2d33;
+}

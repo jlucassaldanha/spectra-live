@@ -10,7 +10,7 @@ type UserType = {
 
 function UsersList({ users }: {users: UserType[] | undefined}) {
   return (
-    <div className="userList">
+    <div>
       {users && users.map((user, i) => {
         return (
           <div className="user" key={user.twitch_id}>

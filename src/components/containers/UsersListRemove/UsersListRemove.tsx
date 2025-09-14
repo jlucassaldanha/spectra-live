@@ -16,7 +16,7 @@ type UserListRemoveProps = {
 
 function UsersListRemove({ users, onRemove }: UserListRemoveProps) {
   return (
-    <div className="userList">
+    <div>
       {users && users.map((user, i) => {
         return (
           <div className="user" key={user.twitch_id}>
