@@ -44,6 +44,8 @@ function DashboardPage() {
   const [loadingMod, setLoadingMod] = useState(true)
   const [loadingSpec, setLoadingSpec] = useState(true)
 
+  const ROOT_URL = "https://spectralive.vercel.app"
+
   // Inicializações
   const calledRef = useRef(false); 
 
@@ -59,7 +61,6 @@ function DashboardPage() {
       .catch((error) => {
         console.log(error.status);
         if (error.status === 401) {
-          const ROOT_URL = "https://spectralive.vercel.app"
           window.location.href = ROOT_URL + "/home";
         }
       });
@@ -191,7 +192,7 @@ function DashboardPage() {
   }
 
   const spectar = () => {
-    window.location.href = "http://localhost:5173/viewers"
+    window.location.href = ROOT_URL+"/viewers"
   }
 
   return (
