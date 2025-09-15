@@ -8,9 +8,10 @@
 ![PostgresSQL](https://img.shields.io/badge/PostgreSQL-gray?logo=postgresql)
 
 ## 📌 Sobre o projeto
-O **Spectra Live** é uma aplicação web que mostra em tempo real quem está assistindo sua strem na Twitch.
+O **Spectra Live** é uma aplicação web que mostra em tempo real quem está assistindo sua stream na Twitch. Ela faz o consumo da sua própria RestAPI (que faz o consumo da API da Twitch).
 
-**👉 Acesse em produção por aqui: [Spectra Live](https://spectralive.vercel.app)**
+**👉 Acesse o site em produção por aqui: [Spectra Live](https://spectralive.vercel.app)**
+**👉 Acesse a API em produção por aqui: [Spectra Live API](https://spectra-api.onrender.com/redoc)**
 
 🔹 Este projeto já esta na sua **4ª versão**:
 1. **JavaScript Vanilla** – Variáveis e configurações da API direcionadas a um usuário. Rodava por meio de servidor interno.
