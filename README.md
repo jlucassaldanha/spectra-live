@@ -74,10 +74,10 @@ npm run dev
 Para rodar com API local
 ``` bash
 # Clonar o repositório
-git clone https://github.com/jlucassaldanha/spectra-server.git
+git clone https://github.com/jlucassaldanha/spectra-live-api.git
 
 # Acessar pasta
-cd spectra-server
+cd spectra-live-api
 
 # Instalar dependências
 pip install -r requirements.txt
@@ -98,7 +98,7 @@ FRONTEND_URL =
 
 ## 📂 Repositórios
 - **Frontend**: github.com/jlucassaldanha/spectra-live
-- **Backend**: github.com/jlucassaldanha/spectra-server
+- **Backend**: github.com/jlucassaldanha/spectra-live-api
 
 ## 📫 Contato
 [LinkedIn: João Lucas Saldanha](https://www.linkedin.com/in/joao-lucas-saldanha/)
