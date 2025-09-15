@@ -4,6 +4,7 @@ import { MdLogout } from "react-icons/md";
 
 import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
 import ServerApi from "../../../utils/ServerApi";
+import { ROOT_URL } from "../../../constants";
 
 
 const handleClick = () => {
@@ -11,7 +12,7 @@ const handleClick = () => {
       .then((response) => {
         console.log(response);
 
-        window.location.href = "http://localhost:5173/home";
+        window.location.href = ROOT_URL+"/home";
       })
       .catch((error) => {
         console.log(error);

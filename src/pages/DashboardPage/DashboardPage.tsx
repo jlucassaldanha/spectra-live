@@ -14,6 +14,7 @@ import IconUser from "../../components/primitives/IconUser/IconUser";
 import NoTextLogo from "../../components/primitives/NoTextLogo/NoTextLogo";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
+import { ROOT_URL } from "../../constants";
 
 type UserType = {
   display_name: string;
@@ -43,8 +44,6 @@ function DashboardPage() {
   const [loadingHeader, setLoadingHeader] = useState(true)
   const [loadingMod, setLoadingMod] = useState(true)
   const [loadingSpec, setLoadingSpec] = useState(true)
-
-  const ROOT_URL = "https://spectralive.vercel.app"
 
   // Inicializações
   const calledRef = useRef(false); 

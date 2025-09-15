@@ -9,6 +9,7 @@ import ServerApi from "../../utils/ServerApi";
 import { useEffect, useRef, useState } from "react";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
+import { ROOT_URL } from "../../constants";
 
 type UserType = {
   twitch_id: string | number
@@ -31,8 +32,6 @@ function ViewersPage() {
   const [chatters, setChatters] = useState<ChatterModeratorType>()
   const [moderators, setModerators] = useState<ChatterModeratorType>()
   const [loadingHeader, setLoadingHeader] = useState(true)
-
-  const ROOT_URL = "https://spectralive.vercel.app"
 
   const calledRef = useRef(false); 
 

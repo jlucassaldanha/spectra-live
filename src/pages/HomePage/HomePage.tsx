@@ -3,11 +3,11 @@ import "./HomePage.css";
 import Button from "../../components/ui/Button/Button";
 import { FaTwitch } from "react-icons/fa";
 import HorizontalLogo from "../../components/primitives/HorizontalLogo/HorizontalLogo";
+import { API_URL } from "../../constants";
 
 // Página para login
 function HomePage() {
   const handleClick = () => {
-    const API_URL = "https://spectra-api.onrender.com"
     window.location.href = API_URL+"/auth/login";
   };
 
