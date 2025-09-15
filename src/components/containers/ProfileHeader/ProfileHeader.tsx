@@ -3,8 +3,7 @@ import "./ProfileHeader.css"
 import User from "../../primitives/User/User";
 import ServerApi from "../../../utils/ServerApi";
 import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
-
-const ROOT_URL = "https://spectralive.vercel.app"
+import { ROOT_URL } from "../../../constants";
 
 type UserDataType = {
   display_name: string | undefined;

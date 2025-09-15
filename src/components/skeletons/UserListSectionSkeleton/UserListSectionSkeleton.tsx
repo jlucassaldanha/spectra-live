@@ -1,7 +1,5 @@
 import "./UserListSectionSkeleton.css"
 
-
-
 function UserListSectionSkeleton({turns, type = "info"}: {turns: number, type?: "info" | "input"}) {  
     return (
         <div className="modDivSK">
