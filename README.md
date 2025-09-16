@@ -3,6 +3,7 @@
 [![Made with React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 [![Axios](https://img.shields.io/badge/Axios-API-blue?logo=axios)](https://axios-http.com/)
+![Deploy on Railway](https://img.shields.io/badge/Deploy-Railway-000?logo=Railway)
 ![Python](https://shields.io/badge/Python-gray?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-gray?logo=fastapi)
 ![PostgresSQL](https://img.shields.io/badge/PostgreSQL-gray?logo=postgresql)
@@ -11,18 +12,18 @@
 O **Spectra Live** é uma aplicação web que mostra em tempo real quem está assistindo sua stream na Twitch. Ela faz o consumo da sua própria RestAPI (que faz o consumo da API da Twitch).
 
 **👉 Acesse o site em produção por aqui: [Spectra Live](https://spectralive.vercel.app)**
-**👉 Acesse a API em produção por aqui: [Spectra Live API](https://spectra-api.onrender.com/redoc)**
+**👉 Acesse a API em produção por aqui: [Spectra Live API](https://spectralive-api.up.railway.app/redoc)**
 
 🔹 Este projeto já esta na sua **4ª versão**:
 1. **JavaScript Vanilla** – Variáveis e configurações da API direcionadas a um usuário. Rodava por meio de servidor interno.
 2. **React (JavaScript)** – Componentização e melhor escalabilidade. Ainda com servidor interno e direcionado a um usuário. 
 3. **React + TypeScript (deploy na Vercel)** – Adição de tipagem, melhorias nos componentes, funcionalidades reformuladas permitindo que qualquer pessoa possa utilizar.
-4. **React + TypeScript (frontend) e FastAPI + Postgres (backend)** – Versão atual, com uso de banco de dados PostgresSQL, autenticação e persistencia nas configurações de utilização, além de uma nova interface.
+4. **React + TypeScript (frontend) e FastAPI + Postgres (backend na Railway)** – Versão atual, com uso de banco de dados PostgresSQL, autenticação e persistencia nas configurações de utilização, além de uma nova interface.
 
 ## 🛠 Tecnologias Utilizadas
 - **Front-end** → React, TypeScript, Vite, react-router-dom, Axios
 - **Back-end** → Python, FastAPI, SQLAlchemy, PostgreSQL  
-- **Deploy e CI/CD simplificados** → Vercel + Render
+- **Deploy e CI/CD simplificados** → Vercel + Railway
 
 ## 🎯 Funcionalidades
 - Login e Logout seguros → Autenticação via conta da Twitch e API própria
@@ -98,8 +99,8 @@ FRONTEND_URL =
 ```
 
 ## 📂 Repositórios
-- **Frontend**: github.com/jlucassaldanha/spectra-live
-- **Backend**: github.com/jlucassaldanha/spectra-live-api
+- **Frontend**: [github.com/jlucassaldanha/spectra-live](github.com/jlucassaldanha/spectra-live)
+- **Backend**: [github.com/jlucassaldanha/spectra-live-api](github.com/jlucassaldanha/spectra-live-api)
 
 ## 📫 Contato
 [LinkedIn: João Lucas Saldanha](https://www.linkedin.com/in/joao-lucas-saldanha/)
