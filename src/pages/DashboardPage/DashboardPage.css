@@ -9,6 +9,11 @@
 	.modDiv {
 		min-width: 500px;
 	}
+
+	.btDiv {
+		min-width: 500px;
+	}
+
 }
 
 .modDiv {
@@ -31,11 +36,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 15px;
+	margin: 0 15px 15px 15px;
 }
 
 .btDiv > .button {
-	width: 100%;
+	width: 80%;
 }
 
 .spectraBt {
@@ -50,5 +55,13 @@
 	justify-content: space-between;
 	justify-items: center;
 	gap: 20px;
+}
+
+.saved {
+	color: greenyellow;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
 }
 

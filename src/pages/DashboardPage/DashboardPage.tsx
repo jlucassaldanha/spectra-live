@@ -20,6 +20,7 @@ import UserListSectionSkeleton from "../../components/skeletons/UserListSectionS
 
 import ServerApi from "../../utils/ServerApi";
 import { ROOT_URL } from "../../constants/constants";
+import { FaSpinner, FaTruckLoading } from "react-icons/fa";
 
 function DashboardPage() {
   const [userData, setUserData] = useState<UserDataType>(); // Usuario
@@ -30,6 +31,7 @@ function DashboardPage() {
   const [loadingHeader, setLoadingHeader] = useState(true)
   const [loadingMod, setLoadingMod] = useState(true)
   const [loadingSpec, setLoadingSpec] = useState(true)
+  const [saved, setSaved] = useState(false)
 
   // Inicializações
   const calledRef = useRef(false); 
@@ -150,6 +152,7 @@ function DashboardPage() {
   }
 
   const handleSave = () => {
+    setSaved(false)
     const addUnviews = Object.entries(checkedIds)
       .filter(([_key, value]) => value === true)
       .map(([key, _value]) => key)
@@ -174,6 +177,7 @@ function DashboardPage() {
         .then((response) => console.log("remove", response.data))
         .catch((error) => console.log(error))
     }
+    setSaved(true)
   }
 
   const spectar = () => {
@@ -209,11 +213,6 @@ function DashboardPage() {
               selectedsIds={checkedIds}
               onChange={toggleUserState}
             />
-            <div className="btDiv" >
-              <Button onClick={handleSave}>
-                Salvar
-              </Button>
-            </div>
           </div>
         )}
         {loadingSpec ? <UserListSectionSkeleton turns={2} type="input"/> : (
@@ -236,13 +235,14 @@ function DashboardPage() {
               users={userList}
               onRemove={handleRemoveUser}
             />
-            <div className="btDiv" >
-              <Button onClick={handleSave}>
-                Salvar
-              </Button>
-            </div>
           </div>
         )}
+      </div>
+      {saved && <div className="saved" >Atualização salva com sucesso!</div>}
+      <div className="btDiv" >
+        <Button onClick={handleSave}>
+          Salvar
+        </Button>
       </div>
     </div>
   );
