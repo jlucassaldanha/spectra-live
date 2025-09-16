@@ -1,13 +1,6 @@
 import "./User.css"
 
-type PropsUser = {
-	userName: string
-	profileImgURL: string
-	profileURL: string
-	target?: "_blank" | "_parent" | "_self" | "_top" | undefined
-	size?: "small" | "large" | "mid"
-	orientation?: "vert" | "horz"
-}
+import type { PropsUser } from "../../../types/types";
 
 function User({ userName, profileImgURL, profileURL, target, size = "small", orientation = "horz" }: PropsUser) {
 	const sizes = {

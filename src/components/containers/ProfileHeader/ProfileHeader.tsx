@@ -1,39 +1,27 @@
-import { MdLogout } from "react-icons/md";
 import "./ProfileHeader.css"
-import User from "../../primitives/User/User";
-import ServerApi from "../../../utils/ServerApi";
+
+import type { UserDataType } from "../../../types/types";
+
+import { MdLogout } from "react-icons/md";
 import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
-import { ROOT_URL } from "../../../constants";
+import User from "../../primitives/User/User";
 
-type UserDataType = {
-  display_name: string | undefined;
-  profile_image_url: string | undefined;
-};
-
-const handleClick = () => {
-    ServerApi.post("/auth/logout")
-      .then((response) => {
-        console.log(response);
-        window.location.href = ROOT_URL+"/home";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+import { ROOT_URL } from "../../../constants/constants";
+import { handleLogoutClick } from "../../../utils/handleClicks";
 
 function ProfileHeader({display_name, profile_image_url}: UserDataType) {
 	return (
 		<div className="userHeaderDiv">
 			<User 
-        userName={display_name? display_name : ""} 
-        profileImgURL={profile_image_url? profile_image_url : "./default_avatar.jpg"} 
+        userName={display_name || ""} 
+        profileImgURL={profile_image_url || "./default_avatar.jpg"} 
         profileURL={ROOT_URL+"/dashboard"}
         size="mid"
       />
       <div className="logoDiv">
         <HorizontalLogo />
       </div>
-			<button className="logOutBt" onClick={handleClick}>
+			<button className="logOutBt" onClick={handleLogoutClick}>
 				Sair
 				<MdLogout fill="red" size={23} />
 			</button>

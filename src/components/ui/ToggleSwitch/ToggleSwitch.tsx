@@ -1,9 +1,6 @@
 import "./ToggleSwitch.css"
 
-type SwitchProps = {
-	checked: boolean
-	onChange: (checked: boolean) => void
-}
+import type { SwitchProps } from "../../../types/types"
 
 function ToggleSwitch({checked, onChange}: SwitchProps) {
 	return (

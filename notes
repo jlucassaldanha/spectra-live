@@ -1,0 +1,10 @@
+Mudar ServerApi.tsx para ServerApi.ts - Feito
+Organizar importações - Feito
+
+Centralizar funções em um arquivo ou arquivos em /utils - Feito apenas para handleLogoutClick
+Centralizar Types em um arquivo Types - Feito, porém quero melhorar organizando em arquivos mais separados e tirar repetições desnecessárias
+
+Criar Hook de autenticação único para os arquivos de DashboardPage e arquivos de ViewersPage
+Deixar o botão de salvar em DashboardPage como único
+Criar feedback para o salvamento das configurações na DashboardPage
+Tratar erros de usuários não encontrados ao tentar adicionar em espectadores na DashboardPage

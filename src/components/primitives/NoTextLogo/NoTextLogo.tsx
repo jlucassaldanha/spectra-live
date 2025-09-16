@@ -1,4 +1,5 @@
 import "./NoTextLogo.css";
+
 import logoOnly from "/logo_only.png"
 
 function NoTextLogo() {

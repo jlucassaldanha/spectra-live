@@ -1,13 +1,8 @@
-import { type ChangeEvent } from "react"
 import "./TextInput.css"
 
-type TextInputProps = {
-	value: string
-	onChange: (event: ChangeEvent<HTMLInputElement>) => void
-}
+import type { TextInputProps } from "../../../types/types"
 
 function TextInput( { value, onChange }: TextInputProps ) {
-
 	return (
 		<input 
 			className="inputText"

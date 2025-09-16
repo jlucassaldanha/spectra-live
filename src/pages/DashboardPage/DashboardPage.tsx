@@ -1,42 +1,28 @@
 import "./DashboardPage.css";
 
-import IconMod from "../../components/primitives/IconMod/IconMod";
-
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
-import ServerApi from "../../utils/ServerApi";
-import Button from "../../components/ui/Button/Button";
+import type { UserDataType, TwitchUserType, UnviewType } from "../../types/types";
+
+import IconMod from "../../components/primitives/IconMod/IconMod";
+import IconUser from "../../components/primitives/IconUser/IconUser";
+import NoTextLogo from "../../components/primitives/NoTextLogo/NoTextLogo";
+
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
 import UsersListSelect from "../../components/containers/UsersListSelect/UsersListSelect";
 import UsersListRemove from "../../components/containers/UsersListRemove/UsersListRemove";
+
 import TextInput from "../../components/ui/TextInput/TextInput";
-import IconUser from "../../components/primitives/IconUser/IconUser";
-import NoTextLogo from "../../components/primitives/NoTextLogo/NoTextLogo";
+import Button from "../../components/ui/Button/Button";
+
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
-import { ROOT_URL } from "../../constants";
 
-type UserType = {
-  display_name: string;
-  profile_image_url: string;
-};
-
-type TwitchUserType = {
-  twitch_id: number | string;
-  display_name: string;
-  id: number;
-  login: string;
-  profile_image_url: string;
-};
-
-type UnviewType = {
-  twitch_user_id: number
-  channel_id: number
-  id: number
-}
+import ServerApi from "../../utils/ServerApi";
+import { ROOT_URL } from "../../constants/constants";
 
 function DashboardPage() {
-  const [userData, setUserData] = useState<UserType>(); // Usuario
+  const [userData, setUserData] = useState<UserDataType>(); // Usuario
   const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>();
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}) // ids dos mods
   const [userList, setUsersList] = useState<TwitchUserType[]>([])

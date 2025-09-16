@@ -1,31 +1,20 @@
 import "./ViewersPage.css";
 
+import { useEffect, useRef, useState } from "react";
+import type { UserType, ChatterModeratorType, ViewersResponseType } from "../../types/types";
+
 import IconUser from "../../components/primitives/IconUser/IconUser";
-import UsersList from "../../components/composite/UsersList/UsersList";
+import IconMod from "../../components/primitives/IconMod/IconMod";
+
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
-import IconMod from "../../components/primitives/IconMod/IconMod";
-import ServerApi from "../../utils/ServerApi";
-import { useEffect, useRef, useState } from "react";
+import UsersList from "../../components/composite/UsersList/UsersList";
+
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
-import { ROOT_URL } from "../../constants";
 
-type UserType = {
-  twitch_id: string | number
-  display_name: string;
-  profile_image_url: string;
-};
-
-type ChatterModeratorType = {
-  data: UserType[]
-  total: number
-}
-
-type ViewersResponseType = {
-  chatters: ChatterModeratorType, 
-  moderators: ChatterModeratorType
-}
+import ServerApi from "../../utils/ServerApi";
+import { ROOT_URL } from "../../constants/constants";
 
 function ViewersPage() {
   const [userData, setUserData] = useState<UserType>(); // Usuario
