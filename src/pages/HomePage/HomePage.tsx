@@ -3,7 +3,7 @@ import "./HomePage.css";
 import Button from "../../components/ui/Button/Button";
 import { FaTwitch } from "react-icons/fa";
 import HorizontalLogo from "../../components/primitives/HorizontalLogo/HorizontalLogo";
-import { API_URL } from "../../constants";
+import { API_URL } from "../../constants/constants";
 
 // Página para login
 function HomePage() {

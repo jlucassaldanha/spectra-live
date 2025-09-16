@@ -1,11 +1,6 @@
 import "./Button.css"
 
-type ButtonType = { 
-	children?: React.ReactNode 
-	onClick?: React.MouseEventHandler<HTMLButtonElement>
-	type?: "reset" | "submit" | "button" | undefined 
-	classname?: "buttonConnect"
-}
+import type { ButtonType } from "../../../types/types"
 
 function Button({ children, onClick, type, classname }: ButtonType) {
 	return (

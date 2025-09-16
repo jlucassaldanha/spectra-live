@@ -1,23 +1,9 @@
 import "./ProfileHeaderSkeleton.css"
 
 import { MdLogout } from "react-icons/md";
-
 import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
-import ServerApi from "../../../utils/ServerApi";
-import { ROOT_URL } from "../../../constants";
 
-
-const handleClick = () => {
-    ServerApi.post("/auth/logout")
-      .then((response) => {
-        console.log(response);
-
-        window.location.href = ROOT_URL+"/home";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+import { handleLogoutClick } from "../../../utils/handleClicks";
 
 function ProfileHeaderSkeleton() {
 	return (
@@ -31,7 +17,7 @@ function ProfileHeaderSkeleton() {
       <div className="logoDiv">
         <HorizontalLogo />
       </div>
-      <button className="logOutBtSK" onClick={handleClick}>
+      <button className="logOutBtSK" onClick={handleLogoutClick}>
           Sair
           <MdLogout fill="red" size={23} />
       </button>

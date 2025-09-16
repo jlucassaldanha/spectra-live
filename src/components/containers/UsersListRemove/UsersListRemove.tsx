@@ -1,18 +1,9 @@
 import "./UsersListRemove.css";
 
+import type { UserListRemoveProps } from "../../../types/types";
+
 import User from "../../primitives/User/User";
 import { CiCircleRemove } from "react-icons/ci";
-
-type UserType = {
-  twitch_id: string | number
-  display_name: string;
-  profile_image_url: string;
-};
-
-type UserListRemoveProps = {
-  users: UserType[] | undefined
-  onRemove: (twitch_id: string | number) => void
-}
 
 function UsersListRemove({ users, onRemove }: UserListRemoveProps) {
   return (
@@ -21,8 +12,8 @@ function UsersListRemove({ users, onRemove }: UserListRemoveProps) {
         return (
           <div className="user" key={user.twitch_id}>
             <User
-              userName={user.display_name}
-              profileImgURL={user.profile_image_url}
+              userName={user.display_name || "" }
+              profileImgURL={user.profile_image_url || ""}
               profileURL={`https://twitch.tv/${user.display_name}`}
               target="_blank"
               key={i}
