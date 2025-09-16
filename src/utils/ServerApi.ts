@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance } from "axios";
 
 const ServerApi: AxiosInstance = axios.create({
-    baseURL: "https://spectra-server-production.up.railway.app",
+    baseURL: "https://spectralive-api.up.railway.app",
     withCredentials: true
   });
 
