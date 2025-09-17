@@ -1,11 +1,7 @@
 import "./DashboardPage.css";
 
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
-import type {
-  UserDataType,
-  TwitchUserType,
-  UnviewType,
-} from "../../types/UsersTypes";
+import type { UserDataType, TwitchUserType, UnviewType } from "../../types/UsersTypes";
 
 import IconMod from "../../components/primitives/IconMod/IconMod";
 import IconUser from "../../components/primitives/IconUser/IconUser";

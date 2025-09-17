@@ -1,12 +1,12 @@
-export type UserType = {
-  twitch_id: number | string
-} & UserDataType
-
 /* /containers */
 export type UserDataType = {
   display_name: string | undefined;
   profile_image_url: string | undefined;
 };
+
+export type UserType = {
+  twitch_id: number | string
+} & UserDataType
 
 /* /pages */
 export type TwitchUserType = {
