@@ -34,6 +34,7 @@ function DashboardPage() {
   const [saved, setSaved] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [foundUser, setFoundUser] = useState(true)
+  const [foundUserFormat, setFoundUserFormat] = useState(true)
 
   // Inicializações
   const calledRef = useRef(false); 
@@ -141,14 +142,15 @@ function DashboardPage() {
         }
 
         setFoundUser(true)
+        setFoundUserFormat(true)
       } catch (error) {
         
         if (error instanceof AxiosError) {
           if (error.response?.status === 404) {
             setFoundUser(false)
-          } else {
-            console.log(error)
-          }
+          } else if (error.response?.status === 400) {
+            setFoundUserFormat(false)
+          } 
         }
       }
     }
@@ -247,6 +249,7 @@ function DashboardPage() {
             </div>
             <div className="userNotFound">
               {!foundUser && "Usuário não encontrado"}
+              {!foundUserFormat && "Formato de nome de usuário não suportado"}
             </div>
             <UsersListRemove
               users={userList}
