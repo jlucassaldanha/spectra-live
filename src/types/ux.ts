@@ -23,3 +23,9 @@ export type HeaderUsersListProps = {
 	text: string
 	textColor: "red" | "white"
 } 
+
+export type RemoveButtonProps = { 
+	onClick: () => void 
+	size?:number 
+	color?: string 
+}

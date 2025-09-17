@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   {
     path: "/viewers",
     element: <ViewersPage />,
-  },
+  }
 ]);
 
 createRoot(document.getElementById("root")!).render(

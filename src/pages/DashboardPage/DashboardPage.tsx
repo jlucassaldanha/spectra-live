@@ -9,9 +9,10 @@ import NoTextLogo from "../../components/primitives/NoTextLogo/NoTextLogo";
 
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
-import UsersListSelect from "../../components/containers/UsersListSelect/UsersListSelect";
-import UsersListRemove from "../../components/containers/UsersListRemove/UsersListRemove";
+import UsersList from "../../components/containers/UsersList/UsersList";
 
+import ToggleSwitch from "../../components/ui/ToggleSwitch/ToggleSwitch";
+import RemoveButton from "../../components/ui/RemoveButton/RemoveButton";
 import TextInput from "../../components/ui/TextInput/TextInput";
 import Button from "../../components/ui/Button/Button";
 
@@ -25,9 +26,7 @@ import { AxiosError } from "axios";
 function DashboardPage() {
   const [userData, setUserData] = useState<UserDataType>(); // Usuario
   const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>();
-  const [checkedIds, setCheckedIds] = useState<
-    Record<string | number, boolean>
-  >({}); // ids dos mods
+  const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}); // ids dos mods
   const [userList, setUsersList] = useState<TwitchUserType[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [loadingHeader, setLoadingHeader] = useState(true);
@@ -233,10 +232,14 @@ function DashboardPage() {
               Selecione os moderadores que deseja retirar da listagem de
               espectadores.
             </div>
-            <UsersListSelect
+            <UsersList 
               users={moderatorsData}
-              selectedsIds={checkedIds}
-              onChange={toggleUserState}
+              renderAction={(user) => (
+                <ToggleSwitch 
+                  checked={!!checkedIds[user.twitch_id]}
+                  onChange={(value) => toggleUserState(user.twitch_id, value)}
+                />
+              )}
             />
           </div>
         )}
@@ -260,7 +263,12 @@ function DashboardPage() {
               {!foundUser && "Usuário não encontrado"}
               {!foundUserFormat && "Formato de nome de usuário não suportado"}
             </div>
-            <UsersListRemove users={userList} onRemove={handleRemoveUser} />
+            <UsersList 
+              users={userList}
+              renderAction={(user) => (
+                <RemoveButton onClick={() => handleRemoveUser(user.twitch_id)} />
+              )}
+            />
           </div>
         )}
       </div>

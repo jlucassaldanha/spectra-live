@@ -12,7 +12,7 @@ import IconMod from "../../components/primitives/IconMod/IconMod";
 
 import ProfileHeader from "../../components/containers/ProfileHeader/ProfileHeader";
 import HeaderUsersList from "../../components/composite/HeaderUsersList/HeaderUsersList";
-import UsersList from "../../components/composite/UsersList/UsersList";
+import UsersList from "../../components/containers/UsersList/UsersList";
 
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { UserType } from "./UsersTypes";
 
 /* /primitives */
@@ -10,13 +11,7 @@ export type UserProps = {
   orientation?: "vert" | "horz";
 };
 
-export type UserListRemoveProps = {
-  users: UserType[] | undefined;
-  onRemove: (twitch_id: string | number) => void;
-};
-
-export type UserListSelectProps = {
-  users: UserType[] | undefined;
-  selectedsIds: Record<string | number, boolean>;
-  onChange: (key: string | number, value: boolean) => void;
-};
+export type UsersListProps = {
+  users: UserType[] | undefined
+  renderAction?: (user: UserType) => ReactNode
+}
