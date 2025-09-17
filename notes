@@ -9,3 +9,4 @@ Centralizar Types em um arquivo Types - Feito, porém quero melhorar organizando
 Criar Hook de autenticação único para os arquivos de DashboardPage e arquivos de ViewersPage
 Tratar erros de usuários não encontrados ao tentar adicionar em espectadores na DashboardPage
 Criar componente único de UserList 
+Criar aviso de usuário não encontrado ao tentar adicionar um usuário comum que não exista
