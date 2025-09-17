@@ -7,7 +7,7 @@ Tratamento para erro 400 em addUser? - Feito
 Adicionar keys no UserListSelectionSkeleton - Feito
 
 Centralizar funções em um arquivo ou arquivos em /utils - Feito apenas para handleLogoutClick
-Centralizar Types em um arquivo Types - Feito, porém quero melhorar organizando em arquivos mais separados e tirar repetições desnecessárias
+Centralizar Types em um arquivo Types + melhoria de organização nos arquivos- Feito, porém quero tirar repetições desnecessárias
 
 Criar Hook de autenticação único para os arquivos de DashboardPage e arquivos de ViewersPage
 Criar componente único de UserList 

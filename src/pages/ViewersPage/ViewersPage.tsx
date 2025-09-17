@@ -1,7 +1,11 @@
 import "./ViewersPage.css";
 
 import { useEffect, useRef, useState } from "react";
-import type { UserType, ChatterModeratorType, ViewersResponseType } from "../../types/types";
+import type {
+  UserType,
+  ChatterModeratorType,
+  ViewersResponseType,
+} from "../../types/UsersTypes";
 
 import IconUser from "../../components/primitives/IconUser/IconUser";
 import IconMod from "../../components/primitives/IconMod/IconMod";
@@ -18,11 +22,11 @@ import { ROOT_URL } from "../../constants/constants";
 
 function ViewersPage() {
   const [userData, setUserData] = useState<UserType>(); // Usuario
-  const [chatters, setChatters] = useState<ChatterModeratorType>()
-  const [moderators, setModerators] = useState<ChatterModeratorType>()
-  const [loadingHeader, setLoadingHeader] = useState(true)
+  const [chatters, setChatters] = useState<ChatterModeratorType>();
+  const [moderators, setModerators] = useState<ChatterModeratorType>();
+  const [loadingHeader, setLoadingHeader] = useState(true);
 
-  const calledRef = useRef(false); 
+  const calledRef = useRef(false);
 
   useEffect(() => {
     if (calledRef.current) return;
@@ -31,7 +35,7 @@ function ViewersPage() {
     ServerApi.get("/auth/me")
       .then((response) => {
         setUserData(response.data);
-        setLoadingHeader(false)
+        setLoadingHeader(false);
       })
       .catch((error) => {
         console.log(error.status);
@@ -45,60 +49,67 @@ function ViewersPage() {
     const interval: number = setInterval(() => {
       ServerApi.get("/information/viewers")
         .then((response) => {
-          const response_data: ViewersResponseType = response.data
-          console.log(response_data)
+          const response_data: ViewersResponseType = response.data;
+          console.log(response_data);
 
           const orderedChatters = response_data.chatters.data.sort((a, b) => {
-            return String(a.twitch_id).localeCompare(String(b.twitch_id))         
-          })
-          const orderedModerators = response_data.moderators.data.sort((a, b) => {
-            return String(a.twitch_id).localeCompare(String(b.twitch_id))
-          })
+            return String(a.twitch_id).localeCompare(String(b.twitch_id));
+          });
+          const orderedModerators = response_data.moderators.data.sort(
+            (a, b) => {
+              return String(a.twitch_id).localeCompare(String(b.twitch_id));
+            }
+          );
 
           setChatters({
             data: orderedChatters,
-            total: response_data.chatters.total
-          })
+            total: response_data.chatters.total,
+          });
           setModerators({
             data: orderedModerators,
-            total: response_data.moderators.total
-          })
+            total: response_data.moderators.total,
+          });
         })
-        .catch((error) => console.log(error))
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [])
+        .catch((error) => console.log(error));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
-      {loadingHeader ? 
-        <ProfileHeaderSkeleton /> : 
-        <ProfileHeader profile_image_url={userData?.profile_image_url} display_name={userData?.display_name}/>}
-        {!chatters ? (
-          <div className="mainSection">
-            <UserListSectionSkeleton turns={5}/>
-            <UserListSectionSkeleton turns={5}/>
+      {loadingHeader ? (
+        <ProfileHeaderSkeleton />
+      ) : (
+        <ProfileHeader
+          profile_image_url={userData?.profile_image_url}
+          display_name={userData?.display_name}
+        />
+      )}
+      {!chatters ? (
+        <div className="mainSection">
+          <UserListSectionSkeleton turns={5} />
+          <UserListSectionSkeleton turns={5} />
+        </div>
+      ) : (
+        <div className="mainSection">
+          <div className="modDiv">
+            <HeaderUsersList
+              icon={<IconMod />}
+              text={`${moderators?.total || 0} Moderadores`}
+              textColor="white"
+            />
+            <UsersList users={moderators?.data} />
           </div>
-        ) : (
-          <div className="mainSection">
-            <div className="modDiv">
-              <HeaderUsersList
-                icon={<IconMod />}
-                text={`${moderators?.total || 0} Moderadores`}
-                textColor="white"
-              />
-              <UsersList users={moderators?.data}/>
-            </div>
-            <div className="modDiv">
-              <HeaderUsersList
-                icon={<IconUser />}
-                text={`${chatters?.total || 0} Espectadores`}
-                textColor="white"
-              />
-              <UsersList users={chatters?.data}/>
-            </div>
+          <div className="modDiv">
+            <HeaderUsersList
+              icon={<IconUser />}
+              text={`${chatters?.total || 0} Espectadores`}
+              textColor="white"
+            />
+            <UsersList users={chatters?.data} />
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }

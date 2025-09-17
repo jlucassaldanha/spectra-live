@@ -1,6 +1,6 @@
 import "./TextInput.css"
 
-import type { TextInputProps } from "../../../types/types"
+import type { TextInputProps } from "../../../types/ux"
 
 function TextInput( { value, onChange }: TextInputProps ) {
 	return (
