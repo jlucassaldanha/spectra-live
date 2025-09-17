@@ -20,6 +20,7 @@ import UserListSectionSkeleton from "../../components/skeletons/UserListSectionS
 
 import ServerApi from "../../utils/ServerApi";
 import { ROOT_URL } from "../../constants/constants";
+import { AxiosError } from "axios";
 
 function DashboardPage() {
   const [userData, setUserData] = useState<UserDataType>(); // Usuario
@@ -32,6 +33,7 @@ function DashboardPage() {
   const [loadingSpec, setLoadingSpec] = useState(true)
   const [saved, setSaved] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
+  const [foundUser, setFoundUser] = useState(true)
 
   // Inicializações
   const calledRef = useRef(false); 
@@ -129,7 +131,6 @@ function DashboardPage() {
         })
 
         const user = response.data
-        console.log(user)
 
         if (!userList.some(u => u.twitch_id === user.twitch_id)) {
           setUsersList(prev => [...prev, user])
@@ -138,8 +139,17 @@ function DashboardPage() {
           })
           setInputValue("")
         }
+
+        setFoundUser(true)
       } catch (error) {
-        console.log(error)
+        
+        if (error instanceof AxiosError) {
+          if (error.response?.status === 404) {
+            setFoundUser(false)
+          } else {
+            console.log(error)
+          }
+        }
       }
     }
   }
@@ -234,6 +244,9 @@ function DashboardPage() {
               <Button onClick={handleAddUser}>
                 Adicionar
               </Button>
+            </div>
+            <div className="userNotFound">
+              {!foundUser && "Usuário não encontrado"}
             </div>
             <UsersListRemove
               users={userList}

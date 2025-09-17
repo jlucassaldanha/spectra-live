@@ -52,7 +52,7 @@
 }
 
 .addUserDiv {
-	margin: 15px;
+	margin: 15px 15px;
 	display: flex;
 	justify-content: space-between;
 	justify-items: center;
@@ -73,4 +73,11 @@
 
 .saved {
 	color: greenyellow;
+}
+
+.userNotFound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
 }
