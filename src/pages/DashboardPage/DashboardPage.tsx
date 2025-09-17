@@ -20,7 +20,6 @@ import UserListSectionSkeleton from "../../components/skeletons/UserListSectionS
 
 import ServerApi from "../../utils/ServerApi";
 import { ROOT_URL } from "../../constants/constants";
-import { FaSpinner, FaTruckLoading } from "react-icons/fa";
 
 function DashboardPage() {
   const [userData, setUserData] = useState<UserDataType>(); // Usuario
@@ -32,6 +31,7 @@ function DashboardPage() {
   const [loadingMod, setLoadingMod] = useState(true)
   const [loadingSpec, setLoadingSpec] = useState(true)
   const [saved, setSaved] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   // Inicializações
   const calledRef = useRef(false); 
@@ -151,33 +151,37 @@ function DashboardPage() {
     })
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setSaved(false)
-    const addUnviews = Object.entries(checkedIds)
-      .filter(([_key, value]) => value === true)
-      .map(([key, _value]) => key)
+    setIsSaving(true)
     
-    const removeUnviews = Object.entries(checkedIds)
-      .filter(([_key, value]) => value === false)
-      .map(([key, _value]) => key)
+    try {
+      const addUnviews = Object.entries(checkedIds)
+        .filter(([_key, value]) => value === true)
+        .map(([key, _value]) => key)
+      
+      const removeUnviews = Object.entries(checkedIds)
+        .filter(([_key, value]) => value === false)
+        .map(([key, _value]) => key)
 
+      if (addUnviews.length > 0) {
+        await ServerApi.post("/preferences/add/unview", {
+          twitch_ids: addUnviews
+        })
+      }
 
-    if (addUnviews.length > 0){
-      ServerApi.post("/preferences/add/unview", {
-        twitch_ids: addUnviews
-      })
-        .then((response) => console.log("add", response.data))
-        .catch((error) => console.log(error))
+      if (removeUnviews.length > 0){
+        await ServerApi.delete("/preferences/remove/unview", {
+          data: {twitch_ids: removeUnviews}
+        })
+      }
+
+      setSaved(true)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsSaving(false)
     }
-
-    if (removeUnviews.length > 0){
-      ServerApi.delete("/preferences/remove/unview", {
-        data: {twitch_ids: removeUnviews}
-      })
-        .then((response) => console.log("remove", response.data))
-        .catch((error) => console.log(error))
-    }
-    setSaved(true)
   }
 
   const spectar = () => {
@@ -238,7 +242,10 @@ function DashboardPage() {
           </div>
         )}
       </div>
-      {saved && <div className="saved" >Atualização salva com sucesso!</div>}
+      <div className={"statusSaved " + (saved && !isSaving ? "saved" : "saving")} >
+        {isSaving && "Salvanado alterações..."}
+        {saved && !isSaving && "Atualização salva com sucesso!"}
+      </div>
       <div className="btDiv" >
         <Button onClick={handleSave}>
           Salvar
