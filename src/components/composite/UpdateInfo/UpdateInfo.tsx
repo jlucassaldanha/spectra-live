@@ -9,7 +9,7 @@ function UpdateInfo() {
 	return (
 		<div className="updateDiv">
 			<div className="updateTitle" onClick={() => setShowInfo((prev) => !prev)}>
-				<MdNewReleases size={35} fill="orange"/>
+				<MdNewReleases size={28} fill="orange"/>
 				<strong>Atualização!</strong>
 			</div>
 			{showInfo && (

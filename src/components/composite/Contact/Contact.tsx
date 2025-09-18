@@ -10,8 +10,7 @@ function Contact() {
 	return (
 		<div className="mainContact">
 			<div className="dev" onClick={() => setShow((prev) => !prev)}>
-				<FaInfoCircle size={25} fill="blue"/>
-				<strong>Desenvolvido por João Lucas Saldanha</strong>
+				<FaInfoCircle size={15} />
 			</div>
 			{ show && (
 				<div className="infoContact">
