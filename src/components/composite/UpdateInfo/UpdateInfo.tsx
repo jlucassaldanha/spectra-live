@@ -12,7 +12,7 @@ function UpdateInfo() {
 				<MdNewReleases size={28} fill="orange"/>
 				<strong>Atualização!</strong>
 			</div>
-			{showInfo && (
+			<div className={`updateContainer ${ showInfo ? "open" : "" }`}>
 				<div className="info">
 					<p>Olá, tudo certo ai? Por aqui tá só melhorando!</p>
 					<p>Trouxe algumas atualizações de interface e usabilidade:</p>
@@ -30,9 +30,8 @@ function UpdateInfo() {
 					</ul>  
 					<p>Por enquanto é isso!</p>
 				</div>
-			)}
-			
-		</div>
+			</div>
+		</div>	
 	)
 }
 
