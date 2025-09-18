@@ -1,7 +1,6 @@
 html, body {
   margin: 0;
   padding: 0;
-  /*overflow: hidden;*/ 
 }
 
 .homeDiv {
@@ -34,7 +33,7 @@ html, body {
 
 .update {
 	margin-bottom: auto;
-	width: 600px;
+	margin: 0 20px;
 }
 
 .centerDiv {
@@ -65,8 +64,5 @@ html, body {
   .mainDiv {
     width: 100vw; 
   }
-
-  .update {
-	width: 500px;
-  }
+  
 }
