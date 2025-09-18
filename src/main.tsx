@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ViewersPage from "./pages/ViewersPage/ViewersPage.tsx";
 import HomePage from "./pages/HomePage/HomePage.tsx";
 import DashboardPage from "./pages/DashboardPage/DashboardPage.tsx";
+//import Test from "./test/Test.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: "/viewers",
     element: <ViewersPage />,
   },
+  /*{
+    path: "/test",
+    element: <Test />
+  }*/
 ]);
 
 createRoot(document.getElementById("root")!).render(

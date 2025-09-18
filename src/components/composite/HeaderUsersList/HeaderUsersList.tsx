@@ -1,8 +1,8 @@
 import "./HeaderUsersList.css"
 
-import type { PropsHeaderUsersList } from "../../../types/types"
+import type { HeaderUsersListProps } from "../../../types/ux"
 
-function HeaderUsersList({ icon, text, textColor }: PropsHeaderUsersList) {
+function HeaderUsersList({ icon, text, textColor }: HeaderUsersListProps) {
 	return (
 		<div className="counter">
 			{icon}

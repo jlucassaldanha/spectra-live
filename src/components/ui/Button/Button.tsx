@@ -1,8 +1,8 @@
 import "./Button.css"
 
-import type { ButtonType } from "../../../types/types"
+import type { ButtonProps } from "../../../types/ux"
 
-function Button({ children, onClick, type, classname }: ButtonType) {
+function Button({ children, onClick, type, classname }: ButtonProps) {
 	return (
 		<button 
 			className={"button " + classname} 

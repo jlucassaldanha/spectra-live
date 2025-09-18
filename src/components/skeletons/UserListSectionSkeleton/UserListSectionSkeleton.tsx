@@ -14,7 +14,7 @@ function UserListSectionSkeleton({turns, type = "info"}: {turns: number, type?: 
             </div>
           )}
           <div className="userListSK">
-            {[...Array(turns)].map((i) => {
+            {[...Array(turns)].map((_d, i) => {
               return (
                 <div className="userSK" key={i}>
                   <div className="userContainerSK">

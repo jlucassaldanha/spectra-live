@@ -1,11 +1,9 @@
-import "./UsersListSelect.css";
+import "./UsersList.css";
 
-import type { UserListSelectProps } from "../../../types/types";
-
+import type { UsersListProps } from "../../../types/UsersProps";
 import User from "../../primitives/User/User";
-import ToggleSwitch from "../../ui/ToggleSwitch/ToggleSwitch";
 
-function UsersListSelect({ users, selectedsIds, onChange }: UserListSelectProps) {
+function UsersList({ users, renderAction }: UsersListProps) {
   return (
     <div>
       {users?.map((user, i) => {
@@ -18,14 +16,12 @@ function UsersListSelect({ users, selectedsIds, onChange }: UserListSelectProps)
               target="_blank"
               key={i}
             />
-            <ToggleSwitch 
-              checked={!!selectedsIds[user.twitch_id]} 
-              onChange={(value) => onChange(user.twitch_id, value)} 
-            />
+            {renderAction && renderAction(user)}
           </div>
-        )})}
+        );
+      })}
     </div>
   );
 }
 
-export default UsersListSelect;
+export default UsersList;

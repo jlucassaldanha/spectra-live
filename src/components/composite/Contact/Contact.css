@@ -1,0 +1,49 @@
+.mainContact {
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	
+}
+
+.dev {
+	width: max-content;
+	cursor: pointer;
+	padding: 10px;
+	display: flex;
+}
+
+.contactContainer {
+	overflow: hidden;
+	max-height: 0;
+	opacity: 0;
+	transition: max-height 1s ease, opacity 0.5s ease;
+}
+
+.contactContainer.open {
+	max-height: 500px;
+	opacity: 1;
+}
+
+.infoContact {
+	background-color: #1F1F23;
+	border-radius: 15px;
+	border: #353538 solid 2px;
+	margin: 0 8px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	font-size: 0.8rem;
+}
+
+p {
+	display: flex;
+	gap: 10px;
+}
+
+.contacts {
+	width: max-content;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}

@@ -1,7 +1,6 @@
 html, body {
   margin: 0;
   padding: 0;
-  /*overflow: hidden;*/ 
 }
 
 .homeDiv {
@@ -16,9 +15,6 @@ html, body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 30px;
 }
 
 .logoTitle {
@@ -35,6 +31,31 @@ html, body {
 	display: block;
 }
 
+.update {
+	margin-bottom: auto;
+	margin: 0 20px;
+}
+
+.centerDiv {
+	margin: 10px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+}
+
+.topDiv {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.bottomDiv {
+	margin: 15px;
+}
+
 @media (max-width: 800px) {
   .img {
     display: none;
@@ -43,4 +64,5 @@ html, body {
   .mainDiv {
     width: 100vw; 
   }
+  
 }

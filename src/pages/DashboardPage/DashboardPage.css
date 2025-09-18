@@ -9,14 +9,20 @@
 	.modDiv {
 		min-width: 500px;
 	}
+
+	.btDiv {
+		min-width: 500px;
+	}
+
 }
 
 .modDiv {
 	max-width: 700px;
-	margin: 30px 20px;
+	margin: 30px 20px 20px 20px;
 	border-radius: 15px;
 	border: #353538 solid 2px;
 	overflow: hidden;
+	padding-bottom: 10px;
 }
 
 .infoBox {
@@ -31,10 +37,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 15px;
+	margin: 0 15px 15px 15px;
 }
 
 .btDiv > .button {
+	max-width: 600px;
 	width: 100%;
 }
 
@@ -45,10 +52,32 @@
 }
 
 .addUserDiv {
-	margin: 15px;
+	margin: 15px 15px;
 	display: flex;
 	justify-content: space-between;
 	justify-items: center;
 	gap: 20px;
 }
 
+.statusSaved {
+	min-height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.saving {
+	color: white;
+}
+
+.saved {
+	color: greenyellow;
+}
+
+.userNotFound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 import "./ToggleSwitch.css"
 
-import type { SwitchProps } from "../../../types/types"
+import type { SwitchProps } from "../../../types/ux"
 
 function ToggleSwitch({checked, onChange}: SwitchProps) {
 	return (
