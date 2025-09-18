@@ -38,6 +38,7 @@ html, body {
 }
 
 .centerDiv {
+	margin: 10px;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -47,7 +48,7 @@ html, body {
 }
 
 .topDiv {
-	margin-top: 30px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: center;
 }
