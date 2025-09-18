@@ -1,18 +1,14 @@
-import { useState } from "react";
 import "./UpdateInfo.css"
-
 import { MdNewReleases } from "react-icons/md";
 
-function UpdateInfo() {
-	const [showInfo, setShowInfo] = useState(false)
-
+function UpdateInfo({ showState, onClick }: { showState: boolean, onClick: () => void }) {
 	return (
 		<div className="updateDiv">
-			<div className="updateTitle" onClick={() => setShowInfo((prev) => !prev)}>
+			<div className="updateTitle" onClick={onClick}>
 				<MdNewReleases size={28} fill="orange"/>
 				<strong>Atualização!</strong>
 			</div>
-			<div className={`updateContainer ${ showInfo ? "open" : "" }`}>
+			<div className={`updateContainer ${ showState ? "open" : "" }`}>
 				<div className="info">
 					<p>Olá, tudo certo ai? Por aqui tá só melhorando!</p>
 					<p>Trouxe algumas atualizações de interface e usabilidade:</p>

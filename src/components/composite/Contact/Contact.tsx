@@ -1,18 +1,16 @@
+import "./Contact.css"
+
 import { FaGithub, FaInfoCircle } from "react-icons/fa"
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
-import "./Contact.css"
-import { useState } from "react"
 
-function Contact() {
-	const [show, setShow] = useState(false)
-
+function Contact({ showState, onClick }: {showState: boolean, onClick: () => void }) {
 	return (
 		<div className="mainContact">
-			<div className="dev" onClick={() => setShow((prev) => !prev)}>
+			<div className="dev" onClick={onClick}>
 				<FaInfoCircle size={15} />
 			</div>
-			<div className={`contactContainer ${ show ? "open" : "" }`}>
+			<div className={`contactContainer ${ showState ? "open" : "" }`}>
 				<div className="infoContact">
 					<p><strong>Em caso de duvidas ou sugestões entre com contato comigo:</strong></p>
 					<p><strong className="contacts">e-mail <MdEmail size={20}/>:</strong> j.lucassaldanha@gmail.com</p>

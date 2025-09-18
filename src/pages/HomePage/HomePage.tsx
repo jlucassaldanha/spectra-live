@@ -7,8 +7,13 @@ import { API_URL } from "../../constants/constants";
 import UpdateInfo from "../../components/composite/UpdateInfo/UpdateInfo";
 import Contact from "../../components/composite/Contact/Contact";
 
+import { useState } from "react";
+
 // Página para login
 function HomePage() {
+  const [show, setShow] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
+
   const handleClick = () => {
     window.location.href = API_URL+"/auth/login";
   };
@@ -19,7 +24,12 @@ function HomePage() {
       <div className="mainDiv">
         <div className="topDiv">
           <div className="update">
-            <UpdateInfo />
+            <UpdateInfo 
+              showState={showInfo} 
+              onClick={() => {
+              setShowInfo((prev) => !prev)
+              setShow(false)
+            }}/>
           </div>
         </div>
         <div className="centerDiv">
@@ -33,7 +43,12 @@ function HomePage() {
           </Button>
         </div>
         <div className="bottomDiv">
-          <Contact />
+          <Contact 
+            showState={show} 
+            onClick={() => {
+              setShow((prev) => !prev)
+              setShowInfo(false)
+          }}/>
         </div>
       </div>
     </div>
