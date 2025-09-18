@@ -16,9 +16,6 @@ html, body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 30px;
 }
 
 .logoTitle {
@@ -35,6 +32,27 @@ html, body {
 	display: block;
 }
 
+.update {
+	margin-bottom: auto;
+	width: 600px;
+}
+
+.centerDiv {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+}
+
+.topDiv {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+}
+
+
 @media (max-width: 800px) {
   .img {
     display: none;
@@ -42,5 +60,9 @@ html, body {
   
   .mainDiv {
     width: 100vw; 
+  }
+
+  .update {
+	width: 500px;
   }
 }

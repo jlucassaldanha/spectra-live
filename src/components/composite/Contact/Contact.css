@@ -1,0 +1,25 @@
+.mainContact {
+	background-color: #1F1F23;
+	border-radius: 15px;
+	border: #353538 solid 2px;
+	display: flex;
+	flex-direction: column;
+}
+
+.dev {
+	cursor: pointer;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	
+}
+
+.infoContact {
+	margin: 0 20px;
+	padding: 20px;
+	border-top: #353538 solid 2px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
