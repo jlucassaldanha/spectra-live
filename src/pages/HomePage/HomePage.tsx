@@ -5,6 +5,7 @@ import { FaTwitch } from "react-icons/fa";
 import HorizontalLogo from "../../components/primitives/HorizontalLogo/HorizontalLogo";
 import { API_URL } from "../../constants/constants";
 import UpdateInfo from "../../components/composite/UpdateInfo/UpdateInfo";
+import Contact from "../../components/composite/Contact/Contact";
 
 // Página para login
 function HomePage() {
@@ -31,9 +32,8 @@ function HomePage() {
             <FaTwitch size={25} />
           </Button>
         </div>
-        <div>
-          Em caso de dúvidas contate-me aqui:
-          <a href="malito:jlucassaldanha@gmail.com">email</a>
+        <div className="bottomDiv">
+          <Contact />
         </div>
       </div>
     </div>

@@ -23,3 +23,15 @@
 	flex-direction: column;
 	gap: 8px;
 }
+
+p {
+	display: flex;
+	gap: 10px;
+}
+
+.contacts {
+	width: max-content;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
