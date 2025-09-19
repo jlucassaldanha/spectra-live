@@ -149,8 +149,13 @@ function DashboardPage() {
         if (error instanceof AxiosError) {
           if (error.response?.status === 404) {
             setFoundUser(false);
+            setFoundUserFormat(true)
           } else if (error.response?.status === 400) {
             setFoundUserFormat(false);
+            setFoundUser(true)
+          } else {
+            setFoundUser(false)
+            setFoundUserFormat(false)
           }
         }
       }
@@ -260,8 +265,9 @@ function DashboardPage() {
               <Button onClick={handleAddUser}>Adicionar</Button>
             </div>
             <div className="userNotFound">
-              {!foundUser && "Usuário não encontrado"}
-              {!foundUserFormat && "Formato de nome de usuário não suportado"}
+              {!foundUser && foundUserFormat && "Usuário não encontrado"}
+              {!foundUserFormat && foundUser && "Formato de nome de usuário não suportado"}
+              {!foundUserFormat && !foundUser && "ERRO NO SERVIDOR! ENTRE EM CONTATO"}
             </div>
             <UsersList 
               users={userList}
@@ -275,8 +281,8 @@ function DashboardPage() {
       <div
         className={"statusSaved " + (saved && !isSaving ? "saved" : "saving")}
       >
-        {isSaving && "Salvanado alterações..."}
-        {saved && !isSaving && "Atualização salva com sucesso!"}
+        {isSaving && "Salvando alterações..."}
+        {saved && !isSaving && "Alterações salvas com sucesso!"}
       </div>
       <div className="btDiv">
         <Button onClick={handleSave}>Salvar</Button>
