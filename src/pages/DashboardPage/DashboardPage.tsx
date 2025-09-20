@@ -1,7 +1,7 @@
 import "./DashboardPage.css";
 
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
-import type { UserDataType, TwitchUserType, UnviewType } from "../../types/UsersTypes";
+import type { UserDataType, UserType, UnviewType } from "../../types/UsersTypes";
 
 import IconMod from "../../components/primitives/IconMod/IconMod";
 import IconUser from "../../components/primitives/IconUser/IconUser";
@@ -25,9 +25,9 @@ import { AxiosError } from "axios";
 
 function DashboardPage() {
   const [userData, setUserData] = useState<UserDataType>(); // Usuario
-  const [moderatorsData, setModeratorsData] = useState<TwitchUserType[]>();
+  const [moderatorsData, setModeratorsData] = useState<UserType[]>();
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}); // ids dos mods
-  const [userList, setUsersList] = useState<TwitchUserType[]>([]);
+  const [userList, setUsersList] = useState<UserType[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [loadingHeader, setLoadingHeader] = useState(true);
   const [loadingMod, setLoadingMod] = useState(true);
@@ -97,9 +97,6 @@ function DashboardPage() {
         }
 
         if (restIds.length > 0) {
-          //const params = new URLSearchParams();
-          //restIds.forEach((id) => params.append("twitch_ids", id.toString()));
-
           ServerApi.post("/information/users", {
             twitch_ids: restIds,
           })
