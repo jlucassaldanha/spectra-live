@@ -1,5 +1,5 @@
 @media (min-width: 800px) {
-	.mainSection {
+	.listSection {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -7,6 +7,12 @@
 
 	.modDiv {
 		min-width: 500px;
+	}
+
+	.total {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
@@ -16,4 +22,14 @@
 	border-radius: 15px;
 	border: #353538 solid 2px;
 	overflow: hidden;
+}
+
+.mainSection {
+	display: flex;
+	flex-direction: column;
+	margin-top: 15px;
+}
+
+.total {
+	margin-left: 15px;
 }

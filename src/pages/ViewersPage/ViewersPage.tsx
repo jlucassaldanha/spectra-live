@@ -87,26 +87,41 @@ function ViewersPage() {
       )}
       {!chatters ? (
         <div className="mainSection">
-          <UserListSectionSkeleton turns={5} />
-          <UserListSectionSkeleton turns={5} />
+          <div></div>
+          <div className="listSection">
+            <UserListSectionSkeleton turns={5} />
+            <UserListSectionSkeleton turns={5} />
+          </div>
         </div>
       ) : (
         <div className="mainSection">
-          <div className="modDiv">
+          <div className="total">
             <HeaderUsersList
-              icon={<IconMod />}
-              text={`${moderators?.total || 0} Moderadores`}
-              textColor="white"
+              icon={<IconUser fillColor="red" />}
+              text={`${(moderators?.total || 0) + (chatters?.total || 0)} Espectadores totais`}
+              textColor="red"
+              background="no"
             />
-            <UsersList users={moderators?.data} />
           </div>
-          <div className="modDiv">
-            <HeaderUsersList
-              icon={<IconUser />}
-              text={`${chatters?.total || 0} Espectadores`}
-              textColor="white"
-            />
-            <UsersList users={chatters?.data} />
+          <div className="listSection">  
+            {moderators?.total || 0 > 0 ? 
+            ( <div className="modDiv">
+                <HeaderUsersList
+                  icon={<IconMod />}
+                  text={`${moderators?.total || 0} Moderadores`}
+                  textColor="white"
+                />
+                <UsersList users={moderators?.data} />
+              </div>) : ""}
+            {chatters?.total || 0 > 0 ? 
+            ( <div className="modDiv">
+                <HeaderUsersList
+                  icon={<IconUser />}
+                  text={`${chatters?.total || 0} Espectadores`}
+                  textColor="white"
+                />
+                <UsersList users={chatters?.data} />
+              </div>) : ""}
           </div>
         </div>
       )}

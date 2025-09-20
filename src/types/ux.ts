@@ -22,6 +22,7 @@ export type HeaderUsersListProps = {
 	icon: ReactNode 
 	text: string
 	textColor: "red" | "white"
+	background?: "yes" | "no"
 } 
 
 export type RemoveButtonProps = { 
