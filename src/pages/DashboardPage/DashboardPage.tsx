@@ -226,7 +226,7 @@ function DashboardPage() {
           <NoTextLogo />
         </Button>
       </div>
-      <div className="mainSection">
+      <div className="mainSectionDashboard">
         {loadingMod ? (
           <UserListSectionSkeleton turns={5} />
         ) : (

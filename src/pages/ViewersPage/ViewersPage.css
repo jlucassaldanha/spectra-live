@@ -1,19 +1,21 @@
 @media (min-width: 800px) {
-	.listSection {
+	.mainSection {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
 
 	.modDiv {
-		min-width: 500px;
+		min-width: 700px;
+		margin: 30px 20px;
 	}
 
 	.total {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		min-width: 700px;
+		margin-left: 0px;
 	}
+	
 }
 
 .modDiv {
@@ -24,12 +26,9 @@
 	overflow: hidden;
 }
 
-.mainSection {
-	display: flex;
-	flex-direction: column;
-	margin-top: 15px;
-}
-
 .total {
+	margin-top: 30px;
+	max-width: 700px;
+	display: flex;
 	margin-left: 15px;
 }

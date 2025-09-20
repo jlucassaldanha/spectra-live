@@ -103,26 +103,24 @@ function ViewersPage() {
               background="no"
             />
           </div>
-          <div className="listSection">  
-            {moderators?.total || 0 > 0 ? 
-            ( <div className="modDiv">
-                <HeaderUsersList
-                  icon={<IconMod />}
-                  text={`${moderators?.total || 0} Moderadores`}
-                  textColor="white"
-                />
-                <UsersList users={moderators?.data} />
-              </div>) : ""}
-            {chatters?.total || 0 > 0 ? 
-            ( <div className="modDiv">
-                <HeaderUsersList
-                  icon={<IconUser />}
-                  text={`${chatters?.total || 0} Espectadores`}
-                  textColor="white"
-                />
-                <UsersList users={chatters?.data} />
-              </div>) : ""}
-          </div>
+          {moderators?.total || 0 > 0 ? 
+          ( <div className="modDiv">
+              <HeaderUsersList
+                icon={<IconMod />}
+                text={`${moderators?.total || 0} Moderadores`}
+                textColor="white"
+              />
+              <UsersList users={moderators?.data} />
+            </div>) : ""}
+          {chatters?.total || 0 > 0 ? 
+          ( <div className="modDiv">
+              <HeaderUsersList
+                icon={<IconUser />}
+                text={`${chatters?.total || 0} Espectadores`}
+                textColor="white"
+              />
+              <UsersList users={chatters?.data} />
+            </div>) : ""}
         </div>
       )}
     </div>
