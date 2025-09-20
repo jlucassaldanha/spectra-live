@@ -8,12 +8,6 @@ export type UserType = {
   twitch_id: number | string
 } & UserDataType
 
-/* /pages */
-export type TwitchUserType = {
-  id: number;
-  login: string;
-} & UserType
-
 export type UnviewType = {
   twitch_user_id: number
   channel_id: number
