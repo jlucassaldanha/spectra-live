@@ -82,23 +82,26 @@ function DashboardPage() {
             setCheckedIds((prev) => {
               return { ...prev, [unview.twitch_user_id]: true };
             });
+
             if (
               !moderatorsData.find((m) => m.twitch_id == unview.twitch_user_id)
             ) {
               acc.push(unview.twitch_user_id);
             }
+            
             return acc;
           }, []);
+          
         } catch (error) {
           console.log(error);
         }
 
         if (restIds.length > 0) {
-          const params = new URLSearchParams();
-          restIds.forEach((id) => params.append("twitch_ids", id.toString()));
+          //const params = new URLSearchParams();
+          //restIds.forEach((id) => params.append("twitch_ids", id.toString()));
 
-          ServerApi.get("/information/users", {
-            params: params,
+          ServerApi.post("/information/users", {
+            twitch_ids: restIds,
           })
             .then((response) => {
               setUsersList((prev) => [...prev, ...response.data]);

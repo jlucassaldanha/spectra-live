@@ -8,9 +8,10 @@ Adicionar keys no UserListSelectionSkeleton - Feito
 Centralizar Types em um arquivo Types + melhoria de organização nos arquivos- Feito
 Criar componente único de UserList - Feito
 Corrigir mensagem de erro do adicionarn - Feito
+Criar solução para o erro de quando tenta adicionar "Alanzoka " - Feito
+Adicionado contador total de usuários - Feito
+Não mostrar div com 0 usuários - Feito
 
 Centralizar funções em um arquivo ou arquivos em /utils - Feito apenas para handleLogoutClick
-
-Criar solução para o erro de quando tenta adicionar "Alanzoka "
 
 Criar Hook de autenticação único para os arquivos de DashboardPage e arquivos de ViewersPage

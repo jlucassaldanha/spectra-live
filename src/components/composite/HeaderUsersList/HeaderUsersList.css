@@ -5,6 +5,9 @@
 	gap: 10px;
 	margin: 0;
 	padding: 0.6rem;
+}
+
+.bgCounter {
 	background-color: #1F1F23;
 }
 
