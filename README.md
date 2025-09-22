@@ -102,5 +102,13 @@ FRONTEND_URL =
 - **Frontend**: [github.com/jlucassaldanha/spectra-live](github.com/jlucassaldanha/spectra-live)
 - **Backend**: [github.com/jlucassaldanha/spectra-live-api](github.com/jlucassaldanha/spectra-live-api)
 
+## 📜 Licença
+Este projeto está licenciado sob a **MIT License** – veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
+
+>ℹ️ Nota sobre futuras versões
+O autor reserva o direito de relicenciar versões futuras deste projeto sob a GPLv3, garantindo que ele continue sempre open source.
+Versões já publicadas sob a MIT continuarão disponíveis e válidas sob os termos da MIT.
+
+
 ## 📫 Contato
 [LinkedIn: João Lucas Saldanha](https://www.linkedin.com/in/joao-lucas-saldanha/)
