@@ -20,7 +20,7 @@ O **Spectra Live** é uma aplicação web que mostra em tempo real quem está as
 3. **React + TypeScript (deploy na Vercel)** – Adição de tipagem, melhorias nos componentes, funcionalidades reformuladas permitindo que qualquer pessoa possa utilizar.
 4. **React + TypeScript (frontend) e FastAPI + Postgres (backend na Railway)** – Versão atual, com uso de banco de dados PostgresSQL, autenticação e persistencia nas configurações de utilização, além de uma nova interface.
 
-## 🛠 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 - **Front-end** → React, TypeScript, Vite, react-router-dom, Axios
 - **Back-end** → Python, FastAPI, SQLAlchemy, PostgreSQL  
 - **Deploy e CI/CD simplificados** → Vercel + Railway
