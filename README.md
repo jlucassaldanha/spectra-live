@@ -111,4 +111,7 @@ Versões já publicadas sob a MIT continuarão disponíveis e válidas sob os te
 
 
 ## 📫 Contato
-[LinkedIn: João Lucas Saldanha](https://www.linkedin.com/in/joao-lucas-saldanha/)
+
+**João Lucas Saldanha**
+
+- **LinkedIn:** [@joao-lucas-saldanha](https://linkedin.com/in/joao-lucas-saldanha/)
