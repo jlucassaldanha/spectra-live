@@ -9,6 +9,7 @@
 ![PostgresSQL](https://img.shields.io/badge/PostgreSQL-gray?logo=postgresql)
 
 ## 📌 Sobre o projeto
+*Esta aplicação esta passando por uma refatoração para o ecossistema .NET. Para conferir a nova aplicação siga para o [novo repositório](https://github.com/jlucassaldanha/SpectraLiveApi)*
 O **Spectra Live** é uma aplicação web que mostra em tempo real quem está assistindo sua stream na Twitch. Ela faz o consumo da sua própria RestAPI (que faz o consumo da API da Twitch).
 
 **👉 Acesse o site em produção por aqui: [Spectra Live](https://spectralive.vercel.app)**
@@ -104,10 +105,6 @@ FRONTEND_URL =
 
 ## 📜 Licença
 Este projeto está licenciado sob a **MIT License** – veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
-
->ℹ️ Nota sobre futuras versões
-O autor reserva o direito de relicenciar versões futuras deste projeto sob a GPLv3, garantindo que ele continue sempre open source.
-Versões já publicadas sob a MIT continuarão disponíveis e válidas sob os termos da MIT.
 
 
 ## 📫 Contato
