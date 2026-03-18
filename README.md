@@ -10,6 +10,7 @@
 
 ## 📌 Sobre o projeto
 *Esta aplicação esta passando por uma refatoração para o ecossistema .NET. Para conferir a nova aplicação siga para o [novo repositório](https://github.com/jlucassaldanha/SpectraLiveApi)*
+
 O **Spectra Live** é uma aplicação web que mostra em tempo real quem está assistindo sua stream na Twitch. Ela faz o consumo da sua própria RestAPI (que faz o consumo da API da Twitch).
 
 **👉 Acesse o site em produção por aqui: [Spectra Live](https://spectralive.vercel.app)**
