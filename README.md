@@ -9,9 +9,8 @@
 ![PostgresSQL](https://img.shields.io/badge/PostgreSQL-gray?logo=postgresql)
 
 ## 📌 Sobre o projeto
-*Esta aplicação esta passando por uma refatoração para o ecossistema .NET. Para conferir a nova aplicação siga para o [novo repositório](https://github.com/jlucassaldanha/SpectraLiveApi)*
 
-O **Spectra Live** é uma aplicação web que mostra em tempo real quem está assistindo sua stream na Twitch. Ela faz o consumo da sua própria RestAPI (que faz o consumo da API da Twitch).
+O **Spectra Live** é uma aplicação web que mostra em tempo real quem está no chat da sua stream na Twitch.
 
 **👉 Acesse o site em produção por aqui: [Spectra Live](https://spectralive.vercel.app)**
 **👉 Acesse a API em produção por aqui: [Spectra Live API](https://spectralive-api.up.railway.app/redoc)**
@@ -26,13 +25,6 @@ O **Spectra Live** é uma aplicação web que mostra em tempo real quem está as
 - **Front-end** → React, TypeScript, Vite, react-router-dom, Axios
 - **Back-end** → Python, FastAPI, SQLAlchemy, PostgreSQL  
 - **Deploy e CI/CD simplificados** → Vercel + Railway
-
-## 🎯 Funcionalidades
-- Login e Logout seguros → Autenticação via conta da Twitch e API própria
-- Página de configuração de preferencias:
-  - Moderadores excluidos da visualização
-  - Espectadores comuns excluidos da visualização
-- Página de exibição de espectadores conectados a live 
 
 ## 🖼️ Preview
 ### Home/Login
