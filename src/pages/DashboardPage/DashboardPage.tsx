@@ -1,6 +1,6 @@
 import "./DashboardPage.css";
 
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import { useEffect,  useState, type ChangeEvent } from "react";
 import type { UserDataType, UserType, UnviewType } from "../../types/UsersTypes";
 
 import IconMod from "../../components/primitives/IconMod/IconMod";
@@ -38,23 +38,20 @@ function DashboardPage() {
   const [foundUserFormat, setFoundUserFormat] = useState(true);
 
   // Inicializações
-  const calledRef = useRef(false);
 
   useEffect(() => {
-    if (calledRef.current) return;
-    calledRef.current = true;
-
-    ServerApi.get("/auth/me")
-      .then((response) => {
+    async function loadProfile() {
+      try {
+        // O Axios Interceptor vai automaticamente colocar o "Bearer <token>" aqui!
+        const response = await ServerApi.get("/auth/me");
         setUserData(response.data);
-        setLoadingHeader(false);
-      })
-      .catch((error) => {
-        console.log(error.status);
-        if (error.status === 401) {
-          window.location.href = ROOT_URL + "/home";
-        }
-      });
+        setLoadingHeader(false)
+      } catch (error) {
+        console.error("Erro ao carregar perfil:", error);
+      }
+    }
+
+    loadProfile();
   }, []);
 
   useEffect(() => {
