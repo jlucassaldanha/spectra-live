@@ -1,6 +1,6 @@
 import "./ViewersPage.css";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type {
   UserType,
   ChatterModeratorType,
@@ -18,7 +18,7 @@ import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkele
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
 import ServerApi from "../../utils/ServerApi";
-import { ROOT_URL } from "../../constants/constants";
+//import { ROOT_URL } from "../../constants/constants";
 
 function ViewersPage() {
   const [userData, setUserData] = useState<UserType>(); // Usuario
@@ -26,23 +26,20 @@ function ViewersPage() {
   const [moderators, setModerators] = useState<ChatterModeratorType>();
   const [loadingHeader, setLoadingHeader] = useState(true);
 
-  const calledRef = useRef(false);
 
-  useEffect(() => {
-    if (calledRef.current) return;
-    calledRef.current = true;
-
-    ServerApi.get("/auth/me")
-      .then((response) => {
+   useEffect(() => {
+    async function loadProfile() {
+      try {
+        // O Axios Interceptor vai automaticamente colocar o "Bearer <token>" aqui!
+        const response = await ServerApi.get("/auth/me");
         setUserData(response.data);
-        setLoadingHeader(false);
-      })
-      .catch((error) => {
-        console.log(error.status);
-        if (error.status === 401) {
-          window.location.href = ROOT_URL + "/home";
-        }
-      });
+        setLoadingHeader(false)
+      } catch (error) {
+        console.error("Erro ao carregar perfil:", error);
+      }
+    }
+
+    loadProfile();
   }, []);
 
   useEffect(() => {
