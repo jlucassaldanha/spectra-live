@@ -4,7 +4,6 @@ import Button from "../../components/ui/Button/Button";
 import { FaTwitch } from "react-icons/fa";
 import HorizontalLogo from "../../components/primitives/HorizontalLogo/HorizontalLogo";
 import { API_URL } from "../../constants/constants";
-import UpdateInfo from "../../components/composite/UpdateInfo/UpdateInfo";
 import Contact from "../../components/composite/Contact/Contact";
 
 import { useState } from "react";
@@ -12,7 +11,6 @@ import { useState } from "react";
 // Página para login
 function HomePage() {
   const [show, setShow] = useState(false)
-  const [showInfo, setShowInfo] = useState(false)
 
   const handleClick = () => {
     window.location.href = API_URL+"/auth/login";
@@ -22,16 +20,6 @@ function HomePage() {
     <div className="homeDiv">
       <img className="img" src="./setup1.jpg" alt="Ilustrativa" /> 
       <div className="mainDiv">
-        <div className="topDiv">
-          <div className="update">
-            <UpdateInfo 
-              showState={showInfo} 
-              onClick={() => {
-              setShowInfo((prev) => !prev)
-              setShow(false)
-            }}/>
-          </div>
-        </div>
         <div className="centerDiv">
           <div className="logoTitle">
             <HorizontalLogo />
@@ -47,7 +35,6 @@ function HomePage() {
             showState={show} 
             onClick={() => {
               setShow((prev) => !prev)
-              setShowInfo(false)
           }}/>
         </div>
       </div>

@@ -1,12 +1,5 @@
 import "./ViewersPage.css";
 
-import { useEffect, useState } from "react";
-import type {
-  UserType,
-  ChatterModeratorType,
-  ViewersResponseType,
-} from "../../types/UsersTypes";
-
 import IconUser from "../../components/primitives/IconUser/IconUser";
 import IconMod from "../../components/primitives/IconMod/IconMod";
 
@@ -17,60 +10,12 @@ import UsersList from "../../components/containers/UsersList/UsersList";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
-import ServerApi from "../../utils/ServerApi";
-//import { ROOT_URL } from "../../constants/constants";
+import useProfileInit from "../../hooks/useProfileInit";
+import useUpadateViewers from "../../hooks/useUpdateViewers";
 
 function ViewersPage() {
-  const [userData, setUserData] = useState<UserType>(); // Usuario
-  const [chatters, setChatters] = useState<ChatterModeratorType>();
-  const [moderators, setModerators] = useState<ChatterModeratorType>();
-  const [loadingHeader, setLoadingHeader] = useState(true);
-
-
-   useEffect(() => {
-    async function loadProfile() {
-      try {
-        // O Axios Interceptor vai automaticamente colocar o "Bearer <token>" aqui!
-        const response = await ServerApi.get("/auth/me");
-        setUserData(response.data);
-        setLoadingHeader(false)
-      } catch (error) {
-        console.error("Erro ao carregar perfil:", error);
-      }
-    }
-
-    loadProfile();
-  }, []);
-
-  useEffect(() => {
-    const interval: number = setInterval(() => {
-      ServerApi.get("/information/viewers")
-        .then((response) => {
-          const response_data: ViewersResponseType = response.data;
-          console.log(response_data);
-
-          const orderedChatters = response_data.chatters.data.sort((a, b) => {
-            return String(a.twitch_id).localeCompare(String(b.twitch_id));
-          });
-          const orderedModerators = response_data.moderators.data.sort(
-            (a, b) => {
-              return String(a.twitch_id).localeCompare(String(b.twitch_id));
-            }
-          );
-
-          setChatters({
-            data: orderedChatters,
-            total: response_data.chatters.total,
-          });
-          setModerators({
-            data: orderedModerators,
-            total: response_data.moderators.total,
-          });
-        })
-        .catch((error) => console.log(error));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const { userData, loadingHeader } = useProfileInit();
+  const { chatters, moderators } = useUpadateViewers();
 
   return (
     <div>

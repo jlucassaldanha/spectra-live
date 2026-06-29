@@ -1,7 +1,7 @@
 import "./DashboardPage.css";
 
-import { useEffect,  useState, type ChangeEvent } from "react";
-import type { UserDataType, UserType, UnviewType } from "../../types/UsersTypes";
+import { useState, type ChangeEvent } from "react";
+import type { UserType } from "../../types/UsersTypes";
 
 import IconMod from "../../components/primitives/IconMod/IconMod";
 import IconUser from "../../components/primitives/IconUser/IconUser";
@@ -19,184 +19,50 @@ import Button from "../../components/ui/Button/Button";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
-import ServerApi from "../../utils/ServerApi";
 import { ROOT_URL } from "../../constants/constants";
-import { AxiosError } from "axios";
+
+import useProfileInit from "../../hooks/useProfileInit";
+import useModsInit from "../../hooks/useModsInit";
+import useUnviewsInit from "../../hooks/useUnviewsInit";
+import useUnviewsConfig from "../../hooks/useUnviewsConfig";
 
 function DashboardPage() {
-  const [userData, setUserData] = useState<UserDataType>(); // Usuario
-  const [moderatorsData, setModeratorsData] = useState<UserType[]>();
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}); // ids dos mods
   const [userList, setUsersList] = useState<UserType[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
-  const [loadingHeader, setLoadingHeader] = useState(true);
-  const [loadingMod, setLoadingMod] = useState(true);
-  const [loadingSpec, setLoadingSpec] = useState(true);
-  const [saved, setSaved] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [foundUser, setFoundUser] = useState(true);
-  const [foundUserFormat, setFoundUserFormat] = useState(true);
+  
+  const { userData, loadingHeader } = useProfileInit();
+  const { moderatorsData, loadingMod } = useModsInit(userData)
+  const { loadingSpec } = useUnviewsInit(
+    moderatorsData,  
+    setCheckedIds, 
+    setUsersList
+  )
 
-  // Inicializações
+  const {
+		saved,
+		isSaving,
+		foundUser,
+		foundUserFormat,
+		handleAddUser,
+		handleRemoveUser,
+		handleSave
+	} = useUnviewsConfig(
+    inputValue,
+    checkedIds, 
+    setCheckedIds, 
+    setUsersList, 
+    setInputValue
+  )
 
-  useEffect(() => {
-    async function loadProfile() {
-      try {
-        // O Axios Interceptor vai automaticamente colocar o "Bearer <token>" aqui!
-        const response = await ServerApi.get("/auth/me");
-        setUserData(response.data);
-        setLoadingHeader(false)
-      } catch (error) {
-        console.error("Erro ao carregar perfil:", error);
-      }
-    }
-
-    loadProfile();
-  }, []);
-
-  useEffect(() => {
-    if (userData != undefined) {
-      ServerApi.get("/information/mods")
-        .then((response) => {
-          setModeratorsData(response.data);
-          setLoadingMod(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [userData]);
-
-  useEffect(() => {
-    if (moderatorsData != undefined) {
-      const getUnview = async () => {
-        let restIds: number[] = [];
-        try {
-          const response = await ServerApi.get("/preferences/list/unview");
-          const unviewList: UnviewType[] = response.data;
-
-          restIds = unviewList.reduce<number[]>((acc, unview) => {
-            setCheckedIds((prev) => {
-              return { ...prev, [unview.twitch_user_id]: true };
-            });
-
-            if (
-              !moderatorsData.find((m) => m.twitch_id == unview.twitch_user_id)
-            ) {
-              acc.push(unview.twitch_user_id);
-            }
-            
-            return acc;
-          }, []);
-          
-        } catch (error) {
-          console.log(error);
-        }
-
-        if (restIds.length > 0) {
-          ServerApi.post("/information/users", {
-            twitch_ids: restIds,
-          })
-            .then((response) => {
-              setUsersList((prev) => [...prev, ...response.data]);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
-        setLoadingSpec(false);
-      };
-      getUnview();
-    }
-  }, [moderatorsData]);
-  // Acaba inicializações
-
-  // Mods
   const toggleUserState = (key: number | string, value: boolean) => {
     setCheckedIds((prev) => {
       return { ...prev, [key]: value };
     });
   };
 
-  // Users
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
-  };
-
-  const handleAddUser = async () => {
-    if (inputValue.trim()) {
-      try {
-        const response = await ServerApi.get("/information/user", {
-          params: { display_name: inputValue.trim() },
-        });
-
-        const user = response.data;
-
-        if (!userList.some((u) => u.twitch_id === user.twitch_id)) {
-          setUsersList((prev) => [...prev, user]);
-          setCheckedIds((prev) => {
-            return { ...prev, [user.twitch_id]: true };
-          });
-          setInputValue("");
-        }
-
-        setFoundUser(true);
-        setFoundUserFormat(true);
-      } catch (error) {
-        if (error instanceof AxiosError) {
-          if (error.response?.status === 404) {
-            setFoundUser(false);
-            setFoundUserFormat(true)
-          } else if (error.response?.status === 400) {
-            setFoundUserFormat(false);
-            setFoundUser(true)
-          } else {
-            setFoundUser(false)
-            setFoundUserFormat(false)
-          }
-        }
-      }
-    }
-  };
-
-  const handleRemoveUser = (twitch_id: number | string) => {
-    setUsersList((prev) => prev.filter((u) => u.twitch_id !== twitch_id));
-    setCheckedIds((prev) => {
-      return { ...prev, [twitch_id]: false };
-    });
-  };
-
-  const handleSave = async () => {
-    setSaved(false);
-    setIsSaving(true);
-
-    try {
-      const addUnviews = Object.entries(checkedIds)
-        .filter(([_key, value]) => value === true)
-        .map(([key, _value]) => key);
-
-      const removeUnviews = Object.entries(checkedIds)
-        .filter(([_key, value]) => value === false)
-        .map(([key, _value]) => key);
-
-      if (addUnviews.length > 0) {
-        await ServerApi.post("/preferences/add/unview", {
-          twitch_ids: addUnviews,
-        });
-      }
-
-      if (removeUnviews.length > 0) {
-        await ServerApi.delete("/preferences/remove/unview", {
-          data: { twitch_ids: removeUnviews },
-        });
-      }
-
-      setSaved(true);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsSaving(false);
-    }
   };
 
   const spectar = () => {
