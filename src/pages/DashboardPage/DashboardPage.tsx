@@ -1,8 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import "./DashboardPage.css";
 
-import { useEffect,  useState, type ChangeEvent } from "react";
-import type { UserDataType, UserType, UnviewType } from "../../types/UsersTypes";
+//import { useEffect,  useState, type ChangeEvent } from "react";
+//import type { UserDataType, UserType, UnviewType } from "../../types/UsersTypes";
+import { useState, type ChangeEvent } from "react";
+import type { UserType } from "../../types/UsersTypes";
 
 import IconMod from "../../components/primitives/IconMod/IconMod";
 import IconUser from "../../components/primitives/IconUser/IconUser";
@@ -20,13 +22,14 @@ import Button from "../../components/ui/Button/Button";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
-import ServerApi from "../../utils/ServerApi";
+//import ServerApi from "../../utils/ServerApi";
 import { ROOT_URL } from "../../constants/constants";
-import { AxiosError } from "axios";
+//import { AxiosError } from "axios";
 
 import useProfileInit from "../../hooks/useProfileInit";
 import useModsInit from "../../hooks/useModsInit";
 import useUnviewsInit from "../../hooks/useUnviewsInit";
+import useUnviewsConfig from "../../hooks/useUnviewsConfig";
 
 function DashboardPage() {
   //const [userData, setUserData] = useState<UserDataType>(); // Usuario
@@ -34,15 +37,14 @@ function DashboardPage() {
   //const [loadingHeader, setLoadingHeader] = useState(true);
   //const [loadingMod, setLoadingMod] = useState(true);
   //const [loadingSpec, setLoadingSpec] = useState(true);
-
+  //const [saved, setSaved] = useState(false);
+  //const [isSaving, setIsSaving] = useState(false);
+  //const [foundUser, setFoundUser] = useState(true);
+  //const [foundUserFormat, setFoundUserFormat] = useState(true);
+  
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}); // ids dos mods
   const [userList, setUsersList] = useState<UserType[]>([]);
-
   const [inputValue, setInputValue] = useState<string>("");
-  const [saved, setSaved] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [foundUser, setFoundUser] = useState(true);
-  const [foundUserFormat, setFoundUserFormat] = useState(true);
 
   // Inicializações
 
@@ -59,9 +61,9 @@ function DashboardPage() {
     }
 
     loadProfile();
-  }, []);*/
-
-  /*useEffect(() => {
+  }, []);
+  
+  useEffect(() => {
     if (userData != undefined) {
       ServerApi.get("/information/mods")
         .then((response) => {
@@ -72,9 +74,9 @@ function DashboardPage() {
           console.log(error);
         });
     }
-  }, [userData]);*/
-
-  /*useEffect(() => {
+  }, [userData]);
+  
+  useEffect(() => {
     if (moderatorsData != undefined) {
       const getUnview = async () => {
         let restIds: number[] = [];
@@ -120,9 +122,7 @@ function DashboardPage() {
   const { userData, loadingHeader } = useProfileInit();
   const { moderatorsData, loadingMod } = useModsInit(userData)
   const { loadingSpec } = useUnviewsInit(
-    moderatorsData, 
-    checkedIds, 
-    userList, 
+    moderatorsData,  
     setCheckedIds, 
     setUsersList
   )
@@ -140,7 +140,23 @@ function DashboardPage() {
     setInputValue(event.target.value);
   };
 
-  const handleAddUser = async () => {
+  const {
+		saved,
+		isSaving,
+		foundUser,
+		foundUserFormat,
+		handleAddUser,
+		handleRemoveUser,
+		handleSave
+	} = useUnviewsConfig(
+    inputValue,
+    checkedIds, 
+    setCheckedIds, 
+    setUsersList, 
+    setInputValue
+  )
+
+  /*const handleAddUser = async () => {
     if (inputValue.trim()) {
       try {
         const response = await ServerApi.get("/information/user", {
@@ -214,7 +230,7 @@ function DashboardPage() {
     } finally {
       setIsSaving(false);
     }
-  };
+  };*/
 
   const spectar = () => {
     window.location.href = ROOT_URL + "/viewers";
