@@ -24,15 +24,21 @@ import ServerApi from "../../utils/ServerApi";
 import { ROOT_URL } from "../../constants/constants";
 import { AxiosError } from "axios";
 
+import useProfileInit from "../../hooks/useProfileInit";
+import useModsInit from "../../hooks/useModsInit";
+import useUnviewsInit from "../../hooks/useUnviewsInit";
+
 function DashboardPage() {
-  const [userData, setUserData] = useState<UserDataType>(); // Usuario
-  const [moderatorsData, setModeratorsData] = useState<UserType[]>();
+  //const [userData, setUserData] = useState<UserDataType>(); // Usuario
+  //const [moderatorsData, setModeratorsData] = useState<UserType[]>();
+  //const [loadingHeader, setLoadingHeader] = useState(true);
+  //const [loadingMod, setLoadingMod] = useState(true);
+  //const [loadingSpec, setLoadingSpec] = useState(true);
+
   const [checkedIds, setCheckedIds] = useState<Record<string | number, boolean>>({}); // ids dos mods
   const [userList, setUsersList] = useState<UserType[]>([]);
+
   const [inputValue, setInputValue] = useState<string>("");
-  const [loadingHeader, setLoadingHeader] = useState(true);
-  const [loadingMod, setLoadingMod] = useState(true);
-  const [loadingSpec, setLoadingSpec] = useState(true);
   const [saved, setSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [foundUser, setFoundUser] = useState(true);
@@ -40,7 +46,7 @@ function DashboardPage() {
 
   // Inicializações
 
-  useEffect(() => {
+  /*useEffect(() => {
     async function loadProfile() {
       try {
         // O Axios Interceptor vai automaticamente colocar o "Bearer <token>" aqui!
@@ -53,9 +59,9 @@ function DashboardPage() {
     }
 
     loadProfile();
-  }, []);
+  }, []);*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (userData != undefined) {
       ServerApi.get("/information/mods")
         .then((response) => {
@@ -66,9 +72,9 @@ function DashboardPage() {
           console.log(error);
         });
     }
-  }, [userData]);
+  }, [userData]);*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (moderatorsData != undefined) {
       const getUnview = async () => {
         let restIds: number[] = [];
@@ -109,7 +115,17 @@ function DashboardPage() {
       };
       getUnview();
     }
-  }, [moderatorsData]);
+  }, [moderatorsData]);*/
+  
+  const { userData, loadingHeader } = useProfileInit();
+  const { moderatorsData, loadingMod } = useModsInit(userData)
+  const { loadingSpec } = useUnviewsInit(
+    moderatorsData, 
+    checkedIds, 
+    userList, 
+    setCheckedIds, 
+    setUsersList
+  )
   // Acaba inicializações
 
   // Mods

@@ -7,12 +7,10 @@ import HorizontalLogo from "../../primitives/HorizontalLogo/HorizontalLogo";
 import User from "../../primitives/User/User";
 
 import { ROOT_URL } from "../../../constants/constants";
-//import { handleLogoutClick } from "../../../utils/handleClicks";
 
 function ProfileHeader({ display_name, profile_image_url }: UserDataType) {
 
   const handleLogout = () => {
-    // Logout agora é super simples: apenas apague o token e redirecione
     localStorage.removeItem("@Spectra:token");
     window.location.href = "/";
   };
