@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "./DashboardPage.css";
 
 import { useEffect,  useState, type ChangeEvent } from "react";
@@ -172,12 +173,12 @@ function DashboardPage() {
 
     try {
       const addUnviews = Object.entries(checkedIds)
-        .filter(([_key, value]) => value === true)
-        .map(([key, _value]) => key);
+        .filter(([_, value]) => value === true)
+        .map(([key, _]) => key);
 
       const removeUnviews = Object.entries(checkedIds)
-        .filter(([_key, value]) => value === false)
-        .map(([key, _value]) => key);
+        .filter(([_, value]) => value === false)
+        .map(([key, _]) => key);
 
       if (addUnviews.length > 0) {
         await ServerApi.post("/preferences/add/unview", {
