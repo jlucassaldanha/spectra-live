@@ -1,11 +1,11 @@
 import "./ViewersPage.css";
 
-import { useEffect, useState } from "react";
+/*import { useEffect, useState } from "react";
 import type {
   UserType,
   ChatterModeratorType,
   ViewersResponseType,
-} from "../../types/UsersTypes";
+} from "../../types/UsersTypes";*/
 
 import IconUser from "../../components/primitives/IconUser/IconUser";
 import IconMod from "../../components/primitives/IconMod/IconMod";
@@ -17,17 +17,19 @@ import UsersList from "../../components/containers/UsersList/UsersList";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfileHeaderSkeleton/ProfileHeaderSkeleton";
 import UserListSectionSkeleton from "../../components/skeletons/UserListSectionSkeleton/UserListSectionSkeleton";
 
-import ServerApi from "../../utils/ServerApi";
+//import ServerApi from "../../utils/ServerApi";
+import useProfileInit from "../../hooks/useProfileInit";
+import useUpadateViewers from "../../hooks/useUpdateViewers";
 //import { ROOT_URL } from "../../constants/constants";
 
 function ViewersPage() {
-  const [userData, setUserData] = useState<UserType>(); // Usuario
-  const [chatters, setChatters] = useState<ChatterModeratorType>();
-  const [moderators, setModerators] = useState<ChatterModeratorType>();
-  const [loadingHeader, setLoadingHeader] = useState(true);
+  //const [userData, setUserData] = useState<UserType>(); // Usuario
+  //const [chatters, setChatters] = useState<ChatterModeratorType>();
+  //const [moderators, setModerators] = useState<ChatterModeratorType>();
+  //const [loadingHeader, setLoadingHeader] = useState(true);
 
 
-   useEffect(() => {
+   /*useEffect(() => {
     async function loadProfile() {
       try {
         // O Axios Interceptor vai automaticamente colocar o "Bearer <token>" aqui!
@@ -40,9 +42,11 @@ function ViewersPage() {
     }
 
     loadProfile();
-  }, []);
+  }, []);*/
 
-  useEffect(() => {
+  const { userData, loadingHeader } = useProfileInit();
+
+  /*useEffect(() => {
     const interval: number = setInterval(() => {
       ServerApi.get("/information/viewers")
         .then((response) => {
@@ -70,7 +74,9 @@ function ViewersPage() {
         .catch((error) => console.log(error));
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, []);*/
+
+  const { chatters, moderators } = useUpadateViewers();
 
   return (
     <div>
